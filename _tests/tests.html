@@ -54,7 +54,7 @@
     // Phase 1:
     // It should have a way to store todos.
     "1a) If the application has just loaded ==> todoList.todos.length === 0.": function () {
-      fail();
+      eq(todoList.todos.length, 0);
     },
     // It should have a way to add new todos:
     "2a) If todoList.todos is [] then todoList.addTodo('1st') ==> todoList.todos === ['1st'].": function () {
