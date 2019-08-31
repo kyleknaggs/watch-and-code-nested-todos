@@ -27,26 +27,6 @@
 
   ----------------------------
 
-  1) It should have a way to store todos.
-  a. If the application is loaded, it should have 0 todos.
-  todos.length === 0;
-
-  2) It should have a way to add new todos:
-  a. If todos.length === 0, it should be able to add a new todo:
-  var todos = [];
-  addTodo('first todo');
-  todos ==> ['first todo'];
-  b. If todos.length === 1, it should be able to add a new todo:
-  var todos = ['first todo'];
-  addTodo('second todo');
-  todos ==> ['first todo', 'second todo'];
-  c. If todos.length > 1, it should be able to add a new todo:
-  var todos = ['first todo', 'second todo'];
-  addTodo('third todo');
-  todos ==> ['first todo', 'second todo', 'third todo'];
-
-
-
   */
   tests({
     // Reminder: Write note about deleting tests if you don't need to add any new code to pass them.
@@ -59,25 +39,64 @@
     // It should have a way to add new todos:
     "2a) If todoList.todos is [] then todoList.addTodo('1st') ==> todoList.todos === ['1st'].": function () {
       fail();
+      todoList.addTodo('1st');
+      eq(todoList.todos[0], '1st');
+      eq(todoList.todos.length, 1);
     },
     "2b) If todoList.todos is ['1st'] then todoList.addTodo('2nd') ==> todoList.todos === ['1st', '2nd'].": function () {
       fail();
+      ['1st'].forEach(function (todo) {
+        todoList.addTodo(todo);
+      });
+      todoList.addTodo('2nd');
+      eq(todoList.todos[1], '2nd');
+      eq(todoList.todos.length, 2);
     },
     "2c) If todoList.todos is ['1st', '2nd'] then todoList.addTodo('3rd') ==> todoList.todos === ['1st', '2nd', '3rd'].": function () {
       fail();
+      ['1st', '2nd'].forEach(function(todo){
+        todoList.addTodo(todo);
+      });
+      todoList.addTodo('3rd');
+      eq(todoList.todos[2], '3rd');
+      eq(todoList.todos.length, 3);
     },
     // It should have a way to delete todos.
     "3a) If todoList.todos is ['1st'] then todoList.deleteTodo(0) ==> todoList.todos === [].": function () {
       fail();
+      todoList.addTodo('1st');
+      todoList.deleteTodo(0);
+      eq(todoList.todos.length, 0);
     },
     "3b) If todoList.todos is ['1st', '2nd', '3rd'] then todoList.deleteTodo(0) ==> todoList.todos === ['2nd', '3rd'].": function () {
       fail();
+      ['1st', '2nd', '3rd'].forEach(function (todo) {
+        todoList.addTodo(todo);
+      });
+      todoList.deleteTodo(0);
+      eq(todoList.todos[0], '1st');
+      eq(todoList.todos[1], '2nd');
+      eq(todoList.todos.length, 2);
     },
     "3c) If todoList.todos is ['1st', '2nd', '3rd'] then todoList.deleteTodo(1) ==> todoList.todos === ['1st', '3rd'].": function () {
       fail();
+      ['1st', '2nd', '3rd'].forEach(function (todo) {
+        todoList.addTodo(todo);
+      });
+      todoList.deleteTodo(1);
+      eq(todoList.todos[0], '1st');
+      eq(todoList.todos[1], '3rd');
+      eq(todoList.todos.length, 2);
     },
-    "3d) If todoList.todos is ['1st', '2nd', '3rd'] then todoList.deleteTodo(2) ==> todoList.todos === ['1st', '3rd'].": function () {
+    "3d) If todoList.todos is ['1st', '2nd', '3rd'] then todoList.deleteTodo(2) ==> todoList.todos === ['1st', '2nd'].": function () {
       fail();
+      ['1st', '2nd', '3rd'].forEach(function (todo) {
+        todoList.addTodo(todo);
+      });
+      todoList.deleteTodo(1);
+      eq(todoList.todos[0], '1st');
+      eq(todoList.todos[1], '2nd');
+      eq(todoList.todos.length, 2);
     }
   });
 </script>
