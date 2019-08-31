@@ -1,11 +1,82 @@
 <script src="simpletest.js"></script>
 <script src="../scripts.js"></script>
 <script>
+  /*
+
+  Requirements strategy for Nested todos data structure:
+
+  Phase 1: Basic todos
+  1) It should have a place to store todos.
+  2) It should have a way to display todos.
+  3) It should have a way to add new todos.
+
+  Phase 2: Basic nested todos
+  4) It should have a place to store nested todos.
+  5) It should have a way to display nested todos.
+  6) It should have a way to add nested todos.
+
+  Phase 3: Deletion of todos and nested todos:
+  7) It should have a way to delete a todo.
+  8) It should have a way to delete a nested todo.
+
+  Phase 4: Editing of todos and nested todos:
+  9) It should have a way to edit the completed status of a todo.
+  10) It should have a way to edit the completed status a nested todo.
+  11) It should have a way to edit the text of a todo.
+  12) It should have a way to edit the text of a nested todo.
+
+  ----------------------------
+
+  1) It should have a way to store todos.
+  a. If the application is loaded, it should have 0 todos.
+  todos.length === 0;
+
+  2) It should have a way to add new todos:
+  a. If todos.length === 0, it should be able to add a new todo:
+  var todos = [];
+  addTodo('first todo');
+  todos ==> ['first todo'];
+  b. If todos.length === 1, it should be able to add a new todo:
+  var todos = ['first todo'];
+  addTodo('second todo');
+  todos ==> ['first todo', 'second todo'];
+  c. If todos.length > 1, it should be able to add a new todo:
+  var todos = ['first todo', 'second todo'];
+  addTodo('third todo');
+  todos ==> ['first todo', 'second todo', 'third todo'];
+
+
+
+  */
   tests({
-    "1) An exmple of a passing test..": function () {
-      eq(demoStatement, "This JavaScript file is loaded.");
+    // Reminder: Write note about deleting tests if you don't need to add any new code to pass them.
+
+    // Phase 1:
+    // It should have a way to store todos.
+    "1a) If the application has just loaded ==> todoList.todos.length === 0.": function () {
+      fail();
     },
-    "2) An example of a failing test.": function () {
+    // It should have a way to add new todos:
+    "2a) If todoList.todos is [] then todoList.addTodo('1st') ==> todoList.todos === ['1st'].": function () {
+      fail();
+    },
+    "2b) If todoList.todos is ['1st'] then todoList.addTodo('2nd') ==> todoList.todos === ['1st', '2nd'].": function () {
+      fail();
+    },
+    "2c) If todoList.todos is ['1st', '2nd'] then todoList.addTodo('3rd') ==> todoList.todos === ['1st', '2nd', '3rd'].": function () {
+      fail();
+    },
+    // It should have a way to delete todos.
+    "3a) If todoList.todos is ['1st'] then todoList.deleteTodo(0) ==> todoList.todos === [].": function () {
+      fail();
+    },
+    "3b) If todoList.todos is ['1st', '2nd', '3rd'] then todoList.deleteTodo(0) ==> todoList.todos === ['2nd', '3rd'].": function () {
+      fail();
+    },
+    "3c) If todoList.todos is ['1st', '2nd', '3rd'] then todoList.deleteTodo(1) ==> todoList.todos === ['1st', '3rd'].": function () {
+      fail();
+    },
+    "3d) If todoList.todos is ['1st', '2nd', '3rd'] then todoList.deleteTodo(2) ==> todoList.todos === ['1st', '3rd'].": function () {
       fail();
     }
   });
