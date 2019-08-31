@@ -1,0 +1,12 @@
+<script src="simpletest.js"></script>
+<script src="../scripts.js"></script>
+<script>
+  tests({
+    "1) An exmple of a passing test..": function () {
+      eq(demoStatement, "This JavaScript file is loaded.");
+    },
+    "2) An example of a failing test.": function () {
+      fail();
+    }
+  });
+</script>
