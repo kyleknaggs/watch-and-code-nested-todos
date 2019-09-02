@@ -30,10 +30,16 @@
   */
 
   // Reminder: Write note about deleting tests if you don't need to add any new code to pass them.
-  // Set up variables:
+
+  // Destructure variables so they are easier to access:
   var todos = todoList.todos;
   var addTodo = todoList.addTodo;
   var deleteTodo = todoList.deleteTodo;
+
+  // Helper function to set todoList.todos to [] after each test:
+  function emptyTodos(){
+    todoList.todos = [];
+  }
 
   tests({
     // Phase 1:
@@ -46,6 +52,7 @@
       addTodo('1st');
       eq(todos[0], '1st');
       eq(todos.length, 1);
+      emptyTodos();
     },
     "2b) If todos is ['1st'] then addTodo('2nd') ==> todos === ['1st', '2nd'].": function () {
       fail();
@@ -55,6 +62,7 @@
       addTodo('2nd');
       eq(todos[1], '2nd');
       eq(todos.length, 2);
+      emptyTodos();
     },
     "2c) If todos is ['1st', '2nd'] then addTodo('3rd') ==> todos === ['1st', '2nd', '3rd'].": function () {
       fail();
@@ -64,6 +72,7 @@
       addTodo('3rd');
       eq(todos[2], '3rd');
       eq(todos.length, 3);
+      emptyTodos();
     },
     // It should have a way to delete todos.
     "3a) If todos is ['1st'] then deleteTodo(0) ==> todos === [].": function () {
@@ -71,6 +80,7 @@
       addTodo('1st');
       deleteTodo(0);
       eq(todos.length, 0);
+      emptyTodos();
     },
     "3b) If todos is ['1st', '2nd', '3rd'] then deleteTodo(0) ==> todos === ['2nd', '3rd'].": function () {
       fail();
@@ -81,6 +91,7 @@
       eq(todos[0], '1st');
       eq(todos[1], '2nd');
       eq(todos.length, 2);
+      emptyTodos();
     },
     "3c) If todos is ['1st', '2nd', '3rd'] then deleteTodo(1) ==> todos === ['1st', '3rd'].": function () {
       fail();
@@ -91,6 +102,7 @@
       eq(todos[0], '1st');
       eq(todos[1], '3rd');
       eq(todos.length, 2);
+      emptyTodos();
     },
     "3d) If todos is ['1st', '2nd', '3rd'] then deleteTodo(2) ==> todos === ['1st', '2nd'].": function () {
       fail();
@@ -101,6 +113,7 @@
       eq(todos[0], '1st');
       eq(todos[1], '2nd');
       eq(todos.length, 2);
+      emptyTodos();
     }
   });
 </script>
