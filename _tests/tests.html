@@ -80,55 +80,6 @@
       eq(todos[2], '3rd');
       eq(todos.length, 3);
       emptyTodos();
-    },
-    // It should have a way to delete todos.
-    "3a) If todos is ['1st'] then deleteTodo(0) ==> todos === [].": function () {
-      fail();
-      addTodo('1st');
-      deleteTodo(0);
-      var todos = nestedTodos.todoList.todos;
-
-      eq(todos.length, 0);
-      emptyTodos();
-    },
-    "3b) If todos is ['1st', '2nd', '3rd'] then deleteTodo(0) ==> todos === ['2nd', '3rd'].": function () {
-      fail();
-      ['1st', '2nd', '3rd'].forEach(function (todo) {
-        addTodo(todo);
-      });
-      deleteTodo(0);
-      var todos = nestedTodos.todoList.todos;
-
-      eq(todos[0], '1st');
-      eq(todos[1], '2nd');
-      eq(todos.length, 2);
-      emptyTodos();
-    },
-    "3c) If todos is ['1st', '2nd', '3rd'] then deleteTodo(1) ==> todos === ['1st', '3rd'].": function () {
-      fail();
-      ['1st', '2nd', '3rd'].forEach(function (todo) {
-        addTodo(todo);
-      });
-      deleteTodo(1);
-      var todos = nestedTodos.todoList.todos;
-
-      eq(todos[0], '1st');
-      eq(todos[1], '3rd');
-      eq(todos.length, 2);
-      emptyTodos();
-    },
-    "3d) If todos is ['1st', '2nd', '3rd'] then deleteTodo(2) ==> todos === ['1st', '2nd'].": function () {
-      fail();
-      ['1st', '2nd', '3rd'].forEach(function (todo) {
-        addTodo(todo);
-      });
-      deleteTodo(1);
-      var todos = nestedTodos.todoList.todos;
-
-      eq(todos[0], '1st');
-      eq(todos[1], '2nd');
-      eq(todos.length, 2);
-      emptyTodos();
     }
   });
 </script>
