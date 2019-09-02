@@ -2,7 +2,7 @@
 
   var todoList = {
     todos: [],
-    addTodo: function (text) {
+    add: function (text) {
       todoList.todos.push(text);
     }
   };

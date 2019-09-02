@@ -33,7 +33,7 @@
 
   // Destructure variables so they are easier to access:
   var todoList = nestedTodos.todoList;
-  var addTodo = todoList.addTodo;
+  var add = todoList.add;
   var deleteTodo = todoList.deleteTodo;
 
   // Helper function to set todoList.todos to [] after each test:
@@ -49,32 +49,32 @@
       eq(nestedTodos.todoList.todos.length, 0);
     },
     // It should have a way to add new todos:
-    "2a) If todos is [] then addTodo('1st') ==> todos === ['1st'].": function () {
-      addTodo('1st');
+    "2a) If todos is [] then add('1st') ==> todos === ['1st'].": function () {
+      add('1st');
       var todos = nestedTodos.todoList.todos;
 
       eq(todos[0], '1st');
       eq(todos.length, 1);
       emptyTodos();
     },
-    "2b) If todos is ['1st'] then addTodo('2nd') ==> todos === ['1st', '2nd'].": function () {
+    "2b) If todos is ['1st'] then add('2nd') ==> todos === ['1st', '2nd'].": function () {
       // Passed without additional code. Consider deleting.
       ['1st'].forEach(function (todo) {
-        addTodo(todo);
+        add(todo);
       });
-      addTodo('2nd');
+      add('2nd');
       var todos = nestedTodos.todoList.todos;
 
       eq(todos[1], '2nd');
       eq(todos.length, 2);
       emptyTodos();
     },
-    "2c) If todos is ['1st', '2nd'] then addTodo('3rd') ==> todos === ['1st', '2nd', '3rd'].": function () {
+    "2c) If todos is ['1st', '2nd'] then add('3rd') ==> todos === ['1st', '2nd', '3rd'].": function () {
       // Passed without additional code. Consider deleting.
       ['1st', '2nd'].forEach(function(todo){
-        addTodo(todo);
+        add(todo);
       });
-      addTodo('3rd');
+      add('3rd');
       var todos = nestedTodos.todoList.todos;
 
       eq(todos[2], '3rd');
