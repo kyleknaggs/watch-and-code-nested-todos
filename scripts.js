@@ -3,7 +3,12 @@
   var todoList = {
     todos: [],
     add: function (text) {
-      todoList.todos.push(text);
+      var newTodo = {
+        text: text,
+        todos: []
+      }
+
+      todoList.todos.push(newTodo);
     }
   };
 
