@@ -2,13 +2,22 @@
 
   var todoList = {
     todos: [],
-    add: function (text) {
+    add: function (text, id) {
       var newTodo = {
         text: text,
         todos: []
       }
 
-      todoList.todos.push(newTodo);
+      // Get list of todos:
+      var todos = todoList.todos;
+
+      // If an id is provided, nest the todo:
+      if(arguments.length === 1){
+        todos.push(newTodo);
+      }else{
+        todos[id].todos.push(newTodo);
+      }
+
     }
   };
 

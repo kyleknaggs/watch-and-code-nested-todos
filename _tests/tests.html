@@ -43,7 +43,7 @@
   tests({
     // Phase 1:
     // It should have a way to store todos.
-    "1a) If the application has just loaded, todos should be [].": function () {
+    "1) If the application has just loaded, todos should be [].": function () {
       var todos = nestedTodos.todoList.todos;
       eq(Array.isArray(todos), true);
       eq(todos.length, 0);
