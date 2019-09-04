@@ -51,35 +51,50 @@
       emptyTodos();
     },
     // It should have a way to add new todos:
-    "2a) If todos is [] then after add('1st'), todos is ['1st'].": function () {
+    "2a) If todos is [] then after add('1st'), todos[0] is {text:'1st', todos: []}.": function () {
       add('1st');
 
+      // Check number of todos:
       var todos = nestedTodos.todoList.todos;
-      eq(todos[0], '1st');
       eq(todos.length, 1);
+      // Check shape of first todo:
+      var firstTodo = todos[0];
+      eq(firstTodo.text, '1st');
+      eq(Array.isArray(firstTodo.todos), true);
+      eq(firstTodo.todos.length, 0);
 
       emptyTodos();
     },
-    "2b) If todos is ['1st'] then after add('2nd'), todos is ['1st', '2nd'].": function () {
+    "2b) If todos is ['1st'] then after add('2nd'), todos[1] is {text:'2nd', todos: []}.": function () {
       // Passed without additional code. Consider deleting.
       add('1st');
       add('2nd');
 
+      // Check number of todos:
       var todos = nestedTodos.todoList.todos;
-      eq(todos[1], '2nd');
       eq(todos.length, 2);
+      // Check shape of second todo:
+      var secondTodo = todos[1];
+      eq(secondTodo.text, '2nd');
+      eq(Array.isArray(secondTodo.todos), true);
+      eq(secondTodo.todos.length, 0);
 
       emptyTodos();
     },
-    "2c) If todos is ['1st', '2nd'] then after add('3rd'), todos is ['1st', '2nd', '3rd'].": function () {
+    "2c) If todos is ['1st', '2nd'] then after add('3rd'), todos[2] is {text:'3rd', todos: []}.": function () {
       // Passed without additional code. Consider deleting.
       add('1st');
       add('2nd');
       add('3rd');
 
+      // Check number of todos:
       var todos = nestedTodos.todoList.todos;
-      eq(todos[2], '3rd');
       eq(todos.length, 3);
+      // Check shape of third todo:
+      var thirdTodo = todos[2];
+      eq(thirdTodo.text, '3rd');
+      eq(Array.isArray(thirdTodo.todos), true);
+      eq(thirdTodo.todos.length, 0);
 
       emptyTodos();
     }
