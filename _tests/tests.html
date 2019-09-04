@@ -34,7 +34,6 @@
   // Destructure variables so they are easier to access:
   var todoList = nestedTodos.todoList;
   var add = todoList.add;
-  var deleteTodo = todoList.deleteTodo;
 
   // Helper function to set todoList.todos to [] after each test:
   function emptyTodos(){
@@ -44,41 +43,44 @@
   tests({
     // Phase 1:
     // It should have a way to store todos.
-    "1a) If the application has just loaded ==> todos.length === 0.": function () {
+    "1a) If the application has just loaded, todos is [].": function () {
       var todos = nestedTodos.todoList.todos;
-      eq(nestedTodos.todoList.todos.length, 0);
+      eq(Array.isArray(todos), true);
+      eq(todos.length, 0);
+
+      emptyTodos();
     },
     // It should have a way to add new todos:
-    "2a) If todos is [] then add('1st') ==> todos === ['1st'].": function () {
+    "2a) If todos is [] then after add('1st'), todos is ['1st'].": function () {
       add('1st');
-      var todos = nestedTodos.todoList.todos;
 
+      var todos = nestedTodos.todoList.todos;
       eq(todos[0], '1st');
       eq(todos.length, 1);
+
       emptyTodos();
     },
-    "2b) If todos is ['1st'] then add('2nd') ==> todos === ['1st', '2nd'].": function () {
+    "2b) If todos is ['1st'] then after add('2nd'), todos is ['1st', '2nd'].": function () {
       // Passed without additional code. Consider deleting.
-      ['1st'].forEach(function (todo) {
-        add(todo);
-      });
+      add('1st');
       add('2nd');
-      var todos = nestedTodos.todoList.todos;
 
+      var todos = nestedTodos.todoList.todos;
       eq(todos[1], '2nd');
       eq(todos.length, 2);
+
       emptyTodos();
     },
-    "2c) If todos is ['1st', '2nd'] then add('3rd') ==> todos === ['1st', '2nd', '3rd'].": function () {
+    "2c) If todos is ['1st', '2nd'] then after add('3rd'), todos is ['1st', '2nd', '3rd'].": function () {
       // Passed without additional code. Consider deleting.
-      ['1st', '2nd'].forEach(function(todo){
-        add(todo);
-      });
+      add('1st');
+      add('2nd');
       add('3rd');
-      var todos = nestedTodos.todoList.todos;
 
+      var todos = nestedTodos.todoList.todos;
       eq(todos[2], '3rd');
       eq(todos.length, 3);
+
       emptyTodos();
     }
   });
