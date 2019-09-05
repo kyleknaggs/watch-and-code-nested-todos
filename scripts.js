@@ -4,16 +4,6 @@
     todos: [],
     add: function (text, indicies) {
 
-      var computedIndicies = [];
-
-      if(arguments.length > 1){
-        if(typeof(indicies) === "number"){
-          computedIndicies = [indicies]
-        }else{
-          computedIndicies = indicies;
-        }
-      }
-
       var toModify;
 
       // Manually set this when calling recursively.
@@ -24,7 +14,7 @@
         toModify = todoList.todos;
       }
 
-      if (computedIndicies.length === 0) {
+      if (indicies.length === 0) {
         // Base case:
         var newTodo = {
           text: text,
@@ -34,9 +24,9 @@
         toModify.push(newTodo);
       } else {
         // Recursive case:
-        var currentIndex = computedIndicies[0];
+        var currentIndex = indicies[0];
         var currentTodo = toModify[currentIndex];
-        var remainingIndicies = computedIndicies.slice(1);
+        var remainingIndicies = indicies.slice(1);
 
         todoList.add.call(currentTodo, text, remainingIndicies);
       }

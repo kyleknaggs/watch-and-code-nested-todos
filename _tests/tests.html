@@ -51,8 +51,8 @@
       emptyTodos();
     },
     // It should have a way to add new todos:
-    "2) If todos is [] then after add('1st'), todos[0] should be {text:'1st', todos: []}.": function () {
-      add('1st');
+    "2) If todos is [] then after add('1st', []), todos[0] should be {text:'1st', todos: []}.": function () {
+      add('1st', []);
 
       // Check number of todos:
       var todos = nestedTodos.todoList.todos;
@@ -65,10 +65,10 @@
 
       emptyTodos();
     },
-    "3) If todos is ['1st'] then after add('2nd'), todos[1] should be {text:'2nd', todos: []}.": function () {
+    "3) If todos is ['1st'] then after add('2nd', []), todos[1] should be {text:'2nd', todos: []}.": function () {
       // Passed without additional code. Consider deleting.
-      add('1st');
-      add('2nd');
+      add('1st', []);
+      add('2nd', []);
 
       // Check number of todos:
       var todos = nestedTodos.todoList.todos;
@@ -81,11 +81,11 @@
 
       emptyTodos();
     },
-    "4) If todos is ['1st', '2nd'] then after add('3rd'), todos[2] should be {text:'3rd', todos: []}.": function () {
+    "4) If todos is ['1st', '2nd'] then after add('3rd', []);, todos[2] should be {text:'3rd', todos: []}.": function () {
       // Passed without additional code. Consider deleting.
-      add('1st');
-      add('2nd');
-      add('3rd');
+      add('1st', []);
+      add('2nd', []);
+      add('3rd', []);
 
       // Check number of todos:
       var todos = nestedTodos.todoList.todos;
@@ -100,9 +100,9 @@
     },
     // Phase 2: Nested todos.
     // Nest a single todo within the first todo:
-    "5) If todos[0] exists and todos[0].todos.length === 0, then after add('Nested', 0), todos[0].todos should be [{text:'Nested', todos:[]}].": function () {
-      add('1st');
-      add('Nested', 0);
+    "5) If todos[0] exists and todos[0].todos.length === 0, then after add('Nested', [0]), todos[0].todos should be [{text:'Nested', todos:[]}].": function () {
+      add('1st', []);
+      add('Nested', [0]);
 
       // Check parent todo has a nested todo:
       var parentTodo = nestedTodos.todoList.todos[0];
@@ -116,11 +116,11 @@
       emptyTodos();
     },
     // Nest a single todo within the second todo:
-    "6) If todos[1] exists and todos[1].todos.length === 0, then after add('Nested', 1), todos[1].todos should be [{text:'Nested', todos:[]}].": function () {
+    "6) If todos[1] exists and todos[1].todos.length === 0, then after add('Nested', [1]), todos[1].todos should be [{text:'Nested', todos:[]}].": function () {
       // Passed without additional code. Consider deleting.
-      add('1st');
-      add('2nd');
-      add('Nested', 1);
+      add('1st', []);
+      add('2nd', []);
+      add('Nested', [1]);
 
       // Check parent todo has a nested todo:
       var parentTodo = nestedTodos.todoList.todos[1];
@@ -134,11 +134,11 @@
       emptyTodos();
     },
     // Nest multiple todos within a todo:
-    "7) If todos[0] exists and todos[0].todos.length === 1, then after add('Nested', 0), todos[0].todos.length === 2 and todos[0].todos[1] should be {text:'Second nested', todos:[]}.": function () {
+    "7) If todos[0] exists and todos[0].todos.length === 1, then after add('Second nested', [0]), todos[0].todos.length === 2 and todos[0].todos[1] should be {text:'Second nested', todos:[]}.": function () {
       // Passed without additional code. Consider deleting.
-      add('1st');
-      add('First nested', 0);
-      add('Second nested', 0);
+      add('1st', []);
+      add('First nested', [0]);
+      add('Second nested', [0]);
 
       // Check parent todo has a nested todo:
       var parentTodo = nestedTodos.todoList.todos[0];
@@ -154,8 +154,8 @@
 
     // Nest a todo more than one layer deep:
     "8) If todos[0].todos[0] exists, then after add('Nested in nested', [0,0]), todos[0].todos[0].todos should be [{text:'Nested in nested', todos:[]}].": function(){
-      add('1st');
-      add('Nested', 0);
+      add('1st', []);
+      add('Nested', [0]);
       add('Nested in nested', [0,0]);
 
       // Check parent todo has a nested todo:
@@ -171,11 +171,11 @@
     },
     // Stress test the nested todos feature:
     "9) If todos[3].todos[0].todos[2].todos.length === 1, then after add('2nd nested in nested in nested', [3, 0, 2]), todos[3].todos[0].todos[2].todos.length === 2 and todos[3].todos[0].todos[2].todos[1] should be {text:'2nd nested in nested in nested', todos:[]}.": function(){
-      add('1st');
-      add('2nd');
-      add('3rd');
-      add('4th');
-      add('1st Nested', 3);
+      add('1st', []);
+      add('2nd', []);
+      add('3rd', []);
+      add('4th', []);
+      add('1st Nested', [3]);
       add('1st nested in nested', [3, 0]);
       add('2nd nested in nested', [3, 0]);
       add('3rd nested in nested', [3, 0]);
