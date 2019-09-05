@@ -3,15 +3,13 @@
   var todoList = {
     todos: [],
     add: function (text, indicies) {
-
       var toModify;
 
-      // Manually set this when calling recursively.
-      // Guarantees all recursive calls will have a todos key.
-      if (this.todos) {
-        toModify = this.todos;
-      } else {
+      // All recursive calls will have an array in the 'todos' key:
+      if(Array.isArray(this.todos) === false){
         toModify = todoList.todos;
+      }else{
+        toModify = this.todos;
       }
 
       if (indicies.length === 0) {
