@@ -152,5 +152,52 @@
       emptyTodos();
     },
 
+    // Nest a todo more than one layer deep:
+    "8) If todos[0].todos[0] exists, then after add('Nested in nested', [0,0]), todos[0].todos[0].todos should be [{text:'Nested in nested', todos:[]}].": function(){
+      fail();
+      // add('1st');
+      // add('Nested', 0);
+      // add('Nested in nested', [0,0]);
+
+      // // Check parent todo has a nested todo:
+      // var parentTodo = nestedTodos.todoList.todos[0].todos[0];
+      // eq(parentTodo.todos.length, 1);
+      // // Check shape of nested todo:
+      // var nestedTodo = parentTodo.todos[0];
+      // eq(nestedTodo.text, "Nested in nested");
+      // eq(Array.isArray(nestedTodo.todos), true);
+      // eq(nestedTodo.todos.length, 0);
+
+      // emptyTodos();
+    },
+    // Stress test the nested todos feature:
+    "9) If todos[3].todos[0].todos[2].todos.length === 1, then after add('2nd nested in nested in nested', [3, 0, 2]), todos[3].todos[0].todos[2].todos.length === 2 and todos[3].todos[0].todos[2].todos[1] should be {text:'2nd nested in nested in nested', todos:[]}.": function(){
+      fail();
+      // add('1st');
+      // add('2nd');
+      // add('3rd');
+      // add('4th');
+      // add('1st Nested', 3);
+      // add('2nd Nested', 3);
+      // add('1st nested in nested', [3, 0]);
+      // add('2nd nested in nested', [3, 0]);
+      // add('3rd nested in nested', [3, 0]);
+      // add('4th nested in nested', [3, 0]);
+      // add('1st nested in nested in nested', [3, 0, 2]);
+      // add('2nd nested in nested in nested', [3, 0, 2]);
+
+      // // Check parent todo has a nested todo:
+      // var parentTodo = nestedTodos.todoList.todos[3].todos[0].todos[2];
+      // eq(parentTodo.todos.length, 2);
+      // // Check shape of nested todo:
+      // var nestedTodo = parentTodo.todos[1];
+      // eq(nestedTodo.text, "2nd nested in nested in nested");
+      // eq(Array.isArray(nestedTodo.todos), true);
+      // eq(nestedTodo.todos.length, 0);
+
+      // emptyTodos();
+
+    }
+
   });
 </script>
