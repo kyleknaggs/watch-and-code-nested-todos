@@ -118,18 +118,18 @@
       emptyTodos();
     },
     // Nest multiple todos within a todo:
-    "6) If todos[0].todos.length === 1 and then add('Second nested', [0]), then todos[0].todos[1] should be {text:'Second nested', todos:[]}.": function () {
+    "6) If todos[0].todos.length === 1 and then add('2nd nested', [0]), then todos[0].todos[1] should be {text:'2nd nested', todos:[]}.": function () {
       // Passed without additional code. Consider deleting.
       add('1st', []);
-      add('First nested', [0]);
-      add('Second nested', [0]);
+      add('1st nested', [0]);
+      add('2nd nested', [0]);
 
       // Check parent todo has a nested todo:
       var parentTodo = nestedTodos.todoList.todos[0];
       eq(parentTodo.todos.length, 2);
       // Check shape of nested todo:
       var nestedTodo = parentTodo.todos[1];
-      eq(nestedTodo.text, "Second nested");
+      eq(nestedTodo.text, "2nd nested");
       eq(Array.isArray(nestedTodo.todos), true);
       eq(nestedTodo.todos.length, 0);
 
@@ -153,9 +153,27 @@
 
       emptyTodos();
     },
+    // Nest a multiple todos within the second todo:
+    "8) If todos[1].todos.length === 1 and then add('2nd nested', [1]), todos[1].todos[1] should be {text:'2nd nested', todos:[]}.": function () {
+      // Passed without additional code. Consider deleting.
+      add('1st', []);
+      add('2nd', []);
+      add('1st nested', [1]);
+      add('2nd nested', [1]);
 
+      // Check parent todo has a nested todo:
+      var parentTodo = nestedTodos.todoList.todos[1];
+      eq(parentTodo.todos.length, 2);
+      // Check shape of nested todo:
+      var nestedTodo = parentTodo.todos[1];
+      eq(nestedTodo.text, "2nd nested");
+      eq(Array.isArray(nestedTodo.todos), true);
+      eq(nestedTodo.todos.length, 0);
+
+      emptyTodos();
+    },
     // Nest a todo more than one layer deep:
-    "8) If todos[0].todos[0].length === 1 and then add('Nested in nested', [0,0]), todos[0].todos[0].todos[0] should be {text:'Nested in nested', todos:[]}.": function(){
+    "9) If todos[0].todos[0].length === 1 and then add('Nested in nested', [0,0]), todos[0].todos[0].todos[0] should be {text:'Nested in nested', todos:[]}.": function(){
       add('1st', []);
       add('Nested', [0]);
       add('Nested in nested', [0,0]);
@@ -172,7 +190,7 @@
       emptyTodos();
     },
     // Stress test the nested todos feature:
-    "9) If todos[3].todos[0].todos[2].todos.length === 1, and then add('2nd nested stress', [3, 0, 2]), todos[3].todos[0].todos[2].todos[1] should be {text:'2nd nested stress', todos:[]}.": function(){
+    "10) If todos[3].todos[0].todos[2].todos.length === 1, and then add('2nd nested stress', [3, 0, 2]), todos[3].todos[0].todos[2].todos[1] should be {text:'2nd nested stress', todos:[]}.": function(){
       add('1st', []);
       add('2nd', []);
       add('3rd', []);
@@ -199,7 +217,7 @@
     // Phase 3 deletion of todos:
     // It should have a way to remove a todo.
     // Basic todo.
-    "10) If todos.length === 1, remove([0]) should remove the 1st index in todos.": function () {
+    "11) If todos.length === 1, remove([0]) should remove the 1st index in todos.": function () {
       add('1st', []);
       remove([0]);
 
@@ -209,7 +227,8 @@
       emptyTodos();
     },
     // Change todos.length.
-    "11) If todos.length === 2, remove([0]) should remove the 1st index in todos.": function(){
+    "12) If todos.length === 2, remove([0]) should remove the 1st index in todos.": function(){
+      // Passed without additional code. Consider deleting.
       add('1st', []);
       add('2nd', []);
       remove([0]);
@@ -221,7 +240,8 @@
       emptyTodos();
     },
     // Change todos[i].
-    "12) If todos.length === 2, remove([1]) should remove the 2nd index in todos.": function(){
+    "13) If todos.length === 2, remove([1]) should remove the 2nd index in todos.": function(){
+      // Passed without additional code. Consider deleting.
       add('1st', []);
       add('2nd', []);
       remove([1]);
