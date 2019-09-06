@@ -29,6 +29,10 @@
 
         todoList.add.call(currentTodo, text, remainingIndicies);
       }
+    },
+    remove: function(indicies){
+      var indexToDelete = indicies[0];
+      todoList.todos.splice(indexToDelete, 1);
     }
   };
 
