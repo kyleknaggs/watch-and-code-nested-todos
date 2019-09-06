@@ -34,6 +34,7 @@
   // Destructure variables so they are easier to access:
   var todoList = nestedTodos.todoList;
   var add = todoList.add;
+  var remove = todoList.remove;
 
   // Helper function to set todoList.todos to [] after each test:
   function emptyTodos(){
@@ -98,6 +99,7 @@
 
       emptyTodos();
     },
+
     // Phase 2: Nested todos.
     // Nest a single todo within the first todo:
     "5) If todos[0] exists and todos[0].todos.length === 0, then after add('Nested', [0]), todos[0].todos should be [{text:'Nested', todos:[]}].": function () {
@@ -151,7 +153,6 @@
 
       emptyTodos();
     },
-
     // Nest a todo more than one layer deep:
     "8) If todos[0].todos[0] exists, then after add('Nested in nested', [0,0]), todos[0].todos[0].todos should be [{text:'Nested in nested', todos:[]}].": function(){
       add('1st', []);
@@ -190,6 +191,43 @@
       eq(nestedTodo.text, "2nd nested in nested in nested");
       eq(Array.isArray(nestedTodo.todos), true);
       eq(nestedTodo.todos.length, 0);
+
+      emptyTodos();
+    },
+
+    // Phase 3 deletion of todos:
+    // It should have a way to remove a todo.
+    // Basic todo.
+    "10) If todos.length === 1, remove([0]) should remove the 1st index in todos.": function () {
+      add('1st', []);
+      remove([0]);
+
+      var todos = nestedTodos.todoList.todos;
+      eq(todos.length, 0);
+
+      emptyTodos();
+    },
+    // Change todos.length.
+    "11) If todos.length === 2, remove([0]) should remove the 1st index in todos.": function(){
+      add('1st', []);
+      add('2nd', []);
+      remove([0]);
+
+      var todos = nestedTodos.todoList.todos;
+      eq(todos.length, 1);
+      eq(todos[0].text, "2nd");
+
+      emptyTodos();
+    },
+    // Change todos[i].
+    "12) If todos.length === 2, remove([1]) should remove the 2nd index in todos.": function(){
+      add('1st', []);
+      add('2nd', []);
+      remove([1]);
+
+      var todos = nestedTodos.todoList.todos;
+      eq(todos.length, 1);
+      eq(todos[0].text, "1st");
 
       emptyTodos();
     }
