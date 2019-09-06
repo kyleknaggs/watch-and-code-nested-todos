@@ -13,16 +13,16 @@
         toModify = this.todos;
       }
 
+      // Base case:
       if (indicies.length === 0) {
-        // Base case:
         var newTodo = {
           text: text,
           todos: []
         };
 
         toModify.push(newTodo);
+      // Recursive case:
       } else {
-        // Recursive case:
         var currentIndex = indicies[0];
         var currentTodo = toModify[currentIndex];
         var remainingIndicies = indicies.slice(1);
@@ -31,8 +31,18 @@
       }
     },
     remove: function(indicies){
-      var indexToDelete = indicies[0];
-      todoList.todos.splice(indexToDelete, 1);
+      var length = indicies.length;
+      var firstIndex = indicies[0];
+      var todos = todoList.todos;
+
+      // Remove normal todo:
+      if(length === 1){
+        todos.splice(firstIndex, 1);
+      // Remove nested todo:
+      }else{
+        var secondIndex = indicies[1];
+        todos[firstIndex].todos.splice(secondIndex, 1);
+      }
     }
   };
 
