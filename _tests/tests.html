@@ -191,6 +191,7 @@
     },
     // Stress test the nested todos feature:
     "10) If todos[3].todos[0].todos[2].todos.length === 1, and then add('2nd nested stress', [3, 0, 2]), todos[3].todos[0].todos[2].todos[1] should be {text:'2nd nested stress', todos:[]}.": function(){
+      // Passed without additional code. Intentional stress test.
       add('1st', []);
       add('2nd', []);
       add('3rd', []);
@@ -317,7 +318,7 @@
       eq(todos[0].text, '1st nested');
 
       emptyTodos();
-    }
+    },
     /*
 
     It should have a way to remove a nested todo.
@@ -330,6 +331,39 @@
     If todos[3].todos[0].todos[2].todos.length === 1, remove([3,0,2,1]), should remove the the 1st index in todos[3].todos[0].todos[2].todos.
 
     */
+    "19) If todos.length === 2, todos[1].todos.length === 2 and todos[1].todos[1].todos.length === 1, remove([1,1,0]) should remove the the 1st index in todos[1].todos[1].todos.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('1st nested', [1]);
+      add('2nd nested', [1]);
+      add('Nested in nested', [1,1]);
+      remove([1,1,0]);
+
+      var todos = nestedTodos.todoList.todos[1].todos[1].todos
+      eq(todos.length, 0);
+
+      emptyTodos();
+    },
+    "20) If todos[3].todos[0].todos[2].todos.length === 2, remove([3,0,2,1]), should remove the the 2nd index in todos[3].todos[0].todos[2].todos.": function(){
+      // Passed without additional code. Intentional stress test.
+      add('1st', []);
+      add('2nd', []);
+      add('3rd', []);
+      add('4th', []);
+      add('1st Nested', [3]);
+      add('1st nested in nested', [3, 0]);
+      add('2nd nested in nested', [3, 0]);
+      add('3rd nested in nested', [3, 0]);
+      add('1st nested stress', [3, 0, 2]);
+      add('2nd nested stress', [3, 0, 2]);
+      remove([3, 0, 2, 1]);
+
+      var todos = nestedTodos.todoList.todos[3].todos[0].todos[2].todos;
+      eq(todos.length, 1);
+      eq(todos[0].text, "1st nested stress");
+
+      emptyTodos();
+    }
 
   });
 </script>
