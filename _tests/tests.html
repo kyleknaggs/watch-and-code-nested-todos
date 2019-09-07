@@ -319,18 +319,7 @@
 
       emptyTodos();
     },
-    /*
-
-    It should have a way to remove a nested todo.
-    Variables that can change: todos.length, todos[i], todos[i].todos.length, todos[i].todos[i] and layers of nested todos.
-
-    TODO: Continue from here:
-    f) Nest an additional layer: Expect fail.
-    If todos.length === 2, todos[1].todos.length === 2 and todos[1].todos[1].todos.length === 1, remove([1,1,0]) should remove the the 1st index in todos[1].todos[1].todos.
-    g) Stress test it: Expect pass.
-    If todos[3].todos[0].todos[2].todos.length === 1, remove([3,0,2,1]), should remove the the 1st index in todos[3].todos[0].todos[2].todos.
-
-    */
+    // Nest an additional layer:
     "19) If todos.length === 2, todos[1].todos.length === 2 and todos[1].todos[1].todos.length === 1, remove([1,1,0]) should remove the the 1st index in todos[1].todos[1].todos.": function(){
       add('1st', []);
       add('2nd', []);
@@ -344,6 +333,7 @@
 
       emptyTodos();
     },
+    // Stress test:
     "20) If todos[3].todos[0].todos[2].todos.length === 2, remove([3,0,2,1]), should remove the the 2nd index in todos[3].todos[0].todos[2].todos.": function(){
       // Passed without additional code. Intentional stress test.
       add('1st', []);
