@@ -2,7 +2,7 @@
 
   var todoList = {
     todos: [],
-    add: function (text, indicies) {
+    add: function(text, indicies){
       var toModify;
 
       // If this.todos is not an array:
@@ -14,7 +14,7 @@
       }
 
       // Base case:
-      if (indicies.length === 0) {
+      if(indicies.length === 0){
         var newTodo = {
           text: text,
           todos: []
@@ -22,7 +22,7 @@
 
         toModify.push(newTodo);
       // Recursive case:
-      } else {
+      }else{
         var currentIndex = indicies[0];
         var currentTodo = toModify[currentIndex];
         var remainingIndicies = indicies.slice(1);
@@ -31,17 +31,27 @@
       }
     },
     remove: function(indicies){
-      var length = indicies.length;
-      var firstIndex = indicies[0];
-      var todos = todoList.todos;
+      var toModify;
 
-      // Remove normal todo:
-      if(length === 1){
-        todos.splice(firstIndex, 1);
-      // Remove nested todo:
+      // If this.todos is not an array:
+      // The function was definitely not called recursively.
+      if(Array.isArray(this.todos) === false){
+        toModify = todoList.todos;
       }else{
-        var secondIndex = indicies[1];
-        todos[firstIndex].todos.splice(secondIndex, 1);
+        toModify = this.todos;
+      }
+
+      var currentIndex = indicies[0];
+
+      // Base case:
+      if(indicies.length === 1){
+        toModify.splice(currentIndex, 1);
+      // Recursive case:
+      }else{
+        var currentTodo = toModify[currentIndex];
+        var remainingIndicies = indicies.slice(1);
+
+        todoList.remove.call(currentTodo, remainingIndicies);
       }
     }
   };
