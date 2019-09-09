@@ -53,7 +53,8 @@
 
   // Attach application code to a single key of the window object:
   var nestedTodos = {
-    todoList
+    todoList,
+    util
   };
 
   window.nestedTodos = nestedTodos;
