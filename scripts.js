@@ -34,6 +34,9 @@
         todoList.add.call(currentTodo, text, remainingIndicies);
       }
     },
+    edit: function(text, indicies){
+      todoList.remove(indicies);
+    },
     remove: function(indicies){
       var toModify = util.getToModify(this);
       var currentIndex = indicies[0];
