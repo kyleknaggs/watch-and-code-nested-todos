@@ -19,11 +19,15 @@
   7) It should have a way to remove a todo.
   8) It should have a way to remove a nested todo.
 
-  Phase 4: Editing of todos and nested todos:
-  9) It should have a way to edit the completed status of a todo.
-  10) It should have a way to edit the completed status a nested todo.
-  11) It should have a way to edit the text of a todo.
-  12) It should have a way to edit the text of a nested todo.
+  Phase 4: Editing of text for todos and nested todos:
+  9) If the text after editing is "", it should remove the todo.
+  10) If the text after editing is !== "", it should have a way to edit the text of the todo.
+  11) If the text after editing is !== "", it should have a way to edit the text of the nested todo.
+
+  Phase 5: Editing of the completed status of todos and nested todos:
+  12) It should have todos with a completed status.
+  13) It should have a way to edit the completed status of a todo.
+  14) It should have a way to edit the completed status a nested todo.
 
   ----------------------------
 
@@ -34,6 +38,7 @@
   // Destructure variables so they are easier to access:
   var todoList = nestedTodos.todoList;
   var add = todoList.add;
+  var edit = todoList.edit;
   var remove = todoList.remove;
 
   // Helper function to set todoList.todos to [] after each test:
@@ -259,7 +264,7 @@
       emptyTodos();
     },
     // Stress test:
-    "16) If todos[3].todos[0].todos[2].todos.length === 2, remove([3,0,2,1]), should remove the the 2nd index in todos[3].todos[0].todos[2].todos.": function(){
+    "16) If todos[3].todos[0].todos[2].todos.length === 2, remove([3,0,2,1]), should remove the 2nd index in todos[3].todos[0].todos[2].todos.": function(){
       add('1st', []);
       add('2nd', []);
       add('3rd', []);
@@ -277,7 +282,59 @@
       eq(todos[0].text, "1st nested stress");
 
       emptyTodos();
-    }
+    },
+
+    /*
+
+    Phase 4: Editing of text for todos and nested todos.
+    9) If the text after editing is "", it should remove the todo.
+    10) If the text after editing is !== "", it should have a way to edit the text of the todo.
+    11) If the text after editing is !== "", it should have a way to edit the text of the nested todo.
+
+    Different ways the todo can be edited:
+    1) If the text.length === 0, it should remove the todo.
+    2) If the text.length > 0, it should update the text in the todo.
+
+    */
+
+    // Phase 4: Editing of text for todos and nested todos.
+    // If the text.length === 0, it should remove the todo.
+    // Basic test:
+    "19) If todos.length === 1, edit('', [0]) should remove the 1st index from todos.": function(){
+      add('1st', []);
+      edit('', [0]);
+
+      var todos = nestedTodos.todoList.todos;
+      eq(todos.length, 0);
+
+      emptyTodos();
+    },
+    // Change todos.length:
+    "20) If todos.length === 2, edit('', [0]) should remove the 1st index from todos.": function(){
+      // Passed without additional code. Consider removing.
+      add('1st', []);
+      add('2nd', []);
+      edit('', [0]);
+
+      var todos = nestedTodos.todoList.todos;
+      eq(todos.length, 1);
+      eq(todos[0].text, "2nd");
+
+      emptyTodos();
+    },
+    // Change indicies[0]:
+    "21) If todos.length === 2, edit('', [1]) should remove the 2nd index from todos.": function(){
+      add('1st', []);
+      add('2nd', []);
+      edit('', [1]);
+
+      var todos = nestedTodos.todoList.todos;
+      eq(todos.length, 1);
+      eq(todos[0].text, "1st");
+
+      emptyTodos();
+    },
+
 
   });
 </script>
