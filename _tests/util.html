@@ -22,7 +22,7 @@
     },
     // Recursive case:
     // Case 4, explicitly set this: todoList.add.call({text: '1st', todos: []}, 'Nested', []);
-    "3) If this === todoList.todos[0], util.getToModify(thisArg) should return todoList.todos[0].todos.": function () {
+    "3) If thisArg === todoList.todos[0], util.getToModify(thisArg) should return todoList.todos[0].todos.": function () {
       add('1st', []);
 
       var todoList = nestedTodos.todoList;
