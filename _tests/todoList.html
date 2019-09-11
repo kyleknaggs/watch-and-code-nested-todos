@@ -300,7 +300,7 @@
     // Phase 4: Editing of text for todos and nested todos.
     // If the text.length === 0, it should remove the todo.
     // Basic test:
-    "19) If todos.length === 1, edit('', [0]) should remove the 1st index from todos.": function(){
+    "17) If todos.length === 1, edit('', [0]) should remove the 1st index from todos.": function(){
       add('1st', []);
       edit('', [0]);
 
@@ -310,7 +310,7 @@
       emptyTodos();
     },
     // Change todos.length:
-    "20) If todos.length === 2, edit('', [0]) should remove the 1st index from todos.": function(){
+    "18) If todos.length === 2, edit('', [0]) should remove the 1st index from todos.": function(){
       // Passed without additional code. Consider removing.
       add('1st', []);
       add('2nd', []);
@@ -323,7 +323,7 @@
       emptyTodos();
     },
     // Change indicies[0]:
-    "21) If todos.length === 2, edit('', [1]) should remove the 2nd index from todos.": function(){
+    "19) If todos.length === 2, edit('', [1]) should remove the 2nd index from todos.": function(){
       add('1st', []);
       add('2nd', []);
       edit('', [1]);
@@ -333,8 +333,6 @@
       eq(todos[0].text, "1st");
 
       emptyTodos();
-    },
-
-
+    }
   });
 </script>
