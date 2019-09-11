@@ -35,7 +35,11 @@
       }
     },
     edit: function(text, indicies){
-      todoList.remove(indicies);
+      if(text.length === 0){
+        todoList.remove(indicies);
+      }else{
+        todoList.todos[0].text = text;
+      }
     },
     remove: function(indicies){
       var toModify = util.getToModify(this);
