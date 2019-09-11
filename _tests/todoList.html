@@ -6,28 +6,31 @@
   Requirements strategy for Nested todos data structure:
 
   Phase 1: Basic todos
-  1) It should have a place to store todos.
-  2) It should have a way to display todos.
-  3) It should have a way to add new todos.
+  a) It should have a place to store todos.
+  b) It should have a way to display todos.
+  c) It should have a way to add new todos.
 
   Phase 2: Basic nested todos
-  4) It should have a place to store nested todos.
-  5) It should have a way to display nested todos.
-  6) It should have a way to add nested todos.
+  a) It should have a place to store nested todos.
+  b) It should have a way to display nested todos.
+  c) It should have a way to add nested todos.
 
   Phase 3: Removal of todos and nested todos:
-  7) It should have a way to remove a todo.
-  8) It should have a way to remove a nested todo.
+  a) It should have a way to remove a todo.
+  b) It should have a way to remove a nested todo.
 
   Phase 4: Editing of text for todos and nested todos:
-  9) If the text after editing is "", it should remove the todo.
-  10) If the text after editing is !== "", it should have a way to edit the text of the todo.
-  11) If the text after editing is !== "", it should have a way to edit the text of the nested todo.
+  a) If the text after editing is "", it should remove the todo.
+  b) If the text after editing is !== "", it should have a way to edit the text of the todo.
+  c) If the text after editing is !== "", it should have a way to edit the text of the nested todo.
 
   Phase 5: Editing of the completed status of todos and nested todos:
-  12) It should have todos with a completed status.
-  13) It should have a way to edit the completed status of a todo.
-  14) It should have a way to edit the completed status a nested todo.
+  a) It should have todos with a completed status.
+  b) It should have a way to edit the completed status of a todo.
+  c) It should have a way to edit the completed status a nested todo.
+
+  TODO: Consider adding a Phase 6:
+  Should errors be thrown if the todo that the function suggests should be modified does not exist.
 
   ----------------------------
 
@@ -283,20 +286,6 @@
 
       emptyTodos();
     },
-
-    /*
-
-    Phase 4: Editing of text for todos and nested todos.
-    9) If the text after editing is "", it should remove the todo.
-    10) If the text after editing is !== "", it should have a way to edit the text of the todo.
-    11) If the text after editing is !== "", it should have a way to edit the text of the nested todo.
-
-    Different ways the todo can be edited:
-    1) If the text.length === 0, it should remove the todo.
-    2) If the text.length > 0, it should update the text in the todo.
-
-    */
-
     // Phase 4: Editing of text for todos and nested todos.
     // If the text.length === 0, it should remove the todo.
     // Basic test:
@@ -376,7 +365,57 @@
       eq(todos[0].text, "1st nested stress");
 
       emptyTodos();
-    }
+    },
+    /*
+
+    Phase 4: Editing of text for todos and nested todos.
+    a) If the text after editing is "", it should remove the todo.
+    b) If the text after editing is !== "", it should have a way to edit the text of the todo.
+    c) If the text after editing is !== "", it should have a way to edit the text of the nested todo.
+
+    a - completed
+    b & c - unfinished
+
+    Different ways the todo can be edited:
+    1) If the text.length === 0, it should remove the todo.
+    2) If the text.length > 0, it should update the text in the todo.
+
+    Variables:
+    1) Text being passed to edit().
+    2) Number of todos in list of todos being modified.
+    3) Index of todo being modified.
+    4) Level of nesting. (1st layer, 2nd layer, 3rd layer).
+
+    If the text.length > 0:
+    1) If todos[0].text === "1st" && todos.length === 1, edit('First', [0]) should set todos[0].text to "First".
+    2) If todos[0].text === "1st" && todos.length === 1, edit('Different first', [0]) should set todos[0].text to "Different first".
+
+    */
+
+    // If the text.length > 0, it should edit the todo.
+    // Basic test:
+    "23) If todos[0].text === '1st' && todos.length === 1, edit('First', [0]) should set todos[0].text to 'First'.": function(){
+      add('1st', []);
+      edit('First', [0]);
+
+      var todos = nestedTodos.todoList.todos;
+      eq(todos.length, 1);
+      eq(todos[0].text, "First");
+
+      emptyTodos();
+    },
+    // Change text being passed to edit():
+    "24) If todos[0].text === '1st' && todos.length === 1, edit('Different first', [0]) should set todos[0].text to 'Different first'." : function(){
+      add('1st', []);
+      edit('Different first', [0]);
+
+      var todos = nestedTodos.todoList.todos;
+      eq(todos.length, 1);
+      eq(todos[0].text, "Different first");
+
+      emptyTodos();
+    },
+
 
   });
 </script>
