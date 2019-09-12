@@ -380,23 +380,11 @@
     1) If the text.length === 0, it should remove the todo.
     2) If the text.length > 0, it should update the text in the todo.
 
-    Variables:
-    1) Text being passed to edit().
-    2) Number of todos in list of todos being modified.
-    3) Index of todo being modified.
-    4) Level of nesting. (1st layer, 2nd layer, 3rd layer).
-
-    If the text.length > 0:
-    1) If todos[0].text === "1st" && todos.length === 1, edit('First', [0]) should set todos[0].text to "First".
-    2) If todos[0].text === "1st" && todos.length === 1, edit('Different first', [0]) should set todos[0].text to "Different first".
-    3) If todos[0].text === "1st" && todos.length === 2, edit('Different first', [0]) should set todos[0].text to "Different first".
-    4) If todos[1].text === "2nd" && todos.length === 2, edit('Different second', [1]) should set todos[1].text to "Different second".
-
     */
 
     // If the text.length > 0, it should edit the todo.
     // Basic test:
-    "23) If todos[0].text === '1st' && todos.length === 1, edit('First', [0]) should set todos[0].text to 'First'.": function(){
+    "23) If todos[0].text === '1st', edit('First', [0]) should set todos[0].text to 'First'.": function(){
       add('1st', []);
       edit('First', [0]);
 
@@ -407,7 +395,7 @@
       emptyTodos();
     },
     // Change text being passed to edit():
-    "24) If todos[0].text === '1st' && todos.length === 1, edit('Different first', [0]) should set todos[0].text to 'Different first'." : function(){
+    "24) If todos[0].text === '1st' and todos.length === 1, edit('Different first', [0]) should set todos[0].text to 'Different first'." : function(){
       add('1st', []);
       edit('Different first', [0]);
 
@@ -418,7 +406,7 @@
       emptyTodos();
     },
     // Change length of todos:
-    "25) If todos[0].text === '1st' && todos.length === 2, edit('Different first', [0]) should set todos[0].text to 'Different first'.":function(){
+    "25) If todos[0].text === '1st' and todos.length === 2, edit('Different first', [0]) should set todos[0].text to 'Different first'.":function(){
       add('1st', []);
       add('2nd', []);
       edit('Different first', [0]);
@@ -430,7 +418,7 @@
       emptyTodos();
     },
     // Change index of todo being modified:
-    "26) If todos[1].text === '2nd' && todos.length === 2, edit('Different second', [1]) should set todos[1].text to 'Different second'.": function(){
+    "26) If todos[1].text === '2nd', edit('Different second', [1]) should set todos[1].text to 'Different second'.": function(){
       add('1st', []);
       add('2nd', []);
       edit('Different second', [1]);
@@ -441,6 +429,31 @@
 
       emptyTodos();
     }
+
+    /*
+
+    Variables:
+    1) Text being passed to edit().
+    2) Number of todos in list of todos being modified.
+    3) Index of todo being modified.
+    4) Level of nesting. (1st layer, 2nd layer, 3rd layer).
+
+    If the text.length > 0 && a nested todo is being modified:
+
+    Basic nested todo test:
+    1) If todos[0].todos[0].text === 'Nested', edit('Different nested', [0,0]) should set todos[0].todos[0].text to 'Different nested'.
+    Change todos[i]:
+    2) If todos[1].todos[0].text === 'Nested' && todos[1].todos.length === 1, edit('Different nested', [1,0]) should set todos[1].todos[0].text to 'Different nested'.
+    Change todos[i].todos.length:
+    3) If todos[1].todos[0].text === '1st nested' && todos[1].todos.length === 2, edit('Different 1st nested', [1,0]) should set todos[1].todos[0].text to 'Different 1st nested'.
+    Change todos[1].todos[i]:
+    4) If todos[1].todos[1].text === '2nd Nested', edit('Different 2nd nested', [1,1]) should set todos[1].todos[1].text to 'Different 2nd nested'.
+    Additional layer:
+    5) If todos[0].todos[0].todos[0].text === 'Nested in nested', edit('Different nested in nested', [0,0,0]) should set todos[0].todos[0].todos[0].text to 'Different nested in nested'.
+    Stress test:
+    6) If todos[3].todos[0].todos[2].todos[1].text === 'Before', edit('After', [3,0,2,1]), should set todos[3].todos[0].todos[2].todos[1].text to 'After'.
+
+    */
 
   });
 </script>
