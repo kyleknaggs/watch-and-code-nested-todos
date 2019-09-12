@@ -389,6 +389,8 @@
     If the text.length > 0:
     1) If todos[0].text === "1st" && todos.length === 1, edit('First', [0]) should set todos[0].text to "First".
     2) If todos[0].text === "1st" && todos.length === 1, edit('Different first', [0]) should set todos[0].text to "Different first".
+    3) If todos[0].text === "1st" && todos.length === 2, edit('Different first', [0]) should set todos[0].text to "Different first".
+    4) If todos[1].text === "2nd" && todos.length === 2, edit('Different second', [1]) should set todos[1].text to "Different second".
 
     */
 
@@ -415,7 +417,30 @@
 
       emptyTodos();
     },
+    // Change length of todos:
+    "25) If todos[0].text === '1st' && todos.length === 2, edit('Different first', [0]) should set todos[0].text to 'Different first'.":function(){
+      add('1st', []);
+      add('2nd', []);
+      edit('Different first', [0]);
 
+      var todos = nestedTodos.todoList.todos;
+      eq(todos.length, 2);
+      eq(todos[0].text, "Different first");
+
+      emptyTodos();
+    },
+    // Change index of todo being modified:
+    "26) If todos[1].text === '2nd' && todos.length === 2, edit('Different second', [1]) should set todos[1].text to 'Different second'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      edit('Different second', [1]);
+
+      var todos = nestedTodos.todoList.todos;
+      eq(todos.length, 2);
+      eq(todos[1].text, "Different second");
+
+      emptyTodos();
+    }
 
   });
 </script>
