@@ -38,7 +38,8 @@
       if(text.length === 0){
         todoList.remove(indicies);
       }else{
-        todoList.todos[0].text = text;
+        var indexToModify = indicies[0];
+        todoList.todos[indexToModify].text = text;
       }
     },
     remove: function(indicies){
