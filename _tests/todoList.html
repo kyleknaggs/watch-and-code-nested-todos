@@ -454,6 +454,9 @@
     6) If todos[3].todos[0].todos[2].todos[1].text === 'Before', edit('After', [3,0,2,1]), should set todos[3].todos[0].todos[2].todos[1].text to 'After'.
 
     */
+    // TODO:
+    // 1) Remove unnecessary length checks from edit() tests.
+    // 2) Change variable from todos to todo.
     // Basic nested todo test:
     "27) If todos[0].todos[0].text === 'Nested', edit('Different nested', [0,0]) should set todos[0].todos[0].text to 'Different nested'.": function(){
       add('1st', []);
@@ -504,6 +507,18 @@
       var todos = nestedTodos.todoList.todos[1].todos;
       eq(todos.length, 2);
       eq(todos[1].text, "Different 2nd nested");
+
+      emptyTodos();
+    },
+    // Additional layer:
+    "31) If todos[0].todos[0].todos[0].text === 'Nested in nested', edit('Different nested in nested', [0,0,0]) should set todos[0].todos[0].todos[0].text to 'Different nested in nested'.": function(){
+      add('1st', []);
+      add('Nested', [0]);
+      add('Nested in nested', [0,0]);
+      edit('Different nested in nested', [0,0,0]);
+
+      var todo = nestedTodos.todoList.todos[0].todos[0].todos[0];
+      eq(todo.text, "Different nested in nested");
 
       emptyTodos();
     }
