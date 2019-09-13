@@ -428,7 +428,7 @@
       eq(todos[1].text, "Different second");
 
       emptyTodos();
-    }
+    },
 
     /*
 
@@ -454,6 +454,59 @@
     6) If todos[3].todos[0].todos[2].todos[1].text === 'Before', edit('After', [3,0,2,1]), should set todos[3].todos[0].todos[2].todos[1].text to 'After'.
 
     */
+    // Basic nested todo test:
+    "27) If todos[0].todos[0].text === 'Nested', edit('Different nested', [0,0]) should set todos[0].todos[0].text to 'Different nested'.": function(){
+      add('1st', []);
+      add('Nested', [0]);
+      edit('Different nested', [0,0]);
+
+      var todos = nestedTodos.todoList.todos[0].todos;
+      eq(todos.length, 1);
+      eq(todos[0].text, "Different nested");
+
+      emptyTodos();
+    },
+    // Change todos[i]:
+    "28) If todos[1].todos[0].text === 'Nested' && todos[1].todos.length === 1, edit('Different nested', [1,0]) should set todos[1].todos[0].text to 'Different nested'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('Nested', [1]);
+      edit('Different nested', [1,0]);
+
+      var todos = nestedTodos.todoList.todos[1].todos;
+      eq(todos.length, 1);
+      eq(todos[0].text, "Different nested");
+
+      emptyTodos();
+    },
+    // Change todos[i].todos.length:
+    "29) If todos[1].todos[0].text === '1st nested' && todos[1].todos.length === 2, edit('Different 1st nested', [1,0]) should set todos[1].todos[0].text to 'Different 1st nested'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('1st nested', [1]);
+      add('2nd nested', [1]);
+      edit('Different 1st nested', [1,0]);
+
+      var todos = nestedTodos.todoList.todos[1].todos;
+      eq(todos.length, 2);
+      eq(todos[0].text, "Different 1st nested");
+
+      emptyTodos();
+    },
+    // Change todos[1].todos[i]:
+    "30) If todos[1].todos[1].text === '2nd Nested', edit('Different 2nd nested', [1,1]) should set todos[1].todos[1].text to 'Different 2nd nested'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('1st nested', [1]);
+      add('2nd nested', [1]);
+      edit('Different 2nd nested', [1,1]);
+
+      var todos = nestedTodos.todoList.todos[1].todos;
+      eq(todos.length, 2);
+      eq(todos[1].text, "Different 2nd nested");
+
+      emptyTodos();
+    }
 
   });
 </script>
