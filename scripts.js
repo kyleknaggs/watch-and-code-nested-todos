@@ -38,8 +38,13 @@
       if(text.length === 0){
         todoList.remove(indicies);
       }else{
-        var indexToModify = indicies[0];
-        todoList.todos[indexToModify].text = text;
+        var currentIndex = indicies[0];
+
+        if(indicies.length === 1){
+          todoList.todos[currentIndex].text = text;
+        }else{
+          todoList.todos[currentIndex].todos[indicies[1]].text = text;
+        }
       }
     },
     remove: function(indicies){
