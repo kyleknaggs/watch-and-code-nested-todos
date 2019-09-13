@@ -38,12 +38,17 @@
       if(text.length === 0){
         todoList.remove(indicies);
       }else{
+        var toModify = util.getToModify(this);
         var currentIndex = indicies[0];
+        var currentTodo = toModify[currentIndex];
 
+        // Base case:
         if(indicies.length === 1){
-          todoList.todos[currentIndex].text = text;
+          currentTodo.text = text;
+        // Recursive case:
         }else{
-          todoList.todos[currentIndex].todos[indicies[1]].text = text;
+          var remainingIndicies = indicies.slice(1);
+          todoList.edit.call(currentTodo, text, remainingIndicies);
         }
       }
     },
