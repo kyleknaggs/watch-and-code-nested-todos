@@ -34,6 +34,24 @@
         todoList.add.call(currentTodo, text, remainingIndicies);
       }
     },
+    edit: function(text, indicies){
+      if(text.length === 0){
+        todoList.remove(indicies);
+      }else{
+        var toModify = util.getToModify(this);
+        var currentIndex = indicies[0];
+        var currentTodo = toModify[currentIndex];
+
+        // Base case:
+        if(indicies.length === 1){
+          currentTodo.text = text;
+        // Recursive case:
+        }else{
+          var remainingIndicies = indicies.slice(1);
+          todoList.edit.call(currentTodo, text, remainingIndicies);
+        }
+      }
+    },
     remove: function(indicies){
       var toModify = util.getToModify(this);
       var currentIndex = indicies[0];
