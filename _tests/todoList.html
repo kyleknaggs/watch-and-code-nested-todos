@@ -388,9 +388,8 @@
       add('1st', []);
       edit('First', [0]);
 
-      var todos = nestedTodos.todoList.todos;
-      eq(todos.length, 1);
-      eq(todos[0].text, "First");
+      var todo = nestedTodos.todoList.todos[0];
+      eq(todo.text, "First");
 
       emptyTodos();
     },
@@ -399,9 +398,8 @@
       add('1st', []);
       edit('Different first', [0]);
 
-      var todos = nestedTodos.todoList.todos;
-      eq(todos.length, 1);
-      eq(todos[0].text, "Different first");
+      var todo = nestedTodos.todoList.todos[0];
+      eq(todo.text, "Different first");
 
       emptyTodos();
     },
@@ -411,9 +409,8 @@
       add('2nd', []);
       edit('Different first', [0]);
 
-      var todos = nestedTodos.todoList.todos;
-      eq(todos.length, 2);
-      eq(todos[0].text, "Different first");
+      var todo = nestedTodos.todoList.todos[0];
+      eq(todo.text, "Different first");
 
       emptyTodos();
     },
@@ -423,9 +420,8 @@
       add('2nd', []);
       edit('Different second', [1]);
 
-      var todos = nestedTodos.todoList.todos;
-      eq(todos.length, 2);
-      eq(todos[1].text, "Different second");
+      var todo = nestedTodos.todoList.todos[1];
+      eq(todo.text, "Different second");
 
       emptyTodos();
     },
@@ -454,18 +450,14 @@
     6) If todos[3].todos[0].todos[2].todos[1].text === 'Before', edit('After', [3,0,2,1]), should set todos[3].todos[0].todos[2].todos[1].text to 'After'.
 
     */
-    // TODO:
-    // 1) Remove unnecessary length checks from edit() tests.
-    // 2) Change variable from todos to todo.
     // Basic nested todo test:
     "27) If todos[0].todos[0].text === 'Nested', edit('Different nested', [0,0]) should set todos[0].todos[0].text to 'Different nested'.": function(){
       add('1st', []);
       add('Nested', [0]);
       edit('Different nested', [0,0]);
 
-      var todos = nestedTodos.todoList.todos[0].todos;
-      eq(todos.length, 1);
-      eq(todos[0].text, "Different nested");
+      var todo = nestedTodos.todoList.todos[0].todos[0];
+      eq(todo.text, "Different nested");
 
       emptyTodos();
     },
@@ -476,9 +468,8 @@
       add('Nested', [1]);
       edit('Different nested', [1,0]);
 
-      var todos = nestedTodos.todoList.todos[1].todos;
-      eq(todos.length, 1);
-      eq(todos[0].text, "Different nested");
+      var todo = nestedTodos.todoList.todos[1].todos[0];
+      eq(todo.text, "Different nested");
 
       emptyTodos();
     },
@@ -490,9 +481,8 @@
       add('2nd nested', [1]);
       edit('Different 1st nested', [1,0]);
 
-      var todos = nestedTodos.todoList.todos[1].todos;
-      eq(todos.length, 2);
-      eq(todos[0].text, "Different 1st nested");
+      var todo = nestedTodos.todoList.todos[1].todos[0];
+      eq(todo.text, "Different 1st nested");
 
       emptyTodos();
     },
@@ -504,9 +494,8 @@
       add('2nd nested', [1]);
       edit('Different 2nd nested', [1,1]);
 
-      var todos = nestedTodos.todoList.todos[1].todos;
-      eq(todos.length, 2);
-      eq(todos[1].text, "Different 2nd nested");
+      var todo = nestedTodos.todoList.todos[1].todos[1];
+      eq(todo.text, "Different 2nd nested");
 
       emptyTodos();
     },
