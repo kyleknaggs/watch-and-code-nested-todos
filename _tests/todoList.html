@@ -521,6 +521,25 @@
       eq(todo.text, "Different nested in nested");
 
       emptyTodos();
+    },
+    // Stress test:
+    "32) If todos[3].todos[0].todos[2].todos[1].text === 'Before', edit('After', [3,0,2,1]), should set todos[3].todos[0].todos[2].todos[1].text to 'After'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('3rd', []);
+      add('4th', []);
+      add('1st Nested', [3]);
+      add('1st nested in nested', [3, 0]);
+      add('2nd nested in nested', [3, 0]);
+      add('3rd nested in nested', [3, 0]);
+      add('1st nested stress', [3, 0, 2]);
+      add('Before', [3, 0, 2]);
+      edit('After', [3, 0, 2, 1]);
+
+      var todo = nestedTodos.todoList.todos[3].todos[0].todos[2].todos[1];
+      eq(todo.text, "After");
+
+      emptyTodos();
     }
 
   });
