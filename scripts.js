@@ -20,6 +20,7 @@
       // Base case:
       if(indicies.length === 0){
         var newTodo = {
+          completed: false,
           text: text,
           todos: []
         };
