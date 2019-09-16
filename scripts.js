@@ -72,7 +72,12 @@
       var index = indicies[0];
       var toModify = todoList.todos[index];
 
-      toModify.completed = !toModify.completed;
+      if(indicies.length === 1){
+        toModify.completed = !toModify.completed;
+      }else{
+        toModify.todos[0].completed = !toModify.todos[0].completed;
+      }
+
     }
   };
 
