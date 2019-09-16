@@ -31,6 +31,7 @@
 
   TODO: Consider adding a Phase 6:
   Should errors be thrown if the todo that the function suggests should be modified does not exist.
+  Can do this by intentionally modifying todo that does not or cannot exist, observing what happens and writing code to throw an error when this happens.
 
   ----------------------------
 
@@ -492,36 +493,6 @@
 
       emptyTodos();
     },
-
-    /*
-
-    Phase 5: Editing of the completed status of todos and nested todos:
-
-    Variables that can change:
-    a. Value of completed can be true or false.
-    b. Length of todos array.
-    c. Index of todo within todos array.
-    d. Degree to which todo has been nested.
-
-    Extra points: Add a stress test at end of sequence for brevity.
-
-    --------------------
-
-    Sketch out requirements for completed:
-    1) It should have todos with a completed status.
-    a. If toggle() has not been called then todos[0].completed === false.
-
-    2) It should have a way to edit the completed status of a todo.
-    a. If todos[0].completed === false and todos.length === 1, then toggle([0]) should set todos[0].completed to true. (Basic)
-    b. If todos[0].completed === false and todos.length === 2, then toggle([0]) should set todos[0].completed to true. (todos.length)
-    c. If todos[0].completed === true, then toggle([0]) should set todos[0].completed to false. (Value of completed)
-    d. If todos[1].completed === false, then toggle([1]) should set todos[1].completed to true. (Index of todo)
-    e. If todos[1].completed === true, then toggle([1]) should not modify todos[0].completed. (Ensure only 1 completed value is being toggle)
-
-    3) It should have a way to edit the completed status a nested todo. (Requirements to be added later)
-
-    */
-
     // Phase 5: Editing of the completed status of todos and nested todos.
     // It should have todos with a completed status:
     "33) If toggle() has not been called then todos[0].completed === false.": function(){
@@ -572,6 +543,60 @@
       toggle([1]);
       var todo = nestedTodos.todoList.todos[1];
       eq(todo.completed, true);
+
+      emptyTodos();
+    },
+    /*
+
+    Nested todo requirements:
+    Basic, length and value of completed:
+    a. If todos[0].todos[0].completed === false and todos[0].todos[0].length === 1, then toggle[0,0] should set todos[0].todos[0].completed to true. (Expect fail)
+    b. If todos[0].todos[0].completed === false and todos[0].todos[0].length === 2, then toggle[0,0] should set todos[0].todos[0].completed to true. (Expect pass)
+    c. If todos[0].todos[0].completed === true, then toggle[0,0] should set todos[0].todos[0].completed to false.  (Expect pass)
+
+    Index of todo and nested todo:
+    d. If todos[1].todos[0].completed === false, then toggle[1,0] should set todos[1].todos[0].completed to true. (Expect fail)
+    e. If todos[1].todos[1].completed === false, then toggle[1,1] should set todos[1].todos[1].completed to true. (Expect fail)
+
+    Degree of nesting:
+    f. If todos[0].todos[0].todos[0].completed === false, then toggle[0,0,0] should set todos[0].todos[0].todos[0].completed to true. (Expect fail)
+
+    Stress test:
+    g. If todos[3].todos[0].todos[2].todos.[1].completed === false, then  toggle[3,0,2,1] should set todos[3].todos[0].todos[2].todos.[1].completed to true. (Expect pass)
+
+    */
+    // Basic  nested todo:
+    "38) If todos[0].todos[0].completed === false and todos[0].todos[0].length === 1, then toggle[0,0] should set todos[0].todos[0].completed to true.": function(){
+      add('1st', []);
+      add('Nested', [0]);
+      toggle([0,0]);
+
+      var todo = nestedTodos.todoList.todos[0].todos[0];
+      eq(todo.completed, true);
+
+      emptyTodos();
+    },
+    // Change todos.length:
+    "39) If todos[0].todos[0].completed === false and todos[0].todos[0].length === 2, then toggle[0,0] should set todos[0].todos[0].completed to true.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      add('2nd nested', [0]);
+      toggle([0,0]);
+
+      var todo = nestedTodos.todoList.todos[0].todos[0];
+      eq(todo.completed, true);
+
+      emptyTodos();
+    },
+    // Change value of completed:
+    "40) If todos[0].todos[0].completed === true, then toggle[0,0] should set todos[0].todos[0].completed to false.": function(){
+      add('1st', []);
+      add('Nested', [0]);
+      toggle([0,0]);
+      toggle([0,0]);
+
+      var todo = nestedTodos.todoList.todos[0].todos[0];
+      eq(todo.completed, false);
 
       emptyTodos();
     }
