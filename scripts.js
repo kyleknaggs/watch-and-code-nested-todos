@@ -75,7 +75,8 @@
       if(indicies.length === 1){
         toModify.completed = !toModify.completed;
       }else{
-        toModify.todos[0].completed = !toModify.todos[0].completed;
+        var nestedIndex = indicies[1];
+        toModify.todos[nestedIndex].completed = !toModify.todos[nestedIndex].completed;
       }
 
     }
