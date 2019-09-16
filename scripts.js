@@ -67,6 +67,12 @@
 
         todoList.remove.call(currentTodo, remainingIndicies);
       }
+    },
+    toggle: function(indicies){
+      var index = indicies[0];
+      var toModify = todoList.todos[index];
+
+      toModify.completed = !toModify.completed;
     }
   };
 
