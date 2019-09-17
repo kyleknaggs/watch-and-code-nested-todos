@@ -20,6 +20,7 @@
       // Base case:
       if(indicies.length === 0){
         var newTodo = {
+          completed: false,
           text: text,
           todos: []
         };
@@ -65,6 +66,21 @@
         var remainingIndicies = indicies.slice(1);
 
         todoList.remove.call(currentTodo, remainingIndicies);
+      }
+    },
+    toggle: function(indicies){
+      var toModify = util.getToModify(this);
+      var currentIndex = indicies[0];
+      var currentTodo = toModify[currentIndex];
+
+      // Base case:
+      if(indicies.length === 1){
+        currentTodo.completed = !currentTodo.completed;
+      // Recursive case:
+      }else{
+        var remainingIndicies = indicies.slice(1);
+
+        todoList.toggle.call(currentTodo, remainingIndicies);
       }
     }
   };

@@ -31,6 +31,7 @@
 
   TODO: Consider adding a Phase 6:
   Should errors be thrown if the todo that the function suggests should be modified does not exist.
+  Can do this by intentionally modifying todo that does not or cannot exist, observing what happens and writing code to throw an error when this happens.
 
   ----------------------------
 
@@ -43,6 +44,7 @@
   var add = todoList.add;
   var edit = todoList.edit;
   var remove = todoList.remove;
+  var toggle = todoList.toggle;
 
   // Helper function to set todoList.todos to [] after each test:
   function emptyTodos(){
@@ -488,6 +490,153 @@
 
       var todo = nestedTodos.todoList.todos[3].todos[0].todos[2].todos[1];
       eq(todo.text, "After");
+
+      emptyTodos();
+    },
+    // Phase 5: Editing of the completed status of todos and nested todos.
+    // a. Basic todos:
+    // It should have todos with a completed status:
+    "33) If toggle() has not been called then todos[0].completed === false.": function(){
+      add('1st', []);
+
+      var todo = nestedTodos.todoList.todos[0];
+      eq(todo.completed, false)
+
+      emptyTodos();
+    },
+    // Basic test:
+    "34) If todos[0].completed === false and todos.length === 1, then toggle([0]) should set todos[0].completed to true.": function(){
+      add('1st', []);
+      toggle([0]);
+
+      var todo = nestedTodos.todoList.todos[0];
+      eq(todo.completed, true)
+
+      emptyTodos();
+    },
+    // Change todos.length:
+    "35) If todos[0].completed === false and todos.length === 2, then toggle([0]) should set todos[0].completed to true.": function(){
+      add('1st', []);
+      add('2nd', []);
+      toggle([0]);
+
+      var todo = nestedTodos.todoList.todos[0];
+      eq(todo.completed, true)
+
+      emptyTodos();
+    },
+    // Change todo.completed:
+    "36) If todos[0].completed === true, then toggle([0]) should set todos[0].completed to false.": function(){
+      add('1st', []);
+      toggle([0]);
+      toggle([0]);
+
+      var todo = nestedTodos.todoList.todos[0];
+      eq(todo.completed, false)
+
+      emptyTodos();
+    },
+    // Change index of todo:
+    "37) If todos[1].completed === false, then toggle([1]) should set todos[1].completed to true.": function(){
+      add('1st', []);
+      add('2nd', []);
+
+      toggle([1]);
+      var todo = nestedTodos.todoList.todos[1];
+      eq(todo.completed, true);
+
+      emptyTodos();
+    },
+    // b. Nested todos
+    // Basic  nested todo:
+    "38) If todos[0].todos[0].completed === false and todos[0].todos[0].length === 1, then toggle([0,0]) should set todos[0].todos[0].completed to true.": function(){
+      add('1st', []);
+      add('Nested', [0]);
+      toggle([0,0]);
+
+      var todo = nestedTodos.todoList.todos[0].todos[0];
+      eq(todo.completed, true);
+
+      emptyTodos();
+    },
+    // Change todos.length:
+    "39) If todos[0].todos[0].completed === false and todos[0].todos[0].length === 2, then toggle([0,0]) should set todos[0].todos[0].completed to true.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      add('2nd nested', [0]);
+      toggle([0,0]);
+
+      var todo = nestedTodos.todoList.todos[0].todos[0];
+      eq(todo.completed, true);
+
+      emptyTodos();
+    },
+    // Change value of completed:
+    "40) If todos[0].todos[0].completed === true, then toggle([0,0]) should set todos[0].todos[0].completed to false.": function(){
+      add('1st', []);
+      add('Nested', [0]);
+      toggle([0,0]);
+      toggle([0,0]);
+
+      var todo = nestedTodos.todoList.todos[0].todos[0];
+      eq(todo.completed, false);
+
+      emptyTodos();
+    },
+    // Change index of todo:
+    "41) If todos[1].todos[0].completed === false, then toggle([1,0]) should set todos[1].todos[0].completed to true.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('Nested', [1]);
+      toggle([1,0]);
+
+      var todo = nestedTodos.todoList.todos[1].todos[0];
+      eq(todo.completed, true);
+
+      emptyTodos();
+    },
+    // Change index of nested todo:
+    "42) If todos[1].todos[1].completed === false, then toggle([1,1]) should set todos[1].todos[1].completed to true. ": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('1st nested', [1]);
+      add('2nd nested', [1]);
+      toggle([1,1]);
+
+      var todo = nestedTodos.todoList.todos[1].todos[1];
+      eq(todo.completed, true);
+
+      emptyTodos();
+    },
+    // c. Nested todos in nested todos
+    // Change degree of nesting:
+    "43) If todos[0].todos[0].todos[0].completed === false, then toggle([0,0,0]) should set todos[0].todos[0].todos[0].completed to true.": function(){
+      add('1st', []);
+      add('Nested', [0]);
+      add('Nested in nested', [0,0]);
+      toggle([0,0,0]);
+
+      var todo = nestedTodos.todoList.todos[0].todos[0].todos[0];
+      eq(todo.completed, true);
+
+      emptyTodos();
+    },
+    // Stress test:
+    "44) If todos[3].todos[0].todos[2].todos.[1].completed === false, then toggle([3,0,2,1]) should set todos[3].todos[0].todos[2].todos.[1].completed to true.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('3rd', []);
+      add('4th', []);
+      add('1st Nested', [3]);
+      add('1st nested in nested', [3, 0]);
+      add('2nd nested in nested', [3, 0]);
+      add('3rd nested in nested', [3, 0]);
+      add('1st nested stress', [3, 0, 2]);
+      add('2nd nested stress', [3, 0, 2]);
+      toggle([3, 0, 2, 1]);
+
+      var todo = nestedTodos.todoList.todos[3].todos[0].todos[2].todos[1];
+      eq(todo.completed, true);
 
       emptyTodos();
     }
