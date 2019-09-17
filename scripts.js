@@ -69,16 +69,19 @@
       }
     },
     toggle: function(indicies){
-      var index = indicies[0];
-      var toModify = todoList.todos[index];
+      var toModify = util.getToModify(this);
+      var currentIndex = indicies[0];
+      var currentTodo = toModify[currentIndex];
 
+      // Base case:
       if(indicies.length === 1){
-        toModify.completed = !toModify.completed;
+        currentTodo.completed = !currentTodo.completed;
+      // Recursive case:
       }else{
-        var nestedIndex = indicies[1];
-        toModify.todos[nestedIndex].completed = !toModify.todos[nestedIndex].completed;
-      }
+        var remainingIndicies = indicies.slice(1);
 
+        todoList.toggle.call(currentTodo, remainingIndicies);
+      }
     }
   };
 
