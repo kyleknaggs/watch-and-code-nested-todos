@@ -494,6 +494,7 @@
       emptyTodos();
     },
     // Phase 5: Editing of the completed status of todos and nested todos.
+    // a. Basic todos:
     // It should have todos with a completed status:
     "33) If toggle() has not been called then todos[0].completed === false.": function(){
       add('1st', []);
@@ -546,25 +547,7 @@
 
       emptyTodos();
     },
-    /*
-
-    Nested todo requirements:
-    Basic, length and value of completed:
-    a. If todos[0].todos[0].completed === false and todos[0].todos[0].length === 1, then toggle[0,0] should set todos[0].todos[0].completed to true. (Expect fail)
-    b. If todos[0].todos[0].completed === false and todos[0].todos[0].length === 2, then toggle[0,0] should set todos[0].todos[0].completed to true. (Expect pass)
-    c. If todos[0].todos[0].completed === true, then toggle[0,0] should set todos[0].todos[0].completed to false.  (Expect pass)
-
-    Index of todo and nested todo:
-    d. If todos[1].todos[0].completed === false, then toggle[1,0] should set todos[1].todos[0].completed to true. (Expect fail)
-    e. If todos[1].todos[1].completed === false, then toggle[1,1] should set todos[1].todos[1].completed to true. (Expect fail)
-
-    Degree of nesting:
-    f. If todos[0].todos[0].todos[0].completed === false, then toggle[0,0,0] should set todos[0].todos[0].todos[0].completed to true. (Expect fail)
-
-    Stress test:
-    g. If todos[3].todos[0].todos[2].todos.[1].completed === false, then toggle[3,0,2,1] should set todos[3].todos[0].todos[2].todos.[1].completed to true. (Expect pass)
-
-    */
+    // b. Nested todos
     // Basic  nested todo:
     "38) If todos[0].todos[0].completed === false and todos[0].todos[0].length === 1, then toggle([0,0]) should set todos[0].todos[0].completed to true.": function(){
       add('1st', []);
@@ -625,6 +608,7 @@
 
       emptyTodos();
     },
+    // c. Nested todos in nested todos
     // Change degree of nesting:
     "43) If todos[0].todos[0].todos[0].completed === false, then toggle([0,0,0]) should set todos[0].todos[0].todos[0].completed to true.": function(){
       add('1st', []);
