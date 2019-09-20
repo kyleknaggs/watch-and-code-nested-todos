@@ -19,8 +19,10 @@
 
       // Base case:
       if(indices.length === 0){
+        var id = String(toModify.length);
         var newTodo = {
           completed: false,
+          id: id,
           text: text,
           todos: []
         };
