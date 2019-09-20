@@ -624,7 +624,7 @@
       eq(todo.completed, true);
 
       emptyTodos();
-    }
+    },
 
     // ---------------------------------------
 
@@ -635,9 +635,9 @@
     Structure of id string:
 
     Regular todos:
-    1) todos[0].id ==> "0"
-    2) todos[1].id ==> "1"
-    3) todos[2].id ==> "2"
+    1) todos[0].id ==> "0" (expect fail)
+    2) todos[1].id ==> "1" (expect fail)
+    3) todos[2].id ==> "2" (expect pass)
 
     As each todo can contain an unlimited number of nested todos, todos cannot be identified by looking at the numerical value of each character in the string.
     Instead, each todo should be separated by a "-".
@@ -661,6 +661,28 @@
     1) todos[3].todos[0].todos[2].todos[1] ==> "3-0-2-1"
 
     */
+
+    "45) If todos[0] exists, todos[0].id === '0'.": function(){
+      add('1st', []);
+
+      var todo = nestedTodos.todoList.todos[0];
+      eq(todo.id, '0');
+      // No emptyTodos() as todos is not being modified.
+    },
+    "46) If todos[1] exists, todos[1].id === '1'.": function(){
+      add('2nd', []);
+
+      var todo = nestedTodos.todoList.todos[1];
+      eq(todo.id, '1');
+      // No emptyTodos() as todos is not being modified.
+    },
+    "47) If todos[2] exists, todos[2].id === '2'.": function(){
+      add('3rd', []);
+
+      var todo = nestedTodos.todoList.todos[2];
+      eq(todo.id, '2');
+      // No emptyTodos() as todos is not being modified.
+    },
 
   });
 </script>
