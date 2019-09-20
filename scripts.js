@@ -14,11 +14,11 @@
 
   var todoList = {
     todos: [],
-    add: function(text, indicies){
+    add: function(text, indices){
       var toModify = util.getToModify(this);
 
       // Base case:
-      if(indicies.length === 0){
+      if(indices.length === 0){
         var newTodo = {
           completed: false,
           text: text,
@@ -28,59 +28,59 @@
         toModify.push(newTodo);
       // Recursive case:
       }else{
-        var currentIndex = indicies[0];
+        var currentIndex = indices[0];
         var currentTodo = toModify[currentIndex];
-        var remainingIndicies = indicies.slice(1);
+        var remainingindices = indices.slice(1);
 
-        todoList.add.call(currentTodo, text, remainingIndicies);
+        todoList.add.call(currentTodo, text, remainingindices);
       }
     },
-    edit: function(text, indicies){
+    edit: function(text, indices){
       if(text.length === 0){
-        todoList.remove(indicies);
+        todoList.remove(indices);
       }else{
         var toModify = util.getToModify(this);
-        var currentIndex = indicies[0];
+        var currentIndex = indices[0];
         var currentTodo = toModify[currentIndex];
 
         // Base case:
-        if(indicies.length === 1){
+        if(indices.length === 1){
           currentTodo.text = text;
         // Recursive case:
         }else{
-          var remainingIndicies = indicies.slice(1);
-          todoList.edit.call(currentTodo, text, remainingIndicies);
+          var remainingindices = indices.slice(1);
+          todoList.edit.call(currentTodo, text, remainingindices);
         }
       }
     },
-    remove: function(indicies){
+    remove: function(indices){
       var toModify = util.getToModify(this);
-      var currentIndex = indicies[0];
+      var currentIndex = indices[0];
 
       // Base case:
-      if(indicies.length === 1){
+      if(indices.length === 1){
         toModify.splice(currentIndex, 1);
       // Recursive case:
       }else{
         var currentTodo = toModify[currentIndex];
-        var remainingIndicies = indicies.slice(1);
+        var remainingindices = indices.slice(1);
 
-        todoList.remove.call(currentTodo, remainingIndicies);
+        todoList.remove.call(currentTodo, remainingindices);
       }
     },
-    toggle: function(indicies){
+    toggle: function(indices){
       var toModify = util.getToModify(this);
-      var currentIndex = indicies[0];
+      var currentIndex = indices[0];
       var currentTodo = toModify[currentIndex];
 
       // Base case:
-      if(indicies.length === 1){
+      if(indices.length === 1){
         currentTodo.completed = !currentTodo.completed;
       // Recursive case:
       }else{
-        var remainingIndicies = indicies.slice(1);
+        var remainingindices = indices.slice(1);
 
-        todoList.toggle.call(currentTodo, remainingIndicies);
+        todoList.toggle.call(currentTodo, remainingindices);
       }
     }
   };
