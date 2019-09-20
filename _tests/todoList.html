@@ -645,10 +645,9 @@
     This allows us to handle todos that may contain > 9 todos.
 
     Nested todos:
-    1) todos[0].todos[0].id ==> "0-0"
-    2) todos[0].todos[1].id ==> "0-1"
-    3) todos[1].todos[0].id ==> "1-0"
-    4) todos[1].todos[1].id ==> "1-1"
+    1) todos[0].todos[0].id ==> "0-0" (expect fail)
+    2) todos[1].todos[0].id ==> "1-0" (depends on solution)
+    3) todos[1].todos[1].id ==> "1-1" (expect fail)
 
     The "-" is necessary as each todo needs to be able to hold >= 10 todos:
     1) todos[10].todos[0].id ==> "10-0"
@@ -661,28 +660,39 @@
     1) todos[3].todos[0].todos[2].todos[1] ==> "3-0-2-1"
 
     */
-
-    "45) If todos[0] exists, todos[0].id === '0'.": function(){
+    // Basic todo:
+    "45) If todos[0] exists, then todos[0].id === '0'.": function(){
       add('1st', []);
 
       var todo = nestedTodos.todoList.todos[0];
       eq(todo.id, '0');
       // No emptyTodos() as todos is not being modified.
     },
-    "46) If todos[1] exists, todos[1].id === '1'.": function(){
+    // Change index of todo:
+    "46) If todos[1] exists, then todos[1].id === '1'.": function(){
       add('2nd', []);
 
       var todo = nestedTodos.todoList.todos[1];
       eq(todo.id, '1');
       // No emptyTodos() as todos is not being modified.
     },
-    "47) If todos[2] exists, todos[2].id === '2'.": function(){
+    // One more, just to be sure:
+    // Passed without adding additional code. For documentation purposes only.
+    "47) If todos[2] exists, then todos[2].id === '2'.": function(){
       add('3rd', []);
 
       var todo = nestedTodos.todoList.todos[2];
       eq(todo.id, '2');
       // No emptyTodos() as todos is not being modified.
     },
+    // Basic nested todo:
+    "48) If todos[0].todos[0] exists, then todos[0].todos[0].id === '0-0'.": function(){
+      add('1st nested', [0]);
+
+      var todo = nestedTodos.todoList.todos[0].todos[0];
+      eq(todo.id, '0-0');
+      // No emptyTodos() as todos is not being modified.
+    }
 
   });
 </script>
