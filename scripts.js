@@ -19,10 +19,18 @@
 
       // Base case:
       if(indices.length === 0){
-        var id = String(toModify.length);
+        var idOfParentTodo = '';
+
+        // If call is recursive:
+        if(toModify !== todoList.todos){
+          idOfParentTodo = this.id + '-';
+        }
+
+        var indexOfNewTodo = String(toModify.length);
+        var idOfNewTodo = idOfParentTodo + indexOfNewTodo;
         var newTodo = {
           completed: false,
-          id: id,
+          id: idOfNewTodo,
           text: text,
           todos: []
         };
