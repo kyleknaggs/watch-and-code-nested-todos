@@ -1,10 +1,8 @@
 (function(){
 
   var util = {
-    getToModify: function(thisArg){
-      // If this.todos the function was not called recursively.
-      // So the top level list of todos can be returned.
-      if (Array.isArray(thisArg.todos) === false) {
+    getToModify: function(isRecursive, thisArg){
+      if (!isRecursive) {
         return todoList.todos;
       }
 
@@ -14,15 +12,15 @@
 
   var todoList = {
     todos: [],
-    add: function(text, indices){
-      var toModify = util.getToModify(this);
+    add: function(text, indices, isRecursive){
+      var toModify = util.getToModify(isRecursive, this);
 
       // Base case:
       if(indices.length === 0){
         var idOfParentTodo = '';
 
         // If call is recursive:
-        if(toModify !== todoList.todos){
+        if(isRecursive){
           idOfParentTodo = this.id + '-';
         }
 
@@ -41,15 +39,14 @@
         var currentIndex = indices[0];
         var currentTodo = toModify[currentIndex];
         var remainingindices = indices.slice(1);
-
-        todoList.add.call(currentTodo, text, remainingindices);
+        todoList.add.call(currentTodo, text, remainingindices, true);
       }
     },
-    edit: function(text, indices){
+    edit: function(text, indices, isRecursive){
       if(text.length === 0){
         todoList.remove(indices);
       }else{
-        var toModify = util.getToModify(this);
+        var toModify = util.getToModify(isRecursive, this);
         var currentIndex = indices[0];
         var currentTodo = toModify[currentIndex];
 
@@ -59,12 +56,12 @@
         // Recursive case:
         }else{
           var remainingindices = indices.slice(1);
-          todoList.edit.call(currentTodo, text, remainingindices);
+          todoList.edit.call(currentTodo, text, remainingindices, true);
         }
       }
     },
-    remove: function(indices){
-      var toModify = util.getToModify(this);
+    remove: function(indices, isRecursive){
+      var toModify = util.getToModify(isRecursive, this);
       var currentIndex = indices[0];
 
       // Base case:
@@ -74,12 +71,11 @@
       }else{
         var currentTodo = toModify[currentIndex];
         var remainingindices = indices.slice(1);
-
-        todoList.remove.call(currentTodo, remainingindices);
+        todoList.remove.call(currentTodo, remainingindices, true);
       }
     },
-    toggle: function(indices){
-      var toModify = util.getToModify(this);
+    toggle: function(indices, isRecursive){
+      var toModify = util.getToModify(isRecursive, this);
       var currentIndex = indices[0];
       var currentTodo = toModify[currentIndex];
 
@@ -89,8 +85,7 @@
       // Recursive case:
       }else{
         var remainingindices = indices.slice(1);
-
-        todoList.toggle.call(currentTodo, remainingindices);
+        todoList.toggle.call(currentTodo, remainingindices, true);
       }
     }
   };
