@@ -661,7 +661,7 @@
 
     */
     // Basic todo:
-    "45) If todos[0] exists, then todos[0].id === '0'.": function(){
+    "45) If todos[0] exists, then todos[0].id should be '0'.": function(){
       add('1st', []);
 
       var todo = nestedTodos.todoList.todos[0];
@@ -669,7 +669,7 @@
       // No emptyTodos() as todos is not being modified.
     },
     // Change index of todo:
-    "46) If todos[1] exists, then todos[1].id === '1'.": function(){
+    "46) If todos[1] exists, then todos[1].id should be '1'.": function(){
       add('2nd', []);
 
       var todo = nestedTodos.todoList.todos[1];
@@ -678,7 +678,7 @@
     },
     // One more, just to be sure:
     // Passed without adding additional code. For documentation purposes only.
-    "47) If todos[2] exists, then todos[2].id === '2'.": function(){
+    "47) If todos[2] exists, then todos[2].id should be '2'.": function(){
       add('3rd', []);
 
       var todo = nestedTodos.todoList.todos[2];
@@ -686,13 +686,30 @@
       // No emptyTodos() as todos is not being modified.
     },
     // Basic nested todo:
-    "48) If todos[0].todos[0] exists, then todos[0].todos[0].id === '0-0'.": function(){
+    "48) If todos[0].todos[0] exists, then todos[0].todos[0].id should be '0-0'.": function(){
       add('1st nested', [0]);
 
       var todo = nestedTodos.todoList.todos[0].todos[0];
       eq(todo.id, '0-0');
       // No emptyTodos() as todos is not being modified.
+    },
+    // Change indes of todo (For documentation purposes. Passed without additional code being written):
+    "49) If todos[1].todos[0] exists, then todos[1].todos[0].id should be '1-0'.": function(){
+      add('1st nested in todos[1]', [1]);
+
+      var todo = nestedTodos.todoList.todos[1].todos[0];
+      eq(todo.id, '1-0');
+      // No emptyTodos() as todos is not being modified.
+    },
+    // Change index of nested todo (For documentation purposes. Passed without additional code being written):
+    "50) If todos[1].todos[1] exists, then todos[1].todos[1].id should be '1-1'.": function(){
+      add('2nd nested in todos[1]', [1]);
+
+      var todo = nestedTodos.todoList.todos[1].todos[1];
+      eq(todo.id, '1-1');
+      // No emptyTodos() as todos is not being modified.
     }
+
 
   });
 </script>
