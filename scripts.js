@@ -17,18 +17,16 @@
 
       // Base case:
       if(indices.length === 0){
-        var idOfParentTodo = '';
+        var id = String(toModify.length);
 
-        // If call is recursive:
         if(isRecursive){
-          idOfParentTodo = this.id + '-';
+          var parentId = this.id;
+          id = parentId + '-' + id;
         }
 
-        var indexOfNewTodo = String(toModify.length);
-        var idOfNewTodo = idOfParentTodo + indexOfNewTodo;
         var newTodo = {
           completed: false,
-          id: idOfNewTodo,
+          id: id,
           text: text,
           todos: []
         };

@@ -633,14 +633,14 @@
 
     // a. Regular todos:
     // Basic todo:
-    "45) If todos[0] is added, then todos[0].id should be '0'.": function(){
+    "45) If add() creates todos[0], then todos[0].id should be '0'.": function(){
       add('1st', []);
 
       var todo = nestedTodos.todoList.todos[0];
       eq(todo.id, '0');
     },
     // Change index of todo:
-    "46) If todos[1] is added, then todos[1].id should be '1'.": function(){
+    "46) If add() creates todos[1], then todos[1].id should be '1'.": function(){
       add('2nd', []);
 
       var todo = nestedTodos.todoList.todos[1];
@@ -648,7 +648,7 @@
     },
     // One more, just to be sure:
     // Passed without additional code being written. Test kept for documentation.
-    "47) If todos[2] is added, then todos[2].id should be '2'.": function(){
+    "47) If add() creates todos[2], then todos[2].id should be '2'.": function(){
       add('3rd', []);
 
       var todo = nestedTodos.todoList.todos[2];
@@ -656,7 +656,7 @@
     },
     // b. Nested todos:
     // Basic nested todo:
-    "48) If todos[0].todos[0] is added, then todos[0].todos[0].id should be '0-0'.": function(){
+    "48) If add() creates todos[0].todos[0], then todos[0].todos[0].id should be '0-0'.": function(){
       add('1st nested', [0]);
 
       var todo = nestedTodos.todoList.todos[0].todos[0];
@@ -665,7 +665,7 @@
     },
     // Change indices of todo:
     // Passed without additional code being written. Test kept for documentation.
-    "49) If todos[1].todos[0] is added, then todos[1].todos[0].id should be '1-0'.": function(){
+    "49) If add() creates todos[1].todos[0], then todos[1].todos[0].id should be '1-0'.": function(){
       add('1st nested in todos[1]', [1]);
 
       var todo = nestedTodos.todoList.todos[1].todos[0];
@@ -674,7 +674,7 @@
     },
     // Change index of nested todo
     // Passed without additional code being written. Test kept for documentation.
-    "50) If todos[1].todos[1] is added, then todos[1].todos[1].id should be '1-1'.": function(){
+    "50) If add() creates todos[1].todos[1], then todos[1].todos[1].id should be '1-1'.": function(){
       add('2nd nested in todos[1]', [1]);
 
       var todo = nestedTodos.todoList.todos[1].todos[1];
@@ -683,7 +683,7 @@
     // c. The "-" is necessary as each todo needs to be able to hold >= 10 todos:
     // First index is double digit:
     // Passed without additional code being written. Test kept for documentation.
-    "51) If todos[10].todos[0] is added, then todos[10].todos[0].id should be '10-0'.": function(){
+    "51) If add() creates todos[10].todos[0], then todos[10].todos[0].id should be '10-0'.": function(){
       add('4th', []);
       add('5th', []);
       add('6th', []);
@@ -699,7 +699,7 @@
     },
     // Second index is double digit:
     // Passed without additional code being written. Test kept for documentation.
-    "52) If todos[10].todos[10] is added, then todos[10].todos[10].id should be '10-10'.": function(){
+    "52) If add() creates todos[10].todos[10], then todos[10].todos[10].id should be '10-10'.": function(){
       add('2nd nested in todos[10]', [10]);
       add('3rd nested in todos[10]', [10]);
       add('4th nested in todos[10]', [10]);
@@ -716,7 +716,7 @@
     },
     // d. Nested todos in nested todos:
     // Passed without additional code being written. Test kept for documentation.
-    "53) If todos[0].todos[0].todos[0] is added, then todos[0].todos[0].todos[0].id should be '0-0-0'.": function(){
+    "53) If add() creates todos[0].todos[0].todos[0], then todos[0].todos[0].todos[0].id should be '0-0-0'.": function(){
       add('1st nested in todos[0].todos[0]', [0,0]);
 
       var todo = nestedTodos.todoList.todos[0].todos[0].todos[0];
@@ -724,7 +724,7 @@
     },
     // e. Stress test
     // Passed without additional code being written. Test kept for documentation.
-    "54) If todos[3].todos[0].todos[2].todos[1] is added, then todos[3].todos[0].todos[2].todos[1].id should be '3-0-2-1'.": function(){
+    "54) If add() creates todos[3].todos[0].todos[2].todos[1], then todos[3].todos[0].todos[2].todos[1].id should be '3-0-2-1'.": function(){
       add('1st nested in todos[3]', [3]);
       add('1st nested in todos[3].todos[0]', [3,0]);
       add('2nd nested in todos[3].todos[0]', [3,0]);
