@@ -710,6 +710,41 @@
 
       var todo = nestedTodos.todoList.todos[1].todos[1];
       eq(todo.id, '1-1');
+    },
+    // c. The "-" is necessary as each todo needs to be able to hold >= 10 todos:
+    // First index is double digit:
+    // Passed without additional code being written. Test kept for documentation.
+    "51) If todos[10].todos[0] is added, then todos[10].todos[0].id should be '10-0'.": function(){
+      add('4th', []);
+      add('5th', []);
+      add('6th', []);
+      add('7th', []);
+      add('8th', []);
+      add('9th', []);
+      add('10th', []);
+      add('11th', []);
+      add('1st nested in todos[10]', [10]);
+
+      var todo = nestedTodos.todoList.todos[10].todos[0];
+      eq(todo.id, '10-0');
+    },
+    // Second index is double digit:
+    // Passed without additional code being written. Test kept for documentation.
+    "52) If todos[10].todos[10] is added, then todos[10].todos[10].id should be '10-10'.": function(){
+      add('2nd nested in todos[10]', [10]);
+      add('3rd nested in todos[10]', [10]);
+      add('4th nested in todos[10]', [10]);
+      add('5th nested in todos[10]', [10]);
+      add('6th nested in todos[10]', [10]);
+      add('7th nested in todos[10]', [10]);
+      add('8th nested in todos[10]', [10]);
+      add('9th nested in todos[10]', [10]);
+      add('10th nested in todos[10]', [10]);
+      add('11th nested in todos[10]', [10]);
+
+      var todo = nestedTodos.todoList.todos[10].todos[10];
+      eq(todo.id, '10-10');
     }
+
   });
 </script>
