@@ -13,7 +13,14 @@
   var todoList = {
     todos: [],
     resetIds: function(){
-      todoList.todos[0].id = "0";
+      var newTodos = todoList.todos.map(function(todo, index){
+        var newTodo = todo;
+        newTodo.id = String(index);
+
+        return newTodo;
+      });
+
+      todoList.todos = newTodos;
     },
     add: function(text, indices, isRecursive){
       var toModify = util.getToModify(isRecursive, this);
