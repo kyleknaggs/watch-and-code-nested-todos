@@ -12,6 +12,9 @@
 
   var todoList = {
     todos: [],
+    resetIds: function(){
+      todoList.todos[0].id = "0";
+    },
     add: function(text, indices, isRecursive){
       var toModify = util.getToModify(isRecursive, this);
 
@@ -70,6 +73,11 @@
         var currentTodo = toModify[currentIndex];
         var remainingindices = indices.slice(1);
         todoList.remove.call(currentTodo, remainingindices, true);
+      }
+
+      // Only executes after todo has been removed:
+      if(todoList.todos.length > 0){
+        todoList.resetIds();
       }
     },
     toggle: function(indices, isRecursive){
