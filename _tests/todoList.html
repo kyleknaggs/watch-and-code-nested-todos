@@ -734,7 +734,11 @@
 
       var todo = nestedTodos.todoList.todos[3].todos[0].todos[2].todos[1];
       eq(todo.id, '3-0-2-1');
-    }
+
+      // Emptying todos as this is the last id related test:
+      emptyTodos();
+    },
+
 
     // ---------------------------------------
 
@@ -743,10 +747,7 @@
     /*
 
     1) Basic todos
-    Make sure it runs:
-    a) If remove([0]), then resetIds() should be called once.
-
-    If todos.length === 2, make sure it resets the value of a single todo:
+    Basic test:
     a) If todos.length === 2 && remove([0]), then todos[0].id should be "0".
 
     If todos.length === 3, make sure it goes through every single todo.
@@ -761,6 +762,17 @@
     2) Nested todos
 
     */
+
+    "55) If todos.length === 2 && remove([0]), then todos[0].id should be '0'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      remove([0]);
+
+      var todo = nestedTodos.todoList.todos[0];
+      eq(todo.id, "0");
+      emptyTodos();
+
+    }
 
   });
 </script>
