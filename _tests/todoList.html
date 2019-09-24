@@ -763,7 +763,8 @@
 
     */
 
-    "55) If todos.length === 2 && remove([0]), then todos[0].id should be '0'.": function(){
+    // Basic test:
+    "55) If todos.length === 2 and remove([0]), then todos[0].id should be '0'.": function(){
       add('1st', []);
       add('2nd', []);
       remove([0]);
@@ -772,6 +773,29 @@
       eq(todo.id, "0");
       emptyTodos();
 
+    },
+    // Change todos.length:
+    // Passed without additional code being written. Test kept for documentation.
+    "56) If todos.length === 3 and remove([0]), then todos[0].id should be '0'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('3rd', []);
+      remove([0]);
+
+      var todo = nestedTodos.todoList.todos[0];
+      eq(todo.id, "0");
+      emptyTodos();
+    },
+    // Change todos[i]
+    "57) If todos.length === 3 and remove([0]), then todos[1].id should be '1'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('3rd', []);
+      remove([0]);
+
+      var todo = nestedTodos.todoList.todos[1];
+      eq(todo.id, "1");
+      emptyTodos();
     }
 
   });
