@@ -736,5 +736,31 @@
       eq(todo.id, '3-0-2-1');
     }
 
+    // ---------------------------------------
+
+    // Phase 7: Regenerate the valud in the id key every time todoList.remove() is called.
+
+    /*
+
+    1) Basic todos
+    Make sure it runs:
+    a) If remove([0]), then resetIds() should be called once.
+
+    If todos.length === 2, make sure it resets the value of a single todo:
+    a) If todos.length === 2 && remove([0]), then todos[0].id should be "0".
+
+    If todos.length === 3, make sure it goes through every single todo.
+    a) If todos.length === 3, && remove ([0]), then todos[0].id should be "0".
+    b) If todos.length === 3, && remove ([0]), then todos[1].id should be "1".
+
+    If index of todo being removed changes, it should still reset the value of all the todos.
+    a) If todos.length === 3, && remove ([1]), then todos[0].id should be "0".
+    b) If todos.length === 3, && remove ([1]), then todos[1].id should be "1".
+
+    TODO:
+    2) Nested todos
+
+    */
+
   });
 </script>
