@@ -12,16 +12,23 @@
 
   var todoList = {
     todos: [],
-    resetIds: function(){
-      var newTodos = todoList.todos.map(function(todo, index){
-        var newTodo = todo;
-        var newId = String(index);
-        newTodo.id = newId;
+    resetIds: function(indexRemoved, toModify){
+      var length = toModify.length;
 
-        return newTodo;
-      });
+      // If there are still todos
+      // And the last todo was not the one that was removed
+      if(length > 0 && indexRemoved !== length){
+        var firstId = toModify[0].id;
+        var indexAfterDash = firstId.lastIndexOf("-") + 1;
+        var beforeCurrentIndex = firstId.slice(0, indexAfterDash);
 
-      todoList.todos = newTodos;
+        // Reset the id of every todo starting at indexRemoved:
+        for(var i = indexRemoved; i<length; i++){
+          var currentIndex = String(i);
+          var id = beforeCurrentIndex + currentIndex
+          toModify[i].id = id;
+        }
+      }
     },
     add: function(text, indices, isRecursive){
       var toModify = util.getToModify(isRecursive, this);
@@ -76,16 +83,12 @@
       // Base case:
       if(indices.length === 1){
         toModify.splice(currentIndex, 1);
+        todoList.resetIds(currentIndex, toModify);
       // Recursive case:
       }else{
         var currentTodo = toModify[currentIndex];
         var remainingindices = indices.slice(1);
         todoList.remove.call(currentTodo, remainingindices, true);
-      }
-
-      // Only executes after todo has been removed:
-      if(todoList.todos.length > 0){
-        todoList.resetIds();
       }
     },
     toggle: function(indices, isRecursive){
