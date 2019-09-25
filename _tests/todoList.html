@@ -744,25 +744,6 @@
 
     // Phase 7: Regenerate the valud in the id key every time todoList.remove() is called.
 
-    /*
-
-    1) Basic todos
-    Basic test:
-    a) If todos.length === 2 && remove([0]), then todos[0].id should be "0".
-
-    If todos.length === 3, make sure it goes through every single todo.
-    a) If todos.length === 3, && remove ([0]), then todos[0].id should be "0".
-    b) If todos.length === 3, && remove ([0]), then todos[1].id should be "1".
-
-    If index of todo being removed changes, it should still reset the value of all the todos.
-    a) If todos.length === 3, && remove ([1]), then todos[0].id should be "0".
-    b) If todos.length === 3, && remove ([1]), then todos[1].id should be "1".
-
-    TODO:
-    2) Nested todos
-
-    */
-
     // Basic test:
     "55) If todos.length === 2 and remove([0]), then todos[0].id should be '0'.": function(){
       add('1st', []);
@@ -774,20 +755,8 @@
       emptyTodos();
 
     },
-    // Change todos.length:
-    // Passed without additional code being written. Test kept for documentation.
-    "56) If todos.length === 3 and remove([0]), then todos[0].id should be '0'.": function(){
-      add('1st', []);
-      add('2nd', []);
-      add('3rd', []);
-      remove([0]);
-
-      var todo = nestedTodos.todoList.todos[0];
-      eq(todo.id, "0");
-      emptyTodos();
-    },
     // Change todos[i]
-    "57) If todos.length === 3 and remove([0]), then todos[1].id should be '1'.": function(){
+    "56) If todos.length === 3 and remove([0]), then todos[1].id should be '1'.": function(){
       add('1st', []);
       add('2nd', []);
       add('3rd', []);
@@ -796,7 +765,35 @@
       var todo = nestedTodos.todoList.todos[1];
       eq(todo.id, "1");
       emptyTodos();
-    }
+    },
+    // One more, just to be sure:
+    // Passed without additional code being written. Test kept for documentation.
+    "57) If todos.length === 4 and remove([0]), then todos[2].id should be '2'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('3rd', []);
+      add('4th', []);
+      remove([0]);
+
+      var todo = nestedTodos.todoList.todos[2];
+      eq(todo.id, "2");
+      emptyTodos();
+    },
+
+    /*
+    1) Basic todos.
+    2) Nested todos.
+    a.Basic nested: (Expect fail)
+    If todos[0].todos.length >=2 && remove([0,0]) ==> todos[0].todos[0].id === "0-0".
+    b. Change index of todo: (Depends on previous solution)
+    If todos[1].todos.length >=2 && remove([1,0]) ==> todos[1].todos[0].id === "1-0".
+    c. Change index of nested todo: (Depends on previous solution)
+    If todos[1].todos.length >=3 && remove([1,1]) ==> todos[1].todos[1].id === "1-1".
+    d. Change degree of nesting: (Expect pass)
+    If todos[0].todos.[0].todos.length >=2 && remove([0,0,0]) ==> todos[0].todos[0].todos[0].id === "0-0-0".
+    e. Stress test: (Expect pass)
+    If todos[3].todos[0].todos[2].todos.[1].length >=2 && remove ([3,0,2,1,0]) ==> todos[3].todos[0].todos[2].todos.[1].todos[0].id === "3-0-2-1-0".
+    */
 
   });
 </script>

@@ -15,7 +15,8 @@
     resetIds: function(){
       var newTodos = todoList.todos.map(function(todo, index){
         var newTodo = todo;
-        newTodo.id = String(index);
+        var newId = String(index);
+        newTodo.id = newId;
 
         return newTodo;
       });
