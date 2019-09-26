@@ -778,22 +778,6 @@
       eq(todo.id, "2");
       emptyTodos();
     },
-
-    /*
-    1) Basic todos.
-    2) Nested todos.
-    a.Basic nested: (Expect fail)
-    If todos[0].todos.length === 2 && remove([0,0]) ==> todos[0].todos[0].id === "0-0".
-    b. Change index of todo: (Expect pass)
-    If todos[1].todos.length === 2 && remove([1,0]) ==> todos[1].todos[0].id === "1-0".
-    c. Change index of nested todo: (Expect pass)
-    If todos[1].todos.length === 3 && remove([1,0]) ==> todos[1].todos[1].id === "1-1".
-    d. Change degree of nesting: (Expect pass)
-    If todos[0].todos.[0].todos.length === 2 && remove([0,0,0]) ==> todos[0].todos[0].todos[0].id === "0-0-0".
-    e. Stress test: (Expect pass)
-    If todos[3].todos[0].todos[2].todos.[1].length === 2 && remove ([3,0,2,1,0]) ==> todos[3].todos[0].todos[2].todos.[1].todos[0].id === "3-0-2-1-0".
-    */
-
     // b. Nested todos:
     // Basic Nested:
     "58) If todos[0].todos.length === 2 and remove([0,0]), then todos[0].todos[0].id should be '0-0'.": function(){
@@ -833,7 +817,7 @@
       eq(todo.id, "1-1");
       emptyTodos();
     },
-    // Change degree of nesting:
+    // c. Nested todo in nested todo:
     // Passed without additional code being written. Test kept for documentation.
     "61) If todos[0].todos.[0].todos.length === 2 and remove([0,0,0]), then todos[0].todos[0].todos[0].id should be '0-0-0'.": function(){
       add('1st', []);
@@ -846,7 +830,7 @@
       eq(todo.id, "0-0-0");
       emptyTodos();
     },
-    // Stress test:
+    // d. Stress test:
     // Passed without additional code being written. Test kept for documentation.
     "62) If todos[3].todos[0].todos[2].todos.[1].todos.length === 2 and remove ([3,0,2,1,0]), then todos[3].todos[0].todos[2].todos.[1].todos[0].id should be '3-0-2-1-0'.": function(){
       add('1st', []);
