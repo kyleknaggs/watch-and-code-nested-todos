@@ -54,8 +54,8 @@
       }else{
         var currentIndex = indices[0];
         var currentTodo = toModify[currentIndex];
-        var remainingindices = indices.slice(1);
-        todoList.add.call(currentTodo, text, remainingindices, true);
+        var remainingIndices = indices.slice(1);
+        todoList.add.call(currentTodo, text, remainingIndices, true);
       }
     },
     edit: function(text, indices, isRecursive){
@@ -71,8 +71,8 @@
           currentTodo.text = text;
         // Recursive case:
         }else{
-          var remainingindices = indices.slice(1);
-          todoList.edit.call(currentTodo, text, remainingindices, true);
+          var remainingIndices = indices.slice(1);
+          todoList.edit.call(currentTodo, text, remainingIndices, true);
         }
       }
     },
@@ -87,8 +87,8 @@
       // Recursive case:
       }else{
         var currentTodo = toModify[currentIndex];
-        var remainingindices = indices.slice(1);
-        todoList.remove.call(currentTodo, remainingindices, true);
+        var remainingIndices = indices.slice(1);
+        todoList.remove.call(currentTodo, remainingIndices, true);
       }
     },
     toggle: function(indices, isRecursive){
@@ -101,8 +101,8 @@
         currentTodo.completed = !currentTodo.completed;
       // Recursive case:
       }else{
-        var remainingindices = indices.slice(1);
-        todoList.toggle.call(currentTodo, remainingindices, true);
+        var remainingIndices = indices.slice(1);
+        todoList.toggle.call(currentTodo, remainingIndices, true);
       }
     }
   };
