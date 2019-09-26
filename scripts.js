@@ -15,14 +15,13 @@
     resetIds: function(indexRemoved, toModify){
       var length = toModify.length;
 
-      // If there are still todos
-      // And the last todo was not the one that was removed
-      if(length > 0 && indexRemoved !== length){
+      // If the todo that was removed was not the last:
+      // Reset the id of every todo starting after the one that was removed
+      if(indexRemoved !== length){
         var firstId = toModify[0].id;
         var indexAfterDash = firstId.lastIndexOf("-") + 1;
         var beforeCurrentIndex = firstId.slice(0, indexAfterDash);
 
-        // Reset the id of every todo starting at indexRemoved:
         for(var i = indexRemoved; i<length; i++){
           var currentIndex = String(i);
           var id = beforeCurrentIndex + currentIndex
@@ -35,13 +34,14 @@
 
       // Base case:
       if(indices.length === 0){
-        var id = String(toModify.length);
+        var currentIndex = String(toModify.length);
+        var beforeCurrentIndex = '';
 
         if(isRecursive){
-          var parentId = this.id;
-          id = parentId + '-' + id;
+          beforeCurrentIndex = this.id + '-';
         }
 
+        var id = beforeCurrentIndex + currentIndex;
         var newTodo = {
           completed: false,
           id: id,
