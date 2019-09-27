@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>Nested Todos</title>
-</head>
-<body>
-  <h1>Nested Todos</h1>
-  <!-- Insert markup for todo application here. -->
-  <script src="scripts.js"></script>
-</body>
+  <head>
+    <title>Todos</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
+  </head>
+  <body>
+    <h1>Todos</h1>
+    <!-- Insert markup for todo application here. -->
+    <ul>
+      <li>1st</li>
+        <ul>
+            <li>1st nested</li>
+              <ul>
+                <li>1st nested in nested</li>
+                  <ul>
+                    <li>1st nested in nested in nested in nested</li>
+                  </ul>
+                <li>2nd nested in nested in nested</li>
+              </ul>
+            <li>2nd nested</li>
+        </ul>
+      <li>2nd</li>
+    </ul>
+    <script src="scripts.js"></script>
+  </body>
 </html>
