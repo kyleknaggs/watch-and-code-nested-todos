@@ -1,8 +1,9 @@
-body{
+/* Set universal font-style */
+* {
   font-family: "Gill Sans";
-  margin: 30px;
 }
 
-ul li{
-  list-style-type: disc;
+/* Fix asymmetrical margin */
+body{
+  margin: 30px;
 }
