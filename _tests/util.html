@@ -3,31 +3,27 @@
 <script>
 
   // Destructure variables so they are easier to access:
-  var add = nestedTodos.todoList.add;
+  var todoList = nestedTodos.todoList
+  var add = todoList.add;
   var getToModify = nestedTodos.util.getToModify;
 
+  // util.getToModify() is only intended for internal use:
   tests({
-    // Base case:
-    // Case 1, option a: add('1st', []).
-    "1) If thisArg === window, util.getToModify(thisArg) should return todoList.todos.": function () {
-      var toModify = getToModify(window);
-      var todoList = nestedTodos.todoList;
-      eq(toModify, todoList.todos);
+    // When the function that calls getToModify() has not been called recursively:
+    "1) If isRecursive === undefined, it should return todoList.todos.": function(){
+      var todos = getToModify();
+      eq(todoList.todos, todos);
     },
-    // Case 2, left of the dot rule: todoList.add('1st', []).
-    "2) If thisArg === todoList, util.getToModify(thisArg) should return todoList.todos.": function () {
-      var todoList = nestedTodos.todoList;
-      var toModify = getToModify(todoList);
-      eq(toModify, todoList.todos);
-    },
-    // Recursive case:
-    // Case 4, explicitly set this: todoList.add.call({text: '1st', todos: []}, 'Nested', []);
-    "3) If thisArg === todoList.todos[0], util.getToModify(thisArg) should return todoList.todos[0].todos.": function () {
-      add('1st', []);
+    // When the function that calls getToModify() has been called recursively:
+    "2) If isRecursive === true, it should return thisArg.todos.": function(){
+      var mockTodo = {
+        todos: ['Mock nested todo']
+      };
+      var todos = getToModify(true, mockTodo);
 
-      var todoList = nestedTodos.todoList;
-      var toModify = getToModify(todoList.todos[0]);
-      eq(toModify, todoList.todos[0].todos);
+      eq(todos.length, 1);
+      eq(todos[0], 'Mock nested todo');
     }
   });
+
 </script>
