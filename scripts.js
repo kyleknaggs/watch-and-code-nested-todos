@@ -1,15 +1,5 @@
 (function(){
 
-  var util = {
-    getToModify: function(isRecursive, thisArg){
-      if (!isRecursive) {
-        return todoList.todos;
-      }
-
-      return thisArg.todos;
-    }
-  }
-
   var todoList = {
     todos: [],
     resetIds: function(indexRemoved, toModify){
@@ -104,6 +94,16 @@
         var remainingIndices = indices.slice(1);
         todoList.toggle.call(currentTodo, remainingIndices, true);
       }
+    }
+  };
+
+  var util = {
+    getToModify: function(isRecursive, thisArg){
+      if (!isRecursive) {
+        return todoList.todos;
+      }
+
+      return thisArg.todos;
     }
   };
 
