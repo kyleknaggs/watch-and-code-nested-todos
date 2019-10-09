@@ -1,0 +1,16 @@
+<!-- Placeholder #main -->
+<!-- Prevents Uncaught TypeError: Cannot read property 'append' of null error -->
+<div id="main"></div>
+<script src="simpletest.js"></script>
+<script src="../scripts.js"></script>
+<script>
+  tests({
+    "1) 1st failing test.": function () {
+      fail();
+    },
+    // It should have a way to add new todos:
+    "2) 2nd failing test.": function () {
+      fail();
+    }
+  });
+</script>
