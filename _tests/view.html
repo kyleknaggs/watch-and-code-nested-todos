@@ -162,12 +162,11 @@
   */
 
   tests({
-    "1) 1st failing test.": function () {
-      fail();
-    },
-    // It should have a way to add new todos:
-    "2) 2nd failing test.": function () {
-      fail();
+    // When application has loaded:
+    "1) If todos.length === 0, main.children[0].tagName should be 'DIV'.": function () {
+      var main = document.querySelector('#main');
+
+      eq(main.children[0].tagName, "DIV");
     }
   });
 </script>
