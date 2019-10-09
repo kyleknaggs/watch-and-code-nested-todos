@@ -97,6 +97,14 @@
     }
   };
 
+  var view = {
+    render: function(){
+      var markUp = document.createElement('div');
+      var main = document.querySelector('#main');
+      main.append(markUp);
+    }
+  };
+
   var util = {
     getToModify: function(isRecursive, thisArg){
       if (!isRecursive) {
@@ -107,12 +115,17 @@
     }
   };
 
+  // Render the application when the page is loaded:der t
+  view.render();
+
   // Attach application code to a single key of the window object:
   var nestedTodos = {
     todoList,
-    util
+    util,
+    view
   };
 
+  // Attach the application to the browser window:
   window.nestedTodos = nestedTodos;
 
 })();
