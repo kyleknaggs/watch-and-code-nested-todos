@@ -2,6 +2,7 @@
 <!-- Prevents Uncaught TypeError: Cannot read property 'append' of null error -->
 <div id="main"></div>
 <script src="simpletest.js"></script>
+<script src="helper.js"></script>
 <script src="../scripts.js"></script>
 <script>
 
@@ -172,12 +173,14 @@
 
       eq(main.children[0].tagName, "DIV");
     },
+    // Basic todo:
     "2) If todos.length === 1, div.children[0].tagName should be 'UL'.": function(){
       add('1st', []);
       var main = document.querySelector('#main');
       var div = main.children[0];
 
       eq(div.children[0].tagName, "UL");
+      emptyTodos();
     }
   });
 </script>
