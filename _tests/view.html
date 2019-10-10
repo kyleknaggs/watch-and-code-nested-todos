@@ -232,6 +232,29 @@
 
       eq(ul.children[0].children[0].children[0].tagName, "LI");
       resetAfterTest();
+    },
+    // Change index of nested todo:
+    // Test passed without writing additional code. Kept for documentation.
+    "8) If todos[1].todos.length === 1, ul.children[1].children[0].children[0].tagName should be 'LI'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('1st nested', [1]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[1].children[0].children[0].tagName, "LI");
+      resetAfterTest();
+    },
+    "9) If todos[1].todos.length === 2, ul.children[1].children[0].children[1].tagName should be 'LI'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('1st nested', [1]);
+      add('2nd nested', [1]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[1].children[0].children[1].tagName, "LI");
+      resetAfterTest();
     }
-    });
+  });
 </script>
