@@ -114,6 +114,8 @@
 
       if(todos.length > 0){
         var ul = document.createElement('ul');
+        var li = document.createElement('li');
+        ul.append(li);
         parentElement.append(ul);
       }
     }
