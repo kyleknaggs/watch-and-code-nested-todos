@@ -150,7 +150,7 @@
       resetAfterTest();
     },
     // Add text to a todo:
-    "12) If todos[0].text === '1st todo', ul.children[0].textContent should be '1st'.": function(){
+    "12) If todos[0].text === '1st', ul.children[0].textContent should be '1st'.": function(){
       add('1st', []);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
@@ -167,6 +167,26 @@
       var ul = main.children[0].children[0];
 
       eq(ul.children[1].textContent, '2nd');
+      resetAfterTest();
+    },
+    // Add id value to a todo:
+    "14) If todos[0] exists, then ul.children[0].id should be '0'.": function(){
+      add('1st', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].id, '0');
+      resetAfterTest();
+    },
+    // Check id value of different todo to be sure:
+    // Test passed without writing additional code. Kept for documentation.
+    "15) If todos[1] exists, then ul.children[1].id should be '1'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[1].id, '1');
       resetAfterTest();
     }
   });
