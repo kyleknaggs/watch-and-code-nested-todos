@@ -118,9 +118,12 @@
 
         for(var i=0; i< numberOfTodos; i++){
           var currentTodo = todos[i];
+          var currentTodoText = currentTodo.text;
           var nestedTodos = currentTodo.todos;
           var numberOfNestedTodos = nestedTodos.length;
           var li = document.createElement('li');
+
+          li.textContent = currentTodoText;
 
           // Base case does not enter conditional statement.
           // Recursive case:
