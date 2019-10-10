@@ -101,16 +101,16 @@
   var view = {
     render: function(){
       // Render todos:
+      var todos = todoList.todos;
       var renderedTodos = document.createElement('div');
-      view.renderTodos(renderedTodos);
+      view.renderTodos(todos, renderedTodos);
 
       // Replace old UI with new UI:
       var main = document.querySelector('#main');
       main.innerHTML = "";
       main.append(renderedTodos);
     },
-    renderTodos: function(parentElement){
-      var todos = todoList.todos;
+    renderTodos: function(todos, parentElement){
       var numberOfTodos = todos.length;
 
       if(numberOfTodos > 0){
@@ -122,15 +122,10 @@
           var numberOfNestedTodos = nestedTodos.length;
           var li = document.createElement('li');
 
+          // Base case does not enter conditional statement.
+          // Recursive case:
           if(numberOfNestedTodos > 0){
-            var nestedUl = document.createElement('ul');
-
-            for(var i=0; i<numberOfNestedTodos; i++){
-              var nestedLi = document.createElement('li');
-              nestedUl.append(nestedLi);
-            }
-
-            li.append(nestedUl);
+            view.renderTodos(nestedTodos, li);
           }
 
           ul.append(li);
