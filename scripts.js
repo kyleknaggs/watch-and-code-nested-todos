@@ -110,31 +110,35 @@
       main.append(renderedTodos);
     },
     renderTodos: function(parentElement){
-    var todos = todoList.todos;
-    var numberOfTodos = todos.length;
+      var todos = todoList.todos;
+      var numberOfTodos = todos.length;
 
-    if(numberOfTodos > 0){
-      var ul = document.createElement('ul');
+      if(numberOfTodos > 0){
+        var ul = document.createElement('ul');
 
-      for(var i=0; i< numberOfTodos; i++){
-        var currentTodo = todos[i];
-        var nestedTodos = currentTodo.todos;
-        var numberOfNestedTodos = nestedTodos.length;
-        var li = document.createElement('li');
+        for(var i=0; i< numberOfTodos; i++){
+          var currentTodo = todos[i];
+          var nestedTodos = currentTodo.todos;
+          var numberOfNestedTodos = nestedTodos.length;
+          var li = document.createElement('li');
 
-        if(numberOfNestedTodos > 0){
-          var nestedUl = document.createElement('ul');
-          var nestedLi = document.createElement('li');
-          nestedUl.append(nestedLi);
-          li.append(nestedUl);
+          if(numberOfNestedTodos > 0){
+            var nestedUl = document.createElement('ul');
+
+            for(var i=0; i<numberOfNestedTodos; i++){
+              var nestedLi = document.createElement('li');
+              nestedUl.append(nestedLi);
+            }
+
+            li.append(nestedUl);
+          }
+
+          ul.append(li);
         }
 
-        ul.append(li);
+        parentElement.append(ul);
       }
-
-      parentElement.append(ul);
     }
-  }
   };
 
   var util = {
