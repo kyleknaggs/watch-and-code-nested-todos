@@ -22,9 +22,9 @@
   Requirements:
 
   Add text to todo:
-  1) If todos[0].text === '1st todo', ul.children[0].textContent should be '1st todo'.
+  1) If todos[0].text === '1st', ul.children[0].textContent should be '1st'.
   Check text of different todo:
-  2) If todos[1].text === '2nd todo', ul.children[1].textContent should be '2nd todo'.
+  2) If todos[1].text === '2nd', ul.children[1].textContent should be '2nd'.
   Add id value to todo:
   3) If todos[0] exists, then ul.children[0].id should be '0'.
   Check id value of a different todo:
@@ -147,6 +147,26 @@
       var ul = main.children[0].children[0];
 
       eq(ul.children[0].children[0].children[0].children[0].children[0].tagName, "LI");
+      resetAfterTest();
+    },
+    // Add text to a todo:
+    "12) If todos[0].text === '1st todo', ul.children[0].textContent should be '1st'.": function(){
+      add('1st', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].textContent, '1st');
+      resetAfterTest();
+    },
+    // Check text of different todo to be sure:
+    // Test passed without writing additional code. Kept for documentation.
+    "13) If todos[1].text === '2nd', ul.children[1].textContent should be '2nd'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[1].textContent, '2nd');
       resetAfterTest();
     }
   });
