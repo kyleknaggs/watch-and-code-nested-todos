@@ -3,6 +3,10 @@
   var emptyTodos = function(){
     // Reset todos to [] after each test:
     nestedTodos.todoList.todos=[];
+
+    // Reset UI to original state:
+    var main = document.querySelector('#main');
+    main.innerHTML = "";
   }
 
   // Attach the application to the browser window:
