@@ -161,12 +161,23 @@
 
   */
 
+  // Destructure variables so they are easier to access:
+  var todoList = nestedTodos.todoList;
+  var add = todoList.add;
+
   tests({
     // When application has loaded:
     "1) If todos.length === 0, main.children[0].tagName should be 'DIV'.": function () {
       var main = document.querySelector('#main');
 
       eq(main.children[0].tagName, "DIV");
+    },
+    "2) If todos.length === 1, div.children[0].tagName should be 'UL'.": function(){
+      add('1st', []);
+      var main = document.querySelector('#main');
+      var div = main.children[0];
+
+      eq(div.children[0].tagName, "UL");
     }
   });
 </script>
