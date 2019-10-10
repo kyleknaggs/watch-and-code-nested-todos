@@ -40,6 +40,7 @@
         };
 
         toModify.push(newTodo);
+        view.render();
       // Recursive case:
       }else{
         var currentIndex = indices[0];
@@ -99,9 +100,22 @@
 
   var view = {
     render: function(){
-      var markUp = document.createElement('div');
+      // Render todos:
+      var renderedTodos = document.createElement('div');
+      view.renderTodos(renderedTodos);
+
+      // Replace old UI with new UI:
       var main = document.querySelector('#main');
-      main.append(markUp);
+      main.innerHTML = "";
+      main.append(renderedTodos);
+    },
+    renderTodos: function(parentElement){
+      var todos = todoList.todos;
+
+      if(todos.length > 0){
+        var ul = document.createElement('ul');
+        parentElement.append(ul);
+      }
     }
   };
 
