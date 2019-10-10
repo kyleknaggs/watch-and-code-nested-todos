@@ -181,6 +181,15 @@
 
       eq(div.children[0].tagName, "UL");
       resetAfterTest();
+    },
+    // Change todos.length:
+    "3) If todos.length === 1, ul.children[0].tagName should be 'LI'.": function(){
+      add('1st', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].tagName, "LI");
+      resetAfterTest();
     }
   });
 </script>
