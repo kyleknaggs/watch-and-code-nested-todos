@@ -2,6 +2,7 @@
 <!-- Prevents Uncaught TypeError: Cannot read property 'append' of null error -->
 <div id="main"></div>
 <script src="simpletest.js"></script>
+<script src="helper.js"></script>
 <script src="../scripts.js"></script>
 <script>
 
@@ -11,11 +12,6 @@
   var edit = todoList.edit;
   var remove = todoList.remove;
   var toggle = todoList.toggle;
-
-  // Helper function to set todoList.todos to [] after each test:
-  function emptyTodos(){
-    nestedTodos.todoList.todos = [];
-  }
 
   tests({
     // Phase 1: Add Basic todos.
