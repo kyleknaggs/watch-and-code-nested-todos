@@ -182,13 +182,35 @@
       eq(div.children[0].tagName, "UL");
       resetAfterTest();
     },
-    // Change todos.length:
+    // Add first todo:
     "3) If todos.length === 1, ul.children[0].tagName should be 'LI'.": function(){
       add('1st', []);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
       eq(ul.children[0].tagName, "LI");
+      resetAfterTest();
+    },
+    // Set todos.length > 1:
+    "4) If todos.length === 2, ul.children[1].tagName should be 'LI'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[1].tagName, "LI");
+      resetAfterTest();
+    },
+    // One more, just to be sure.
+    // Test passed without writing additional code. Kept for documentation.
+    "5) If todos.length === 3, ul.children[2].tagName should be 'LI'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      add('3rd', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[2].tagName, "LI");
       resetAfterTest();
     }
   });
