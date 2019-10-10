@@ -245,6 +245,7 @@
       eq(ul.children[1].children[0].children[0].tagName, "LI");
       resetAfterTest();
     },
+    // Set nested todos.length > 0:
     "9) If todos[1].todos.length === 2, ul.children[1].children[0].children[1].tagName should be 'LI'.": function(){
       add('1st', []);
       add('2nd', []);
@@ -254,6 +255,28 @@
       var ul = main.children[0].children[0];
 
       eq(ul.children[1].children[0].children[1].tagName, "LI");
+      resetAfterTest();
+    },
+    // Check for <ul> in nested todo in nested todo:
+    "10) If todos[0].todos[0].todos.length === 1, ul.children[0].children[0].children[0].children[0].tagName should be 'UL'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      add('1st nested in nested', [0,0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[0].children[0].children[0].tagName, "UL");
+      resetAfterTest();
+    },
+    // Check for <li> in nested todo in nested todo:
+    "11) If todos[0].todos[0].todos.length === 1, ul.children[0].children[0].children[0].children[0].children[0].tagName should be 'LI'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      add('1st nested in nested', [0,0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[0].children[0].children[0].children[0].tagName, "LI");
       resetAfterTest();
     }
   });
