@@ -111,11 +111,16 @@
     },
     renderTodos: function(parentElement){
       var todos = todoList.todos;
+      var numberOfTodos = todos.length;
 
-      if(todos.length > 0){
+      if(numberOfTodos > 0){
         var ul = document.createElement('ul');
-        var li = document.createElement('li');
-        ul.append(li);
+
+        for(var i=0; i< numberOfTodos; i++){
+          var li = document.createElement('li');
+          ul.append(li);
+        }
+
         parentElement.append(ul);
       }
     }
