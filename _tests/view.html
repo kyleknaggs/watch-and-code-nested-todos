@@ -212,6 +212,26 @@
 
       eq(ul.children[2].tagName, "LI");
       resetAfterTest();
+    },
+    // Check for <ul> in nested todo:
+    "6) If todos[0].todos.length === 1, ul.children[0].children[0].tagName should be 'UL'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[0].tagName, "UL");
+      resetAfterTest();
+    },
+    // Check for <li> in nested todo:
+    "7) If todos[0].todos.length === 1, ul.children[0].children[0].children[0].tagName should be 'LI'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[0].children[0].tagName, "LI");
+      resetAfterTest();
     }
-  });
+    });
 </script>
