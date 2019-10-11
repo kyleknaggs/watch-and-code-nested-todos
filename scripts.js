@@ -75,6 +75,7 @@
       if(indices.length === 1){
         toModify.splice(currentIndex, 1);
         todoList.resetIds(currentIndex, toModify);
+        view.render();
       // Recursive case:
       }else{
         var currentTodo = toModify[currentIndex];
