@@ -7,3 +7,8 @@
 body{
   margin: 30px;
 }
+
+/* Apply to completed items */
+.completed {
+  text-decoration: line-through;
+}
