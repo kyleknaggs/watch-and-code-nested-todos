@@ -51,6 +51,7 @@
   var todoList = nestedTodos.todoList;
   var add = todoList.add;
   var remove = todoList.remove;
+  var toggle = todoList.toggle;
 
   tests({
     // Phase 1: Construct markup that will hold nested todos.
@@ -234,6 +235,28 @@
       var ul = main.children[0].children[0];
 
       eq(ul.children.length, 1);
+      resetAfterTest();
+    },
+    // Basic toggle, not completed to completed:
+    "18) If todos[0].completed === false and toggle([0]) is called, ul.children[0].className should be 'completed'.": function(){
+      add('1st', []);
+      toggle([0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].className, 'completed');
+      resetAfterTest();
+    },
+    // One more, just to be sure:
+    // Test passed without writing additional code. Kept for documentation.
+    "19) If todos[1].completed === false and toggle([1]) is called, ul.children[1].className should be 'completed'.": function(){
+      add('1st', []);
+      add('2nd', []);
+      toggle([1]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[1].className, 'completed');
       resetAfterTest();
     }
 
