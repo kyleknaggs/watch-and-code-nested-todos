@@ -31,7 +31,6 @@
   Part 1: remove(indicies):
   1. If todos.length === 1 and remove([0]) is called, div.children.length should be 0.
   2. If todos.length === 2 and remove([0]) is called, ul.children.length should be 1.
-  3. If todos.length === 3 and remove([0]) is called, ul.children.length should be 2.
 
   -------------------------------
 
@@ -51,6 +50,7 @@
   // Destructure variables so they are easier to access:
   var todoList = nestedTodos.todoList;
   var add = todoList.add;
+  var remove = todoList.remove;
 
   tests({
     // Phase 1: Construct markup that will hold nested todos.
@@ -209,11 +209,33 @@
 
       eq(ul.children[1].id, '1');
       resetAfterTest();
-    }
+    },
 
     // -------------------------------
 
     // Phase 3: Modify markup appropriately after remove(), toggle() and edit().
+    // Basic remove:
+    "16) If todos.length === 1 and remove([0]) is called, div.children.length should be 0.": function(){
+      add('1st', []);
+      remove([0]);
+      var main = document.querySelector('#main');
+      var div = main.children[0];
+
+      eq(div.children.length, 0);
+      resetAfterTest();
+    },
+    // One more, just to be sure:
+    // Test passed without writing additional code. Kept for documentation.
+    "17) If todos.length === 2 and remove([0]) is called, ul.children.length should be 1.": function(){
+      add('1st', []);
+      add('2nd', []);
+      remove([0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children.length, 1);
+      resetAfterTest();
+    }
 
   });
 </script>
