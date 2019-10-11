@@ -91,6 +91,7 @@
       // Base case:
       if(indices.length === 1){
         currentTodo.completed = !currentTodo.completed;
+        view.render();
       // Recursive case:
       }else{
         var remainingIndices = indices.slice(1);
@@ -121,12 +122,17 @@
           var currentTodo = todos[i];
           var currentTodoText = currentTodo.text;
           var currentTodoId = currentTodo.id;
+          var currentTodoCompleted = currentTodo.completed;
           var nestedTodos = currentTodo.todos;
           var numberOfNestedTodos = nestedTodos.length;
           var li = document.createElement('li');
 
           li.textContent = currentTodoText;
           li.id = currentTodoId;
+
+          if(currentTodoCompleted){
+            li.setAttribute('class', 'completed');
+          }
 
           // Base case does not enter conditional statement.
           // Recursive case:
