@@ -231,20 +231,8 @@
       eq(div.children.length, 0);
       resetAfterTest();
     },
-    // One more, just to be sure:
-    // Test passed without writing additional code. Kept for documentation.
-    "17) If todos.length === 2 and remove([0]) is called, ul.children.length should be 1.": function(){
-      add('1st', []);
-      add('2nd', []);
-      remove([0]);
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
-
-      eq(ul.children.length, 1);
-      resetAfterTest();
-    },
     // Basic toggle, not completed to completed:
-    "18) If todos[0].completed === false and toggle([0]) is called, ul.children[0].className should be 'completed'.": function(){
+    "17) If todos[0].completed === false and toggle([0]) is called, ul.children[0].className should be 'completed'.": function(){
       add('1st', []);
       toggle([0]);
       var main = document.querySelector('#main');
@@ -253,21 +241,9 @@
       eq(ul.children[0].className, 'completed');
       resetAfterTest();
     },
-    // One more, just to be sure:
-    // Test passed without writing additional code. Kept for documentation.
-    "19) If todos[1].completed === false and toggle([1]) is called, ul.children[1].className should be 'completed'.": function(){
-      add('1st', []);
-      add('2nd', []);
-      toggle([1]);
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
-
-      eq(ul.children[1].className, 'completed');
-      resetAfterTest();
-    },
     // Basic toggle, completed to not completed:
     // Test passed without writing additional code. Kept for documentation.
-    "20) If todos[0].completed === true and toggle([0]) is called, ul.children[0].className should be ''.": function(){
+    "18) If todos[0].completed === true and toggle([0]) is called, ul.children[0].className should be ''.": function(){
       add('1st', []);
       toggle([0]);
       toggle([0]);
@@ -277,21 +253,8 @@
       eq(ul.children[0].className, '');
       resetAfterTest();
     },
-    // One more, just to be sure:
-    // Test passed without writing additional code. Kept for documentation.
-    "21) If todos[1].completed === true and toggle([1]) is called, ul.children[1].className should be ''.": function(){
-      add('1st', []);
-      add('2nd', []);
-      toggle([1]);
-      toggle([1]);
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
-
-      eq(ul.children[1].className, '');
-      resetAfterTest();
-    },
     // Basic edit that modifies text of existing todo:
-    "22) If todos[0].text === '1st' and edit('first', [0]), ul.children[0].textContent should be 'first'.": function(){
+    "19) If todos[0].text === '1st' and edit('first', [0]), ul.children[0].textContent should be 'first'.": function(){
       add('1st', []);
       edit('first', [0]);
       var main = document.querySelector('#main');
@@ -302,7 +265,7 @@
     },
     // Basic edit that deletes existing todo:
     // Test passed without writing additional code. Kept for documentation.
-    "23) If todos[0].text === '1st' and edit('', [0]), div.children.length should be 0.": function(){
+    "20) If todos[0].text === '1st' and edit('', [0]), div.children.length should be 0.": function(){
       add('1st', []);
       edit('', [0]);
       var main = document.querySelector('#main');
