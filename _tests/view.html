@@ -37,19 +37,25 @@
   Part 2: toggle(indicies)
   1. If todos[0].completed === false and toggle([0]) is called, ul.children[0].className should be 'completed'.
   2. If todos[1].completed === false and toggle([1]) is called, ul.children[1].className should be 'completed'.
-  3. If todos[0].completed === true and toggle([0]) is called, ul.children[0].className should be "".
-  4. If todos[1].completed === true and toggle([1]) is called, ul.children[1].className should be "".
+  3. If todos[0].completed === true and toggle([0]) is called, ul.children[0].className should be ''.
+  4. If todos[1].completed === true and toggle([1]) is called, ul.children[1].className should be ''.
 
   -------------------------------
 
   Part 3: edit(text, indicies)
-  Tests to be sketched later.
+  Unlike remove() and toggle(), the edit() function can modify the todo list in > 1 way.
+  a. If text !== '', edit() can modify the text of an existing todo.
+  b. If text === '', edit() can delete an existing todo.
+
+  1. If todos[0].text === '1st' and edit('first', [0]), ul.children[0].textContent should be 'first'.
+  2. If todos[0].text === '1st' and edit('', [0]), div.children.length should be 0.
 
   */
 
   // Destructure variables so they are easier to access:
   var todoList = nestedTodos.todoList;
   var add = todoList.add;
+  var edit = todoList.edit;
   var remove = todoList.remove;
   var toggle = todoList.toggle;
 
@@ -283,7 +289,27 @@
 
       eq(ul.children[1].className, '');
       resetAfterTest();
-    }
+    },
+    // Basic edit that modifies text of existing todo:
+    "22) If todos[0].text === '1st' and edit('first', [0]), ul.children[0].textContent should be 'first'.": function(){
+      add('1st', []);
+      edit('first', [0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
 
+      eq(ul.children[0].textContent, 'first');
+      resetAfterTest();
+    },
+    // Basic edit that deletes existing todo:
+    // Test passed without writing additional code. Kept for documentation.
+    "23) If todos[0].text === '1st' and edit('', [0]), div.children.length should be 0.": function(){
+      add('1st', []);
+      edit('', [0]);
+      var main = document.querySelector('#main');
+      var div = main.children[0];
+
+      eq(div.children.length, 0);
+      resetAfterTest();
+    }
   });
 </script>
