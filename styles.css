@@ -8,6 +8,11 @@ body{
   margin: 30px;
 }
 
+/* Ensure styling of all list items is consistent */
+li{
+  list-style-type: disc;
+}
+
 /* Apply to completed items */
 .completed {
   text-decoration: line-through;
