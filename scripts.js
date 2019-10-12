@@ -60,6 +60,7 @@
         // Base case:
         if(indices.length === 1){
           currentTodo.text = text;
+          view.render();
         // Recursive case:
         }else{
           var remainingIndices = indices.slice(1);
