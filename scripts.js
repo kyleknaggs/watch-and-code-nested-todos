@@ -119,11 +119,15 @@
 
       if(numberOfTodos > 0){
         var ul = document.createElement('ul');
-        var li = document.createElement('li');
-        var p = document.createElement('p');
 
-        li.append(p);
-        ul.append(li);
+        for(var i=0; i<numberOfTodos; i++){
+          var li = document.createElement('li');
+          var p = document.createElement('p');
+
+          li.append(p);
+          ul.append(li);
+        }
+
         parentElement.append(ul);
       }
     }
