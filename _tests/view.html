@@ -86,6 +86,15 @@
     </div>
 
     */
+    // First todo <p>:
+    "4) If todos.length === 1, ul.children[0].children[0].tagName should be 'P'.": function(){
+      add('1st', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[0].tagName, "P");
+      resetAfterTest();
+    }
   });
 
   /*
