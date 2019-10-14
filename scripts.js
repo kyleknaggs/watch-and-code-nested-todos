@@ -114,7 +114,16 @@
       main.append(renderedTodos);
     },
     // New renderTodos() with <p>:
-    renderTodos: function(todos, parentElement){}
+    renderTodos: function(todos, parentElement){
+      var numberOfTodos = todos.length;
+
+      if(numberOfTodos > 0){
+        var ul = document.createElement('ul');
+        var li = document.createElement('li');
+        ul.append(li);
+        parentElement.append(ul);
+      }
+    }
     /*
     // Old renderTodos() without <p>:
     renderTodos: function(todos, parentElement){
