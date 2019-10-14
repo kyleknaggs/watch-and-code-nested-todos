@@ -59,6 +59,33 @@
       eq(ul.children[0].tagName, "LI");
       resetAfterTest();
     },
+    /*
+
+    Remaining basic todo tests:
+    4. First todo <p>:
+    If todos.length === 1, ul.children[0].children[0].tagName should be 'P'.
+    <div>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+
+    5. Todos.length > 1:
+    If todos.length === 2, ul.children[1].children[0].tagName should be 'P'.
+    <div>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+
+    */
   });
 
   /*
