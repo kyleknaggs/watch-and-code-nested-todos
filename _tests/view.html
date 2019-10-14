@@ -34,9 +34,31 @@
 
   // New tests with <p>:
   tests({
-    "1) Placeholder test.": function(){
-      fail();
-    }
+    // Phase 1: Construct markup that will hold nested todos.
+    // When application has loaded:
+    "1) If todos.length === 0, main.children[0].tagName should be 'DIV'.": function () {
+      var main = document.querySelector('#main');
+
+      eq(main.children[0].tagName, "DIV");
+    },
+    // First todo <ul>:
+    "2) If todos.length === 1, div.children[0].tagName should be 'UL'.": function(){
+      add('1st', []);
+      var main = document.querySelector('#main');
+      var div = main.children[0];
+
+      eq(div.children[0].tagName, "UL");
+      resetAfterTest();
+    },
+    // First todo <li>:
+    "3) If todos.length === 1, ul.children[0].tagName should be 'LI'.": function(){
+      add('1st', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].tagName, "LI");
+      resetAfterTest();
+    },
   });
 
   /*
