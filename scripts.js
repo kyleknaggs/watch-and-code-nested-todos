@@ -113,6 +113,10 @@
       main.innerHTML = "";
       main.append(renderedTodos);
     },
+    // New renderTodos() with <p>:
+    renderTodos: function(todos, parentElement){}
+    /*
+    // Old renderTodos() without <p>:
     renderTodos: function(todos, parentElement){
       var numberOfTodos = todos.length;
 
@@ -147,6 +151,7 @@
         parentElement.append(ul);
       }
     }
+    */
   };
 
   var util = {

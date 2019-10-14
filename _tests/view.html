@@ -13,6 +13,34 @@
   var remove = todoList.remove;
   var toggle = todoList.toggle;
 
+  /*
+
+  Purpose of adding <p> to markup:
+  1. The paragraph tag makes the markup of the document more semantic.
+  2. The textContent of an element can more accurately be queried because all text is now within a <p>.
+  3. The text-decoration: line-through; style can now be applied to <p> elements only and will not affect all descendant elements.
+
+  Requirements to be re-evaluated in sections.
+  Sections of view tests to be re-evaluated in the following order.
+
+  1. Basic todos. (Old tests 1-5)
+  2. Nested todos. (Old tests 6-9)
+  3. Nested todo in nested todo. (Old tests 10-11)
+  4. Text and id values of elements. (Old tests 12-15)
+  5. Functions other than add(). (Old tests 16-20)
+  6. CSS markup. (Remove margins from <p> elements in CSS file)
+
+  */
+
+  // New tests with <p>:
+  tests({
+    "1) Placeholder test.": function(){
+      fail();
+    }
+  });
+
+  /*
+  // Old tests without <p>:
   tests({
     // Phase 1: Construct markup that will hold nested todos.
     // When application has loaded:
@@ -229,4 +257,5 @@
       resetAfterTest();
     }
   });
+  */
 </script>
