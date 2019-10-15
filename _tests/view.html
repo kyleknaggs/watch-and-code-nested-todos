@@ -171,29 +171,6 @@
       resetAfterTest();
     },
 
-    /*
-
-    Text and id value tests:
-
-    1. If todos[0] exists, then ul.children[0].id should be '0'.
-    Add id to a todo:
-    <div>
-      <ul>
-        <li id="0"></li>
-      </ul>
-    </div>
-
-    2. If todos[0].text === '1st', then ul.children[0].children[0].textContent should be '1st'.
-    <div>
-      <ul>
-        <li id="0">
-          <p>1st</p>
-        </li>
-      </ul>
-    </div>
-
-    */
-
     // -------------------------------
 
     // Phase 2: Pass text and id values to todos.
@@ -214,7 +191,77 @@
 
       eq(ul.children[0].children[0].textContent, "1st");
       resetAfterTest();
-    }
+    },
+
+    /*
+
+    Functions other than add():
+
+    1. If todos.length === 1 and remove([0]) is called, div.children.length should be 0."
+    Basic remove:
+
+    Before basic remove:
+    <div>
+      <ul>
+        <li id="0">
+          <p>First</p>
+        </li>
+      </ul>
+    </div>
+
+    After basic remove:
+    <div></div>
+
+    2. If todos[0].completed === false and toggle([0]) is called, ul.children[0].className should be 'completed'."
+    Basic toggle, not completed to completed:
+
+    Before basic toggle:
+    <div>
+      <ul>
+        <li id="0">
+          <p>First</p>
+        </li>
+      </ul>
+    </div>
+
+    After basic toggle:
+    <div>
+      <ul>
+        <li id="0" class="completed">
+          <p>First</p>
+        </li>
+      </ul>
+    </div>
+
+    Note: Will probably have to use immediate child selector to get strikethrough style to work properly.
+
+    3. If todos[0].completed === true and toggle([0]) is called, ul.children[0].className should be ''.
+    Basic toggle, completed to not completed:
+
+    Before basic toggle:
+    <div>
+      <ul>
+        <li id="0" class="completed">
+          <p>First</p>
+        </li>
+      </ul>
+    </div>
+
+    After basic toggle:
+    <div>
+      <ul>
+        <li id="0">
+          <p>First</p>
+        </li>
+      </ul>
+    </div>
+
+    */
+
+    // -------------------------------
+
+    // Phase 3: Modify markup appropriately after remove(), toggle() and edit().
+
   });
 
   /*
