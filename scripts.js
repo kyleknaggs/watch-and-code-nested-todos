@@ -122,12 +122,14 @@
 
         for(var i=0; i<numberOfTodos; i++){
           var currentTodo = todos[i];
+          var currentTodoId = currentTodo.id;
           var nestedTodos = currentTodo.todos;
           var numberOfNestedTodos = nestedTodos.length;
           var li = document.createElement('li');
           var p = document.createElement('p');
 
-          // Add p to li before ul:
+          // Append p to li before ul:
+          li.setAttribute('id', currentTodoId);
           li.append(p);
 
           // Base case does not enter conditional statement.
