@@ -197,12 +197,22 @@
     // -------------------------------
 
     // Phase 2: Pass text and id values to todos.
+    // Add id value to <li>:
     "14) If todos[0] exists, then ul.children[0].id should be '0'.": function(){
       add('1st', []);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
       eq(ul.children[0].id, "0");
+      resetAfterTest();
+    },
+    // Add textContent to <p>:
+    "15) If todos[0].text === '1st', then ul.children[0].children[0].textContent should be '1st'.": function(){
+      add('1st', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[0].textContent, "1st");
       resetAfterTest();
     }
   });
