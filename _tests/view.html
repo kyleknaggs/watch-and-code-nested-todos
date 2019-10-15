@@ -270,8 +270,29 @@
 
       eq(div.children.length, 0);
       resetAfterTest();
-    }
+    },
+    // Basic toggle, not completed to completed:
+    "17) If todos[0].completed === false and toggle([0]) is called, ul.children[0].className should be 'completed'.": function(){
+      add('1st', []);
+      toggle([0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
 
+      eq(ul.children[0].className, 'completed');
+      resetAfterTest();
+    },
+    // Basic toggle, completed to not completed:
+    // Test passed without writing additional code. Kept for documentation.
+    "18) If todos[0].completed === true and toggle([0]) is called, ul.children[0].className should be ''.": function(){
+      add('1st', []);
+      toggle([0]);
+      toggle([0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].className, '');
+      resetAfterTest();
+    }
   });
 
   /*
