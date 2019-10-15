@@ -261,6 +261,16 @@
     // -------------------------------
 
     // Phase 3: Modify markup appropriately after remove(), toggle() and edit().
+    // Basic remove:
+    "16) If todos.length === 1 and remove([0]) is called, div.children.length should be 0.": function(){
+      add('1st', []);
+      remove([0]);
+      var main = document.querySelector('#main');
+      var div = main.children[0];
+
+      eq(div.children.length, 0);
+      resetAfterTest();
+    }
 
   });
 
