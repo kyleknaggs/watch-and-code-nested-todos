@@ -59,33 +59,6 @@
       eq(ul.children[0].tagName, "LI");
       resetAfterTest();
     },
-    /*
-
-    Remaining basic todo tests:
-    4. First todo <p>:
-    If todos.length === 1, ul.children[0].children[0].tagName should be 'P'.
-    <div>
-      <ul>
-        <li>
-          <p></p>
-        </li>
-      </ul>
-    </div>
-
-    5. Todos.length > 1:
-    If todos.length === 2, ul.children[1].children[0].tagName should be 'P'.
-    <div>
-      <ul>
-        <li>
-          <p></p>
-        </li>
-        <li>
-          <p></p>
-        </li>
-      </ul>
-    </div>
-
-    */
     // First todo <p>:
     "4) If todos.length === 1, ul.children[0].children[0].tagName should be 'P'.": function(){
       add('1st', []);
@@ -105,6 +78,89 @@
       eq(ul.children[1].children[0].tagName, "P");
       resetAfterTest();
     }
+
+    /*
+
+    Nested todo tests:
+    1. Check for <ul> in nested todo.
+    If todos[0].todos.length === 1, ul.children[0].children[1].tagName should be 'UL'.
+    <div>
+      <ul>
+        <li>
+          <p></p>
+          <ul></ul>
+        </li>
+      </ul>
+    </div>
+
+    2. Check for <li> in nested todo.
+    If todos[0].todos.length === 1, ul.children[0].children[1].children[0].tagName should be 'LI'.
+    <div>
+      <ul>
+        <li>
+          <p></p>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    3. Check for <p> in nested todo.
+    If todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[0].tagName should be 'P'.
+    <div>
+      <ul>
+        <li>
+          <p></p>
+          <ul>
+            <li>
+              <p></p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    4. Check index of nested todo.
+    If todos[1].todos.length === 1, ul.children[1].children[1].children[0].children[0].tagName should be 'P'.
+    <div>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+          <ul>
+            <li>
+              <p></p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    5. If nested todos.length > 1.
+    If todos[1].todos.length === 2, ul.children[1].children[1].children[1].children[0].tagName should be 'P'.
+    <div>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+          <ul>
+            <li>
+              <p></p>
+            </li>
+            <li>
+              <p></p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    */
   });
 
   /*
