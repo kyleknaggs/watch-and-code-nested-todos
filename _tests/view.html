@@ -133,12 +133,12 @@
 
       eq(ul.children[1].children[1].children[1].children[0].tagName, "P");
       resetAfterTest();
-    }
+    },
 
     /*
 
     Nested todo in nested todo tests:
-    1. If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].tagName should be "UL".
+    1. If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].tagName should be 'UL'.
     Check for <ul> in nested todo in nested todo.
     <div>
       <ul>
@@ -154,7 +154,7 @@
       </ul>
     </div>
 
-    2. If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].tagName should be "LI".
+    2. If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].tagName should be 'LI'.
     Check for <li> in nested todo in nested todo.
     <div>
       <ul>
@@ -172,7 +172,7 @@
       </ul>
     </div>
 
-    2. If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].children[0].tagName should be "P".
+    2. If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].children[0].tagName should be 'P'.
     Check for <p> in nested todo in nested todo.
     <div>
       <ul>
@@ -195,6 +195,39 @@
     */
 
     // Nested todos in nested todos:
+    // Check for <ul> in nested todo in nested todo:
+    "11) If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].tagName should be 'UL'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      add('1st nested in nested', [0,0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[1].children[0].children[1].tagName, 'UL');
+      resetAfterTest();
+    },
+    // Check for <li> in nested todo in nested todo:
+    "12) If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].tagName should be 'LI'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      add('1st nested in nested', [0,0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[1].children[0].children[1].children[0].tagName, 'LI');
+      resetAfterTest();
+    },
+    // Check for <p> in nested todo in nested todo:
+    "13) If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].children[0].tagName should be 'P'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      add('1st nested in nested', [0,0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[1].children[0].children[1].children[0].children[0].tagName, "P");
+      resetAfterTest();
+    }
 
   });
 
