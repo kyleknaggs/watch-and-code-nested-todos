@@ -134,66 +134,6 @@
       eq(ul.children[1].children[1].children[1].children[0].tagName, "P");
       resetAfterTest();
     },
-
-    /*
-
-    Nested todo in nested todo tests:
-    1. If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].tagName should be 'UL'.
-    Check for <ul> in nested todo in nested todo.
-    <div>
-      <ul>
-        <li>
-          <p></p>
-          <ul>
-            <li>
-              <p></p>
-              <ul></ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-
-    2. If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].tagName should be 'LI'.
-    Check for <li> in nested todo in nested todo.
-    <div>
-      <ul>
-        <li>
-          <p></p>
-          <ul>
-            <li>
-              <p></p>
-              <ul>
-                <li></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-
-    2. If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].children[0].tagName should be 'P'.
-    Check for <p> in nested todo in nested todo.
-    <div>
-      <ul>
-        <li>
-          <p></p>
-          <ul>
-            <li>
-              <p></p>
-              <ul>
-                <li>
-                  <p></p>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-
-    */
-
     // Nested todos in nested todos:
     // Check for <ul> in nested todo in nested todo:
     "11) If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].tagName should be 'UL'.": function(){
@@ -207,6 +147,7 @@
       resetAfterTest();
     },
     // Check for <li> in nested todo in nested todo:
+    // Test passed without writing additional code. Kept for documentation.
     "12) If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].tagName should be 'LI'.": function(){
       add('1st', []);
       add('1st nested', [0]);
@@ -218,6 +159,7 @@
       resetAfterTest();
     },
     // Check for <p> in nested todo in nested todo:
+    // Test passed without writing additional code. Kept for documentation.
     "13) If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].children[0].tagName should be 'P'.": function(){
       add('1st', []);
       add('1st nested', [0]);
@@ -228,6 +170,33 @@
       eq(ul.children[0].children[1].children[0].children[1].children[0].children[0].tagName, "P");
       resetAfterTest();
     }
+
+    /*
+
+    Text and id value tests:
+
+    1. If todos[0] exists, then ul.children[0].id should be '0'.
+    Add id to a todo:
+    <div>
+      <ul>
+        <li id="0"></li>
+      </ul>
+    </div>
+
+    2. If todos[0].text === '1st', then ul.children[0].children[0].textContent should be '1st'.
+    <div>
+      <ul>
+        <li id="0">
+          <p>1st</p>
+        </li>
+      </ul>
+    </div>
+
+    */
+
+    // -------------------------------
+
+    // Phase 2: Pass text and id values to todos.
 
   });
 
