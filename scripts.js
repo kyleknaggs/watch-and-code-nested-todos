@@ -121,10 +121,21 @@
         var ul = document.createElement('ul');
 
         for(var i=0; i<numberOfTodos; i++){
+          var currentTodo = todos[i];
+          var nestedTodos = currentTodo.todos;
+          var numberOfNestedTodos = nestedTodos.length;
           var li = document.createElement('li');
           var p = document.createElement('p');
 
+          // Add p to li before ul:
           li.append(p);
+
+          // Base case does not enter conditional statement.
+          // Recursive case:
+          if(numberOfNestedTodos > 0){
+            view.renderTodos(nestedTodos, li);
+          }
+
           ul.append(li);
         }
 
