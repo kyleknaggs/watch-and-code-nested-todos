@@ -122,15 +122,18 @@
 
         for(var i=0; i<numberOfTodos; i++){
           var currentTodo = todos[i];
+          var currentTodoText = currentTodo.text;
           var currentTodoId = currentTodo.id;
-          var nestedTodos = currentTodo.todos;
-          var numberOfNestedTodos = nestedTodos.length;
           var li = document.createElement('li');
           var p = document.createElement('p');
 
-          // Append p to li before ul:
+          p.textContent = currentTodoText;
           li.setAttribute('id', currentTodoId);
           li.append(p);
+
+          // Decide whether to append nested todo:
+          var nestedTodos = currentTodo.todos;
+          var numberOfNestedTodos = nestedTodos.length;
 
           // Base case does not enter conditional statement.
           // Recursive case:
