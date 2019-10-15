@@ -124,16 +124,21 @@
           var currentTodo = todos[i];
           var currentTodoText = currentTodo.text;
           var currentTodoId = currentTodo.id;
+          var currentTodoCompleted = currentTodo.completed;
+          var nestedTodos = currentTodo.todos;
+          var numberOfNestedTodos = nestedTodos.length;
           var li = document.createElement('li');
           var p = document.createElement('p');
 
           p.textContent = currentTodoText;
           li.setAttribute('id', currentTodoId);
-          li.append(p);
 
-          // Decide whether to append nested todo:
-          var nestedTodos = currentTodo.todos;
-          var numberOfNestedTodos = nestedTodos.length;
+          if(currentTodoCompleted){
+            li.setAttribute('class', 'completed');
+          }
+
+          // Append p to li before appending li to ul:
+          li.append(p);
 
           // Base case does not enter conditional statement.
           // Recursive case:
