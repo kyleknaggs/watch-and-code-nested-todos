@@ -77,7 +77,7 @@
 
       eq(ul.children[1].children[0].tagName, "P");
       resetAfterTest();
-    }
+    },
 
     /*
 
@@ -121,7 +121,7 @@
       </ul>
     </div>
 
-    4. Check index of nested todo.
+    4. Change index of nested todo.
     If todos[1].todos.length === 1, ul.children[1].children[1].children[0].children[0].tagName should be 'P'.
     <div>
       <ul>
@@ -161,6 +161,38 @@
     </div>
 
     */
+
+    // Check for <ul> in nested todo:
+    "6) If todos[0].todos.length === 1, ul.children[0].children[1].tagName should be 'UL'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[1].tagName, "UL");
+      resetAfterTest();
+    },
+    // Check for <li> in nested todo:
+    "7) If todos[0].todos.length === 1, ul.children[0].children[1].children[0].tagName should be 'LI'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[1].children[0].tagName, "LI");
+      resetAfterTest();
+    },
+    // Check for <p> in nested todo:
+    "8) If todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[0].tagName should be 'P'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[1].children[0].children[0].tagName, "P");
+      resetAfterTest();
+    }
+
   });
 
   /*
