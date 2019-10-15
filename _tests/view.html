@@ -169,7 +169,7 @@
 
       eq(ul.children[0].children[1].children[0].children[1].children[0].children[0].tagName, "P");
       resetAfterTest();
-    }
+    },
 
     /*
 
@@ -197,7 +197,14 @@
     // -------------------------------
 
     // Phase 2: Pass text and id values to todos.
+    "14) If todos[0] exists, then ul.children[0].id should be '0'.": function(){
+      add('1st', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
 
+      eq(ul.children[0].id, "0");
+      resetAfterTest();
+    }
   });
 
   /*
