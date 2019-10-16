@@ -15,13 +15,14 @@
 
   tests({
     // Phase 1: Construct markup that will hold nested todos.
+    // Basic todos:
     // When application has loaded:
     "1) If todos.length === 0, main.children[0].tagName should be 'DIV'.": function () {
       var main = document.querySelector('#main');
 
       eq(main.children[0].tagName, "DIV");
     },
-    // Basic todo:
+    // First todo <ul>:
     "2) If todos.length === 1, div.children[0].tagName should be 'UL'.": function(){
       add('1st', []);
       var main = document.querySelector('#main');
@@ -30,7 +31,7 @@
       eq(div.children[0].tagName, "UL");
       resetAfterTest();
     },
-    // Add first todo:
+    // First todo <li>:
     "3) If todos.length === 1, ul.children[0].tagName should be 'LI'.": function(){
       add('1st', []);
       var main = document.querySelector('#main');
@@ -39,62 +40,70 @@
       eq(ul.children[0].tagName, "LI");
       resetAfterTest();
     },
-    // Set todos.length > 1:
-    "4) If todos.length === 2, ul.children[1].tagName should be 'LI'.": function(){
+    // First todo <p>:
+    "4) If todos.length === 1, ul.children[0].children[0].tagName should be 'P'.": function(){
+      add('1st', []);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[0].tagName, "P");
+      resetAfterTest();
+    },
+    // If todos.length > 1:
+    "5) If todos.length === 2, ul.children[1].children[0].tagName should be 'P'.": function(){
       add('1st', []);
       add('2nd', []);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[1].tagName, "LI");
+      eq(ul.children[1].children[0].tagName, "P");
       resetAfterTest();
     },
-    // One more, just to be sure.
-    // Test passed without writing additional code. Kept for documentation.
-    "5) If todos.length === 3, ul.children[2].tagName should be 'LI'.": function(){
-      add('1st', []);
-      add('2nd', []);
-      add('3rd', []);
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
-
-      eq(ul.children[2].tagName, "LI");
-      resetAfterTest();
-    },
+    // Nested todos:
     // Check for <ul> in nested todo:
-    "6) If todos[0].todos.length === 1, ul.children[0].children[0].tagName should be 'UL'.": function(){
+    "6) If todos[0].todos.length === 1, ul.children[0].children[1].tagName should be 'UL'.": function(){
       add('1st', []);
       add('1st nested', [0]);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[0].children[0].tagName, "UL");
+      eq(ul.children[0].children[1].tagName, "UL");
       resetAfterTest();
     },
     // Check for <li> in nested todo:
-    "7) If todos[0].todos.length === 1, ul.children[0].children[0].children[0].tagName should be 'LI'.": function(){
+    "7) If todos[0].todos.length === 1, ul.children[0].children[1].children[0].tagName should be 'LI'.": function(){
       add('1st', []);
       add('1st nested', [0]);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[0].children[0].children[0].tagName, "LI");
+      eq(ul.children[0].children[1].children[0].tagName, "LI");
+      resetAfterTest();
+    },
+    // Check for <p> in nested todo:
+    "8) If todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[0].tagName should be 'P'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[1].children[0].children[0].tagName, "P");
       resetAfterTest();
     },
     // Change index of nested todo:
     // Test passed without writing additional code. Kept for documentation.
-    "8) If todos[1].todos.length === 1, ul.children[1].children[0].children[0].tagName should be 'LI'.": function(){
+    "9) If todos[1].todos.length === 1, ul.children[1].children[1].children[0].children[0].tagName should be 'P'.": function(){
       add('1st', []);
       add('2nd', []);
       add('1st nested', [1]);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[1].children[0].children[0].tagName, "LI");
+      eq(ul.children[1].children[1].children[0].children[0].tagName, "P");
       resetAfterTest();
     },
-    // Set nested todos.length > 0:
-    "9) If todos[1].todos.length === 2, ul.children[1].children[0].children[1].tagName should be 'LI'.": function(){
+    // If nested todos.length > 1.
+    "10) If todos[1].todos.length === 2, ul.children[1].children[1].children[1].children[0].tagName should be 'P'.": function(){
       add('1st', []);
       add('2nd', []);
       add('1st nested', [1]);
@@ -102,73 +111,65 @@
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[1].children[0].children[1].tagName, "LI");
+      eq(ul.children[1].children[1].children[1].children[0].tagName, "P");
       resetAfterTest();
     },
+    // Nested todos in nested todos:
     // Check for <ul> in nested todo in nested todo:
-    "10) If todos[0].todos[0].todos.length === 1, ul.children[0].children[0].children[0].children[0].tagName should be 'UL'.": function(){
+    "11) If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].tagName should be 'UL'.": function(){
       add('1st', []);
       add('1st nested', [0]);
       add('1st nested in nested', [0,0]);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[0].children[0].children[0].children[0].tagName, "UL");
+      eq(ul.children[0].children[1].children[0].children[1].tagName, 'UL');
       resetAfterTest();
     },
     // Check for <li> in nested todo in nested todo:
-    "11) If todos[0].todos[0].todos.length === 1, ul.children[0].children[0].children[0].children[0].children[0].tagName should be 'LI'.": function(){
+    // Test passed without writing additional code. Kept for documentation.
+    "12) If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].tagName should be 'LI'.": function(){
       add('1st', []);
       add('1st nested', [0]);
       add('1st nested in nested', [0,0]);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[0].children[0].children[0].children[0].children[0].tagName, "LI");
+      eq(ul.children[0].children[1].children[0].children[1].children[0].tagName, 'LI');
+      resetAfterTest();
+    },
+    // Check for <p> in nested todo in nested todo:
+    // Test passed without writing additional code. Kept for documentation.
+    "13) If todos[0].todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[1].children[0].children[0].tagName should be 'P'.": function(){
+      add('1st', []);
+      add('1st nested', [0]);
+      add('1st nested in nested', [0,0]);
+      var main = document.querySelector('#main');
+      var ul = main.children[0].children[0];
+
+      eq(ul.children[0].children[1].children[0].children[1].children[0].children[0].tagName, "P");
       resetAfterTest();
     },
 
     // -------------------------------
 
     // Phase 2: Pass text and id values to todos.
-    // Add text to a todo:
-    "12) If todos[0].text === '1st', ul.children[0].textContent should be '1st'.": function(){
-      add('1st', []);
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
-
-      eq(ul.children[0].textContent, '1st');
-      resetAfterTest();
-    },
-    // Check text of different todo to be sure:
-    // Test passed without writing additional code. Kept for documentation.
-    "13) If todos[1].text === '2nd', ul.children[1].textContent should be '2nd'.": function(){
-      add('1st', []);
-      add('2nd', []);
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
-
-      eq(ul.children[1].textContent, '2nd');
-      resetAfterTest();
-    },
-    // Add id value to a todo:
+    // Add id value to <li>:
     "14) If todos[0] exists, then ul.children[0].id should be '0'.": function(){
       add('1st', []);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[0].id, '0');
+      eq(ul.children[0].id, "0");
       resetAfterTest();
     },
-    // Check id value of different todo to be sure:
-    // Test passed without writing additional code. Kept for documentation.
-    "15) If todos[1] exists, then ul.children[1].id should be '1'.": function(){
+    // Add textContent to <p>:
+    "15) If todos[0].text === '1st', then ul.children[0].children[0].textContent should be '1st'.": function(){
       add('1st', []);
-      add('2nd', []);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[1].id, '1');
+      eq(ul.children[0].children[0].textContent, "1st");
       resetAfterTest();
     },
 
@@ -208,20 +209,20 @@
       resetAfterTest();
     },
     // Basic edit that modifies text of existing todo:
-    "19) If todos[0].text === '1st' and edit('first', [0]), ul.children[0].textContent should be 'first'.": function(){
+    "19) If todos[0].text === '1st' and edit('first', [0]), then ul.children[0].children[0].textContent should be 'first'.": function(){
       add('1st', []);
-      edit('first', [0]);
+      edit('first',[0]);
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[0].textContent, 'first');
+      eq(ul.children[0].children[0].textContent, 'first');
       resetAfterTest();
     },
     // Basic edit that deletes existing todo:
     // Test passed without writing additional code. Kept for documentation.
-    "20) If todos[0].text === '1st' and edit('', [0]), div.children.length should be 0.": function(){
+    "20) If todos[0].text === '1st' and edit('', [0]), then div.children.length should be 0.": function(){
       add('1st', []);
-      edit('', [0]);
+      edit('',[0]);
       var main = document.querySelector('#main');
       var div = main.children[0];
 
