@@ -1,8 +1,20 @@
+/* Set universal font-style */
+* {
+  font-family: "Gill Sans";
+}
+
+/* Fix asymmetrical margin */
 body{
   font-family: "Gill Sans";
   margin: 30px;
 }
 
-ul li{
+/* Ensure styling of all list items is consistent */
+li{
   list-style-type: disc;
+}
+
+/* Only style <p> elements that are the immediate children of .completed elements */
+.completed > p{
+  text-decoration: line-through;
 }
