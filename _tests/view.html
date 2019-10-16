@@ -193,71 +193,6 @@
       resetAfterTest();
     },
 
-    /*
-
-    Functions other than add():
-
-    1. If todos.length === 1 and remove([0]) is called, div.children.length should be 0."
-    Basic remove:
-
-    Before basic remove:
-    <div>
-      <ul>
-        <li id="0">
-          <p>First</p>
-        </li>
-      </ul>
-    </div>
-
-    After basic remove:
-    <div></div>
-
-    2. If todos[0].completed === false and toggle([0]) is called, ul.children[0].className should be 'completed'."
-    Basic toggle, not completed to completed:
-
-    Before basic toggle:
-    <div>
-      <ul>
-        <li id="0">
-          <p>First</p>
-        </li>
-      </ul>
-    </div>
-
-    After basic toggle:
-    <div>
-      <ul>
-        <li id="0" class="completed">
-          <p>First</p>
-        </li>
-      </ul>
-    </div>
-
-    Note: Will probably have to use immediate child selector to get strikethrough style to work properly.
-
-    3. If todos[0].completed === true and toggle([0]) is called, ul.children[0].className should be ''.
-    Basic toggle, completed to not completed:
-
-    Before basic toggle:
-    <div>
-      <ul>
-        <li id="0" class="completed">
-          <p>First</p>
-        </li>
-      </ul>
-    </div>
-
-    After basic toggle:
-    <div>
-      <ul>
-        <li id="0">
-          <p>First</p>
-        </li>
-      </ul>
-    </div>
-
-    */
-
     // -------------------------------
 
     // Phase 3: Modify markup appropriately after remove(), toggle() and edit().
@@ -292,7 +227,50 @@
 
       eq(ul.children[0].className, '');
       resetAfterTest();
-    }
+    },
+
+    /*
+
+    edit():
+
+    1. If todos[0].text === '1st' and edit('first', [0]), then ul.children[0].children[0].textContent should be 'first'.
+    Basic edit that modifies text of existing todo:
+
+    Before:
+    <div>
+      <ul>
+        <li id="0">
+          <p>1st</p>
+        </li>
+      </ul>
+    </div>
+
+    After:
+    <div>
+      <ul>
+        <li id="0">
+          <p>first</p>
+        </li>
+      </ul>
+    </div>
+
+    2. If todos[0].text === '1st' and edit('', [0]), then div.children.length should be 0.
+    Basic edit that deletes existing todo:
+
+    Before:
+    <div>
+      <ul>
+        <li id="0">
+          <p>1st</p>
+        </li>
+      </ul>
+    </div>
+
+    After:
+    <div></div>
+
+    */
+
   });
 
   /*
