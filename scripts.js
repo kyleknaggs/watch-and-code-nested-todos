@@ -60,6 +60,7 @@
         // Base case:
         if(indices.length === 1){
           currentTodo.text = text;
+          view.render();
         // Recursive case:
         }else{
           var remainingIndices = indices.slice(1);
@@ -75,6 +76,7 @@
       if(indices.length === 1){
         toModify.splice(currentIndex, 1);
         todoList.resetIds(currentIndex, toModify);
+        view.render();
       // Recursive case:
       }else{
         var currentTodo = toModify[currentIndex];
@@ -90,6 +92,7 @@
       // Base case:
       if(indices.length === 1){
         currentTodo.completed = !currentTodo.completed;
+        view.render();
       // Recursive case:
       }else{
         var remainingIndices = indices.slice(1);
@@ -110,22 +113,32 @@
       main.innerHTML = "";
       main.append(renderedTodos);
     },
+    // New renderTodos() with <p>:
     renderTodos: function(todos, parentElement){
       var numberOfTodos = todos.length;
 
       if(numberOfTodos > 0){
         var ul = document.createElement('ul');
 
-        for(var i=0; i< numberOfTodos; i++){
+        for(var i=0; i<numberOfTodos; i++){
           var currentTodo = todos[i];
           var currentTodoText = currentTodo.text;
           var currentTodoId = currentTodo.id;
+          var currentTodoCompleted = currentTodo.completed;
           var nestedTodos = currentTodo.todos;
           var numberOfNestedTodos = nestedTodos.length;
           var li = document.createElement('li');
+          var p = document.createElement('p');
 
-          li.textContent = currentTodoText;
-          li.id = currentTodoId;
+          p.textContent = currentTodoText;
+          li.setAttribute('id', currentTodoId);
+
+          if(currentTodoCompleted){
+            li.setAttribute('class', 'completed');
+          }
+
+          // Append p to li before appending li to ul:
+          li.append(p);
 
           // Base case does not enter conditional statement.
           // Recursive case:

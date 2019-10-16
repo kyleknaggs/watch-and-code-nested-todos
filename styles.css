@@ -7,3 +7,13 @@
 body{
   margin: 30px;
 }
+
+/* Ensure styling of all list items is consistent */
+li{
+  list-style-type: disc;
+}
+
+/* Only style <p> elements that are the immediate children of .completed elements */
+.completed > p{
+  text-decoration: line-through;
+}
