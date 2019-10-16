@@ -152,43 +152,6 @@
         parentElement.append(ul);
       }
     }
-    /*
-    // Old renderTodos() without <p>:
-    renderTodos: function(todos, parentElement){
-      var numberOfTodos = todos.length;
-
-      if(numberOfTodos > 0){
-        var ul = document.createElement('ul');
-
-        for(var i=0; i< numberOfTodos; i++){
-          var currentTodo = todos[i];
-          var currentTodoText = currentTodo.text;
-          var currentTodoId = currentTodo.id;
-          var currentTodoCompleted = currentTodo.completed;
-          var nestedTodos = currentTodo.todos;
-          var numberOfNestedTodos = nestedTodos.length;
-          var li = document.createElement('li');
-
-          li.textContent = currentTodoText;
-          li.id = currentTodoId;
-
-          if(currentTodoCompleted){
-            li.setAttribute('class', 'completed');
-          }
-
-          // Base case does not enter conditional statement.
-          // Recursive case:
-          if(numberOfNestedTodos > 0){
-            view.renderTodos(nestedTodos, li);
-          }
-
-          ul.append(li);
-        }
-
-        parentElement.append(ul);
-      }
-    }
-    */
   };
 
   var util = {
