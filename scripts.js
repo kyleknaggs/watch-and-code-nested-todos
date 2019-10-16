@@ -1,15 +1,5 @@
 (function(){
 
-  var util = {
-    getToModify: function(isRecursive, thisArg){
-      if (!isRecursive) {
-        return todoList.todos;
-      }
-
-      return thisArg.todos;
-    }
-  }
-
   var todoList = {
     todos: [],
     resetIds: function(indexRemoved, toModify){
@@ -123,7 +113,6 @@
       main.innerHTML = "";
       main.append(renderedTodos);
     },
-    // New renderTodos() with <p>:
     renderTodos: function(todos, parentElement){
       var numberOfTodos = todos.length;
 
