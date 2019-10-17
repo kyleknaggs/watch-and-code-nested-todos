@@ -14,7 +14,8 @@
 
         for(var i = indexRemoved; i<length; i++){
           var currentIndex = String(i);
-          var id = beforeCurrentIndex + currentIndex
+          var id = beforeCurrentIndex + currentIndex;
+
           toModify[i].id = id;
         }
       }
@@ -46,6 +47,7 @@
         var currentIndex = indices[0];
         var currentTodo = toModify[currentIndex];
         var remainingIndices = indices.slice(1);
+
         todoList.add.call(currentTodo, text, remainingIndices, true);
       }
     },
@@ -64,6 +66,7 @@
         // Recursive case:
         }else{
           var remainingIndices = indices.slice(1);
+
           todoList.edit.call(currentTodo, text, remainingIndices, true);
         }
       }
@@ -81,6 +84,7 @@
       }else{
         var currentTodo = toModify[currentIndex];
         var remainingIndices = indices.slice(1);
+
         todoList.remove.call(currentTodo, remainingIndices, true);
       }
     },
@@ -96,6 +100,7 @@
       // Recursive case:
       }else{
         var remainingIndices = indices.slice(1);
+
         todoList.toggle.call(currentTodo, remainingIndices, true);
       }
     }
@@ -106,10 +111,12 @@
       // Render todos:
       var todos = todoList.todos;
       var renderedTodos = document.createElement('div');
+
       view.renderTodos(todos, renderedTodos);
 
       // Replace old UI with new UI:
       var main = document.querySelector('#main');
+
       main.innerHTML = "";
       main.append(renderedTodos);
     },
