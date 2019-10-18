@@ -1,5 +1,6 @@
 <!-- Placeholder #main -->
-<!-- Prevents Uncaught TypeError: Cannot read property 'append' of null error -->
+<!-- Prevents Uncaught TypeErrors: Cannot read property 'append' of null error -->
+<div id="modifyTodosUI"></div>
 <div id="main"></div>
 <script src="simpletest.js"></script>
 <script src="../scripts.js"></script>
@@ -9,6 +10,7 @@
   var todoList = nestedTodos.todoList
   var add = todoList.add;
   var getToModify = nestedTodos.util.getToModify;
+  var getIndices = nestedTodos.util.getIndices;
 
   // util.getToModify() is only intended for internal use:
   tests({
