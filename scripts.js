@@ -133,7 +133,7 @@
         var textInput = document.querySelector('#addTextInput');
         var indicesValue = indicesInput.value;
         var textValue = textInput.value;
-        var indices = indicesValue.trim();
+        var indices = util.getIndices(indicesValue);
         var text = textValue.trim();
 
         // Only accept valid user inputs:
@@ -186,6 +186,11 @@
   };
 
   var util = {
+    getIndices: function(indicesValue){
+      var trimmed = indicesValue.trim();
+
+      return trimmed;
+    },
     getToModify: function(isRecursive, thisArg){
       if (!isRecursive) {
         return todoList.todos;
