@@ -108,6 +108,10 @@
 
   var view = {
     render: function(){
+      // Add single event listener to modifyTodosUI:
+      var modifyTodosUI = document.querySelector('#modifyTodosUI');
+      modifyTodosUI.addEventListener('click', view.handleClick);
+
       // Render todos:
       var todos = todoList.todos;
       var renderedTodos = document.createElement('div');
@@ -119,6 +123,27 @@
 
       main.innerHTML = "";
       main.append(renderedTodos);
+    },
+    handleClick: function(e){
+      var target = e.target;
+      var tagName = target.tagName;
+
+      if(tagName === "BUTTON"){
+        var indicesInput = document.querySelector('#addIndicesInput');
+        var textInput = document.querySelector('#addTextInput');
+        var indicesValue = indicesInput.value;
+        var textValue = textInput.value;
+        var indices = indicesValue.trim();
+        var text = textValue.trim();
+
+        // Only accept valid user inputs:
+        if(indices && text){
+          console.log('User has entered a non-empty string.');
+        }else{
+          console.log('User inputs are not valid.');
+        }
+
+      }
     },
     renderTodos: function(todos, parentElement){
       var numberOfTodos = todos.length;
