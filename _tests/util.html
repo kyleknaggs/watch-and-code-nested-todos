@@ -9,8 +9,9 @@
   // Destructure variables so they are easier to access:
   var todoList = nestedTodos.todoList
   var add = todoList.add;
-  var getToModify = nestedTodos.util.getToModify;
-  var getIndices = nestedTodos.util.getIndices;
+  var util = nestedTodos.util;
+  var getToModify = util.getToModify;
+  var getIndices = util.getIndices;
 
   // util.getToModify() is only intended for internal use:
   tests({
@@ -29,6 +30,31 @@
       eq(todos.length, 1);
       eq(todos[0], 'Mock nested todo');
     }
+
+    // ---------------------------------------
+
+    /*
+
+    getIndices() requirements:
+
+    // Proper use of input
+    1.  If getIndices('[]'), indices should be an array.
+    2.  If getIndices('[]'), indices.length should be 0.
+    3.  If getIndices('[0]'), indices[0] should be 0.
+    4.  If getIndices('[1]'), indices[0] should be 1.
+    5.  If getIndices('[0,0]'), indices[1] should be 0.
+    6.  If getIndices('[0,0,0]'), indices[2] should be 0.
+    7.  If getIndices(' [0,0,0] '), indices[2] should be 0.
+
+    // Improper use of input
+    8.  If getIndices(''), it should throw an error with the message 'Indices array has not been properly formatted'.
+    9.  If getIndices('['), it should throw an error with the message 'Indices array has not been properly formatted'.
+    10. If getIndices(']'), it should throw an error with the message 'Indices array has not been properly formatted'.
+    11. If getIndices(']['), it should throw an error with the message 'Indices array has not been properly formatted'.
+
+    */
+
+    // Phase 2: getIndices()
   });
 
 </script>
