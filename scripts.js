@@ -186,10 +186,8 @@
   };
 
   var util = {
-    getIndices: function(indicesValue){
-      var trimmed = indicesValue.trim();
-
-      return trimmed;
+    getIndices: function(){
+      return [];
     },
     getToModify: function(isRecursive, thisArg){
       if (!isRecursive) {

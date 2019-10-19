@@ -29,7 +29,7 @@
 
       eq(todos.length, 1);
       eq(todos[0], 'Mock nested todo');
-    }
+    },
 
     // ---------------------------------------
 
@@ -55,6 +55,19 @@
     */
 
     // Phase 2: getIndices()
+    // If indicesValue === '[]'
+    // It should return an array:
+    "3) If getIndices('[]'), indices should be an array.": function(){
+      var indices = getIndices('[]');
+
+      eq(Array.isArray(indices), true);
+    },
+    // The array that is returned should be empty:
+    "4) If getIndices('[]'), indices.length should be 0.": function(){
+      var indices = getIndices('[]');
+
+      eq(indices.length, 0);
+    }
   });
 
 </script>
