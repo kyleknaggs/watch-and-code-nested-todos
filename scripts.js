@@ -189,15 +189,19 @@
     getIndices: function(indicesValue){
       var lastIndex = indicesValue.length - 1;
       var valueWithoutBrackets = indicesValue.slice(1, lastIndex);
-      var indices = [];
+      var listOfNumbers = [];
 
       // If the array is not empty:
+      // "".split(",") ==> [""] is not desired.
       if(valueWithoutBrackets.length > 0){
-        var number = Number(valueWithoutBrackets);
-        indices.push(number);
+        var listOfStrings = valueWithoutBrackets.split(',');
+
+        listOfNumbers = listOfStrings.map(function(string){
+          return Number(string);
+        });
       }
 
-      return indices;
+      return listOfNumbers;
     },
     getToModify: function(isRecursive, thisArg){
       if (!isRecursive) {

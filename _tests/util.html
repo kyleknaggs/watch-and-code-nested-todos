@@ -44,7 +44,7 @@
     4.  If getIndices('[1]'), indices[0] should be 1.
     5.  If getIndices('[0,0]'), indices[1] should be 0.
     6.  If getIndices('[0,0,0]'), indices[2] should be 0.
-    7.  If getIndices(' [0,0,0] '), indices[2] should be 0.
+    7.  If getIndices(' [0,0,0] '), indicies[0], indices[1] and indices[2] should be 0.
 
     // Improper use of input
     8.  If getIndices(''), it should throw an error with the message 'Indices array has not been properly formatted'.
@@ -79,6 +79,19 @@
       var indices = getIndices('[1]');
 
       eq(indices[0], 1);
+    },
+    // Add 2nd index to array:
+    "7) If getIndices('[0,0]'), indices[1] should be 0.": function(){
+      var indices = getIndices('[0,0]');
+
+      eq(indices[1], 0);
+    },
+    // Add 1 more index, just to be safe:
+    // Test passed without writing additional code. Kept for documentation.
+    "8) If getIndices('[0,0,0]'), indices[2] should be 0.": function(){
+      var indices = getIndices('[0,0,0]');
+
+      eq(indices[2], 0);
     }
   });
 
