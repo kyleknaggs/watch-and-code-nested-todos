@@ -186,15 +186,15 @@
   };
 
   var util = {
-    getIndices: function(indicesValue){
-      var lastIndex = indicesValue.length - 1;
-      var valueWithoutBrackets = indicesValue.slice(1, lastIndex);
+    getIndices: function(value){
+      var trimmed = value.trim();
+      var withoutBrackets = trimmed.slice(1, trimmed.length - 1);
       var listOfNumbers = [];
 
       // If the array is not empty:
       // "".split(",") ==> [""] is not desired.
-      if(valueWithoutBrackets.length > 0){
-        var listOfStrings = valueWithoutBrackets.split(',');
+      if(withoutBrackets.length > 0){
+        var listOfStrings = withoutBrackets.split(',');
 
         listOfNumbers = listOfStrings.map(function(string){
           return Number(string);

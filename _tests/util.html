@@ -92,6 +92,14 @@
       var indices = getIndices('[0,0,0]');
 
       eq(indices[2], 0);
+    },
+    // Add whitespace on either side of array (A possible honest mistake)
+    "9) If getIndices(' [0,0,0] '), indicies[0], indices[1] and indices[2] should be 0.": function(){
+      var indices = getIndices(' [0,0,0] ');
+
+      eq(indices[0], 0);
+      eq(indices[1], 0);
+      eq(indices[2], 0);
     }
   });
 
