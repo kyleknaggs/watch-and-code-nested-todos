@@ -67,6 +67,18 @@
       var indices = getIndices('[]');
 
       eq(indices.length, 0);
+    },
+    // Add first index to array:
+    "5) If getIndices('[0]'), indices[0] should be 0.": function(){
+      var indices = getIndices('[0]');
+
+      eq(indices[0], 0);
+    },
+    // Change value of first index in array:
+    "6) If getIndices('[1]'), indices[0] should be 1.": function(){
+      var indices = getIndices('[1]');
+
+      eq(indices[0], 1);
     }
   });
 

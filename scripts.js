@@ -186,8 +186,18 @@
   };
 
   var util = {
-    getIndices: function(){
-      return [];
+    getIndices: function(indicesValue){
+      var lastIndex = indicesValue.length - 1;
+      var valueWithoutBrackets = indicesValue.slice(1, lastIndex);
+      var indices = [];
+
+      // If the array is not empty:
+      if(valueWithoutBrackets.length > 0){
+        var number = Number(valueWithoutBrackets);
+        indices.push(number);
+      }
+
+      return indices;
     },
     getToModify: function(isRecursive, thisArg){
       if (!isRecursive) {
