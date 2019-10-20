@@ -188,6 +188,14 @@
   var util = {
     getIndices: function(value){
       var trimmed = value.trim();
+      var firstCharacter = trimmed[0];
+      var lastCharacter = trimmed[trimmed.length - 1];
+
+      // If user has not properly formatted indices array:
+      if(firstCharacter !== "[" || lastCharacter !== "]"){
+        throw new Error('Indices array has not been properly formatted');
+      }
+
       var withoutBrackets = trimmed.slice(1, trimmed.length - 1);
       var listOfNumbers = [];
 

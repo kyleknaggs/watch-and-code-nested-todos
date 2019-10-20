@@ -55,6 +55,7 @@
     */
 
     // Phase 2: getIndices()
+    // Proper use of getIndices():
     // If indicesValue === '[]'
     // It should return an array:
     "3) If getIndices('[]'), indices should be an array.": function(){
@@ -100,6 +101,56 @@
       eq(indices[0], 0);
       eq(indices[1], 0);
       eq(indices[2], 0);
+    },
+    // Improper use of input
+    // Does not include a single bracket:
+    "10) If getIndices(''), it should throw an error with the message 'Indices array has not been properly formatted'.": function(){
+      var message;
+
+      try{
+        var indices = getIndices('');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Indices array has not been properly formatted');
+    },
+    // Includes first "[", but not second "]":
+    "11) If getIndices('['), it should throw an error with the message 'Indices array has not been properly formatted'.": function(){
+      var message;
+
+      try{
+        var indices = getIndices('[');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Indices array has not been properly formatted');
+    },
+    // Includes second "]", but not first "[":
+    // Test passed without writing additional code. Kept for documentation.
+    "12) If getIndices(']'), it should throw an error with the message 'Indices array has not been properly formatted'.": function(){
+      var message;
+
+      try{
+        var indices = getIndices(']');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Indices array has not been properly formatted');
+    },
+    // Ensure both "[" and "]" are placed in the correct order:
+    "13) If getIndices(']['), it should throw an error with the message 'Indices array has not been properly formatted'.": function(){
+      var message;
+
+      try{
+        var indices = getIndices('][');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Indices array has not been properly formatted');
     }
   });
 
