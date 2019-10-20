@@ -9,6 +9,11 @@ body{
   margin: 30px;
 }
 
+/* Make it obvious placeholder isn't a value entered in input */
+input::placeholder{
+  opacity: 0.5;
+}
+
 /* Ensure styling of all list items is consistent */
 li{
   list-style-type: disc;
