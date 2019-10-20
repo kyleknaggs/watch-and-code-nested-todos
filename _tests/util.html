@@ -29,7 +29,7 @@
 
       eq(todos.length, 1);
       eq(todos[0], 'Mock nested todo');
-    }
+    },
 
     // ---------------------------------------
 
@@ -44,7 +44,7 @@
     4.  If getIndices('[1]'), indices[0] should be 1.
     5.  If getIndices('[0,0]'), indices[1] should be 0.
     6.  If getIndices('[0,0,0]'), indices[2] should be 0.
-    7.  If getIndices(' [0,0,0] '), indices[2] should be 0.
+    7.  If getIndices(' [0,0,0] '), indicies[0], indices[1] and indices[2] should be 0.
 
     // Improper use of input
     8.  If getIndices(''), it should throw an error with the message 'Indices array has not been properly formatted'.
@@ -55,6 +55,103 @@
     */
 
     // Phase 2: getIndices()
+    // Proper use of getIndices():
+    // If indicesValue === '[]'
+    // It should return an array:
+    "3) If getIndices('[]'), indices should be an array.": function(){
+      var indices = getIndices('[]');
+
+      eq(Array.isArray(indices), true);
+    },
+    // The array that is returned should be empty:
+    "4) If getIndices('[]'), indices.length should be 0.": function(){
+      var indices = getIndices('[]');
+
+      eq(indices.length, 0);
+    },
+    // Add first index to array:
+    "5) If getIndices('[0]'), indices[0] should be 0.": function(){
+      var indices = getIndices('[0]');
+
+      eq(indices[0], 0);
+    },
+    // Change value of first index in array:
+    "6) If getIndices('[1]'), indices[0] should be 1.": function(){
+      var indices = getIndices('[1]');
+
+      eq(indices[0], 1);
+    },
+    // Add 2nd index to array:
+    "7) If getIndices('[0,0]'), indices[1] should be 0.": function(){
+      var indices = getIndices('[0,0]');
+
+      eq(indices[1], 0);
+    },
+    // Add 1 more index, just to be safe:
+    // Test passed without writing additional code. Kept for documentation.
+    "8) If getIndices('[0,0,0]'), indices[2] should be 0.": function(){
+      var indices = getIndices('[0,0,0]');
+
+      eq(indices[2], 0);
+    },
+    // Add whitespace on either side of array (A possible honest mistake)
+    "9) If getIndices(' [0,0,0] '), indicies[0], indices[1] and indices[2] should be 0.": function(){
+      var indices = getIndices(' [0,0,0] ');
+
+      eq(indices[0], 0);
+      eq(indices[1], 0);
+      eq(indices[2], 0);
+    },
+    // Improper use of input
+    // Does not include a single bracket:
+    "10) If getIndices(''), it should throw an error with the message 'Indices array has not been properly formatted'.": function(){
+      var message;
+
+      try{
+        var indices = getIndices('');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Indices array has not been properly formatted');
+    },
+    // Includes first "[", but not second "]":
+    "11) If getIndices('['), it should throw an error with the message 'Indices array has not been properly formatted'.": function(){
+      var message;
+
+      try{
+        var indices = getIndices('[');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Indices array has not been properly formatted');
+    },
+    // Includes second "]", but not first "[":
+    // Test passed without writing additional code. Kept for documentation.
+    "12) If getIndices(']'), it should throw an error with the message 'Indices array has not been properly formatted'.": function(){
+      var message;
+
+      try{
+        var indices = getIndices(']');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Indices array has not been properly formatted');
+    },
+    // Ensure both "[" and "]" are placed in the correct order:
+    "13) If getIndices(']['), it should throw an error with the message 'Indices array has not been properly formatted'.": function(){
+      var message;
+
+      try{
+        var indices = getIndices('][');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Indices array has not been properly formatted');
+    }
   });
 
 </script>

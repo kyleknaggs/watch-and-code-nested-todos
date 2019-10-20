@@ -186,10 +186,30 @@
   };
 
   var util = {
-    getIndices: function(indicesValue){
-      var trimmed = indicesValue.trim();
+    getIndices: function(value){
+      var trimmed = value.trim();
+      var firstCharacter = trimmed[0];
+      var lastCharacter = trimmed[trimmed.length - 1];
 
-      return trimmed;
+      // If user has not properly formatted indices array:
+      if(firstCharacter !== "[" || lastCharacter !== "]"){
+        throw new Error('Indices array has not been properly formatted');
+      }
+
+      var withoutBrackets = trimmed.slice(1, trimmed.length - 1);
+      var listOfNumbers = [];
+
+      // If the array is not empty:
+      // "".split(",") ==> [""] is not desired.
+      if(withoutBrackets.length > 0){
+        var listOfStrings = withoutBrackets.split(',');
+
+        listOfNumbers = listOfStrings.map(function(string){
+          return Number(string);
+        });
+      }
+
+      return listOfNumbers;
     },
     getToModify: function(isRecursive, thisArg){
       if (!isRecursive) {
