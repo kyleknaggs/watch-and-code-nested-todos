@@ -209,6 +209,16 @@
         });
       }
 
+      // If listOfNumbers contains a single non-integer or isNaN value:
+      listOfNumbers.forEach(function(value){
+        var isInteger = Number.isInteger(value);
+        var isNumber = !isNaN(value);
+
+        if(!isInteger || !isNumber){
+          throw new Error('Values in indices array have not been properly formatted');
+        }
+      });
+
       return listOfNumbers;
     },
     getToModify: function(isRecursive, thisArg){
