@@ -157,7 +157,7 @@
       }
 
       eq(message, 'Values in indices array have not been properly formatted');
-    }
+    },
 
     // ---------------------------------------
 
@@ -168,12 +168,33 @@
 
     // Proper use of text input:
     1. If getText('a string'), text should be 'a string'.
-    2. If getText('a different string'), text should be 'a different stringg'.
-    3. If getText(' string with surrounding whitespace '), 'string with surrounding whitespace'.
+    2. If getText('a different string'), text should be 'a different string'.
+    3. If getText(' string with surrounding whitespace '), text should be 'string with surrounding whitespace'.
 
     // Improper use of text input:
     4. If getText(''), it should throw an error with the message 'Value in text input is empty'.
     */
+
+    // Proper use of text input:
+    // Basic string:
+    "16) If getText('a string'), text should be 'a string'.": function(){
+      var text = getText('a string');
+
+      eq(text, 'a string');
+    },
+    // A different string, just to be sure:
+    // Test passed without writing additional code. Kept for documentation.
+    "17) If getText('a different string'), text should be 'a different string'.": function(){
+      var text = getText('a different string');
+
+      eq(text, 'a different string');
+    },
+    // A string surrounded by additional whitespace on either side:
+    "18) If getText(' string with surrounding whitespace '), text should be 'string with surrounding whitespace'.": function(){
+      var text = getText(' string with surrounding whitespace ');
+
+      eq(text, 'string with surrounding whitespace');
+    }
 
   });
 
