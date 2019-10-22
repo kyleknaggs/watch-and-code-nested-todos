@@ -194,6 +194,19 @@
       var text = getText(' string with surrounding whitespace ');
 
       eq(text, 'string with surrounding whitespace');
+    },
+    // Improper use of text input:
+    // If user does not enter any non-whitespace text into input:
+    "19) If getText(''), it should throw an error with the message 'Value in text input is empty'.": function(){
+      var message;
+
+      try{
+        var text = getText('');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Value in text input is empty');
     }
 
   });

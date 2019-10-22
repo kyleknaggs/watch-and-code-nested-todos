@@ -224,6 +224,10 @@
     getText(value){
       var trimmed = value.trim();
 
+      if(trimmed.length === 0){
+        throw new Error('Value in text input is empty');
+      }
+
       return trimmed;
     },
     getToModify: function(isRecursive, thisArg){
