@@ -134,7 +134,7 @@
         var addIndicesValue = addIndices.value;
         var addTextValue = addText.value;
         var indices = util.getIndices(addIndicesValue);
-        var text = addTextValue.trim();
+        var text = util.getText(addTextValue);
 
         // Only accept valid user inputs:
         if(indices && text){
@@ -220,6 +220,11 @@
       });
 
       return listOfNumbers;
+    },
+    getText(value){
+      var trimmed = value.trim();
+
+      return trimmed;
     },
     getToModify: function(isRecursive, thisArg){
       if (!isRecursive) {
