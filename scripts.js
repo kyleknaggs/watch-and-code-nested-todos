@@ -129,12 +129,12 @@
       var tagName = target.tagName;
 
       if(tagName === "BUTTON"){
-        var indicesInput = document.querySelector('#addIndicesInput');
-        var textInput = document.querySelector('#addTextInput');
-        var indicesValue = indicesInput.value;
-        var textValue = textInput.value;
-        var indices = util.getIndices(indicesValue);
-        var text = textValue.trim();
+        var addIndices = document.querySelector('#addIndices');
+        var addText = document.querySelector('#addText');
+        var addIndicesValue = addIndices.value;
+        var addTextValue = addText.value;
+        var indices = util.getIndices(addIndicesValue);
+        var text = util.getText(addTextValue);
 
         // Only accept valid user inputs:
         if(indices && text){
@@ -220,6 +220,15 @@
       });
 
       return listOfNumbers;
+    },
+    getText(value){
+      var trimmed = value.trim();
+
+      if(trimmed.length === 0){
+        throw new Error('Value in text input is empty');
+      }
+
+      return trimmed;
     },
     getToModify: function(isRecursive, thisArg){
       if (!isRecursive) {
