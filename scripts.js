@@ -136,12 +136,7 @@
         var indices = util.getIndices(addIndicesValue);
         var text = util.getText(addTextValue);
 
-        // Only accept valid user inputs:
-        if(indices && text){
-          console.log('User has entered a non-empty string.');
-        }else{
-          console.log('User inputs are not valid.');
-        }
+        todoList.add(text, indices);
 
       }
     },
