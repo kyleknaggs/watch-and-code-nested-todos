@@ -125,6 +125,10 @@
       main.append(renderedTodos);
     },
     handleClick: function(e){
+      // There are no tests for handleClick().
+      // Because of this, handleClick() needs to be checked manually.
+      // Making handleClick() testable would have involved re-building modifyTodosUI using JS.
+      // Because of the limited educational value in this process the decision was made to move on.
       var target = e.target;
       var tagName = target.tagName;
 
