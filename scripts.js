@@ -138,6 +138,10 @@
 
         todoList.add(text, indices);
 
+        // Reset values of addIndices and addText to '';
+        addIndices.value = "";
+        addText.value = "";
+
       }
     },
     renderTodos: function(todos, parentElement){
