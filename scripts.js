@@ -133,37 +133,31 @@
       var tagName = target.tagName;
 
       if(tagName === "BUTTON"){
+        var indicesInput;
+        var textInput;
+        var modifier;
         var textContent = target.textContent;
 
         if(textContent === 'Add'){
-          var addIndices = document.querySelector('#addIndices');
-          var addText = document.querySelector('#addText');
-          var addIndicesValue = addIndices.value;
-          var addTextValue = addText.value;
-          var indices = util.getIndices(addIndicesValue);
-          var text = util.getText(addTextValue);
-
-          todoList.add(text, indices);
-
-          // Reset values of addIndices and addText to '':
-          addIndices.value = "";
-          addText.value = "";
+          indicesInput = document.querySelector('#addIndices');
+          textInput = document.querySelector('#addText');
+          modifier = todoList.add;
         }
 
         if(textContent === 'Edit'){
-          var editIndices = document.querySelector('#editIndices');
-          var editText = document.querySelector('#editText');
-          var editIndicesValue = editIndices.value;
-          var editTextValue = editText.value;
-          var indices = util.getIndices(editIndicesValue);
-          var text = util.getText(editTextValue);
-
-          todoList.edit(text, indices);
-
-          // Reset values of editIndices and editText to '':
-          editIndices.value = "";
-          editText.value = "";
+          indicesInput = document.querySelector('#editIndices');
+          textInput = document.querySelector('#editText');
+          modifier = todoList.edit;
         }
+
+        var indicesValue = indicesInput.value;
+        var textValue = textInput.value;
+        var indices = util.getIndices(indicesValue);
+        var text = util.getText(textValue);
+
+        modifier(text, indices);
+        indicesInput.value = "";
+        textInput.value = "";
       }
     },
     renderTodos: function(todos, parentElement){
