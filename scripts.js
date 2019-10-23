@@ -133,19 +133,31 @@
       var tagName = target.tagName;
 
       if(tagName === "BUTTON"){
-        var addIndices = document.querySelector('#addIndices');
-        var addText = document.querySelector('#addText');
-        var addIndicesValue = addIndices.value;
-        var addTextValue = addText.value;
-        var indices = util.getIndices(addIndicesValue);
-        var text = util.getText(addTextValue);
+        var indicesInput;
+        var textInput;
+        var modifier;
+        var textContent = target.textContent;
 
-        todoList.add(text, indices);
+        if(textContent === 'Add'){
+          indicesInput = document.querySelector('#addIndices');
+          textInput = document.querySelector('#addText');
+          modifier = todoList.add;
+        }
 
-        // Reset values of addIndices and addText to '';
-        addIndices.value = "";
-        addText.value = "";
+        if(textContent === 'Edit'){
+          indicesInput = document.querySelector('#editIndices');
+          textInput = document.querySelector('#editText');
+          modifier = todoList.edit;
+        }
 
+        var indicesValue = indicesInput.value;
+        var textValue = textInput.value;
+        var indices = util.getIndices(indicesValue);
+        var text = util.getText(textValue);
+
+        modifier(text, indices);
+        indicesInput.value = "";
+        textInput.value = "";
       }
     },
     renderTodos: function(todos, parentElement){
