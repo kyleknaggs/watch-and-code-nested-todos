@@ -145,9 +145,24 @@
 
           todoList.add(text, indices);
 
-          // Reset values of addIndices and addText to '';
+          // Reset values of addIndices and addText to '':
           addIndices.value = "";
           addText.value = "";
+        }
+
+        if(textContent === 'Edit'){
+          var editIndices = document.querySelector('#editIndices');
+          var editText = document.querySelector('#editText');
+          var editIndicesValue = editIndices.value;
+          var editTextValue = editText.value;
+          var indices = util.getIndices(editIndicesValue);
+          var text = util.getText(editTextValue);
+
+          todoList.edit(text, indices);
+
+          // Reset values of editIndices and editText to '':
+          editIndices.value = "";
+          editText.value = "";
         }
       }
     },
