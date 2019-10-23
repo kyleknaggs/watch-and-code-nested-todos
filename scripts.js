@@ -125,6 +125,10 @@
       main.append(renderedTodos);
     },
     handleClick: function(e){
+      // There are no tests for handleClick().
+      // Because of this, handleClick() needs to be checked manually.
+      // Making handleClick() testable would have involved re-building modifyTodosUI using JS.
+      // Because of the limited educational value in this process the decision was made to move on.
       var target = e.target;
       var tagName = target.tagName;
 
@@ -136,12 +140,11 @@
         var indices = util.getIndices(addIndicesValue);
         var text = util.getText(addTextValue);
 
-        // Only accept valid user inputs:
-        if(indices && text){
-          console.log('User has entered a non-empty string.');
-        }else{
-          console.log('User inputs are not valid.');
-        }
+        todoList.add(text, indices);
+
+        // Reset values of addIndices and addText to '';
+        addIndices.value = "";
+        addText.value = "";
 
       }
     },
