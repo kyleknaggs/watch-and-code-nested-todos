@@ -133,19 +133,22 @@
       var tagName = target.tagName;
 
       if(tagName === "BUTTON"){
-        var addIndices = document.querySelector('#addIndices');
-        var addText = document.querySelector('#addText');
-        var addIndicesValue = addIndices.value;
-        var addTextValue = addText.value;
-        var indices = util.getIndices(addIndicesValue);
-        var text = util.getText(addTextValue);
+        var textContent = target.textContent;
 
-        todoList.add(text, indices);
+        if(textContent === 'Add'){
+          var addIndices = document.querySelector('#addIndices');
+          var addText = document.querySelector('#addText');
+          var addIndicesValue = addIndices.value;
+          var addTextValue = addText.value;
+          var indices = util.getIndices(addIndicesValue);
+          var text = util.getText(addTextValue);
 
-        // Reset values of addIndices and addText to '';
-        addIndices.value = "";
-        addText.value = "";
+          todoList.add(text, indices);
 
+          // Reset values of addIndices and addText to '';
+          addIndices.value = "";
+          addText.value = "";
+        }
       }
     },
     renderTodos: function(todos, parentElement){
