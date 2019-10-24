@@ -52,23 +52,19 @@
       }
     },
     edit: function(text, indices, isRecursive){
-      if(text.length === 0){
-        todoList.remove(indices);
+      var toModify = util.getToModify(isRecursive, this);
+      var currentIndex = indices[0];
+      var currentTodo = toModify[currentIndex];
+
+      // Base case:
+      if(indices.length === 1){
+        currentTodo.text = text;
+        view.render();
+      // Recursive case:
       }else{
-        var toModify = util.getToModify(isRecursive, this);
-        var currentIndex = indices[0];
-        var currentTodo = toModify[currentIndex];
+        var remainingIndices = indices.slice(1);
 
-        // Base case:
-        if(indices.length === 1){
-          currentTodo.text = text;
-          view.render();
-        // Recursive case:
-        }else{
-          var remainingIndices = indices.slice(1);
-
-          todoList.edit.call(currentTodo, text, remainingIndices, true);
-        }
+        todoList.edit.call(currentTodo, text, remainingIndices, true);
       }
     },
     remove: function(indices, isRecursive){
