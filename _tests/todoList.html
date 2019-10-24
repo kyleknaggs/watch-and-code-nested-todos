@@ -677,10 +677,10 @@
     // One more, just to be sure:
     // Passed without additional code being written. Test kept for documentation.
     "51) If todos.length === 4 and remove([0]), then todos[2].id should be '2'.": function(){
-      add('1st', []);
-      add('2nd', []);
-      add('3rd', []);
-      add('4th', []);
+      add([], '1st');
+      add([], '2nd');
+      add([], '3rd');
+      add([], '4th');
       remove([0]);
 
       var todo = nestedTodos.todoList.todos[2];
@@ -690,9 +690,9 @@
     // b. Nested todos:
     // Basic Nested:
     "52) If todos[0].todos.length === 2 and remove([0,0]), then todos[0].todos[0].id should be '0-0'.": function(){
-      add('1st', []);
-      add('1st nested', [0]);
-      add('2nd nested', [0]);
+      add([], '1st');
+      add([0], '1st nested');
+      add([0], '2nd nested');
       remove([0,0]);
 
       var todo = nestedTodos.todoList.todos[0].todos[0];
@@ -702,10 +702,10 @@
     // Change index of todo:
     // Passed without additional code being written. Test kept for documentation.
     "53) If todos[1].todos.length === 2 and remove([1,0]), then todos[1].todos[0].id should be '1-0'.": function(){
-      add('1st', []);
-      add('2nd', []);
-      add('1st nested', [1]);
-      add('2nd nested', [1]);
+      add([], '1st');
+      add([], '2nd');
+      add([1], '1st nested');
+      add([1], '2nd nested');
       remove([1,0]);
 
       var todo = nestedTodos.todoList.todos[1].todos[0];
@@ -715,11 +715,11 @@
     // Change index of nested todo:
     // Passed without additional code being written. Test kept for documentation.
     "54) If todos[1].todos.length === 3 and remove([1,0]), then todos[1].todos[1].id should be '1-1'.": function(){
-      add('1st', []);
-      add('2nd', []);
-      add('1st nested', [1]);
-      add('2nd nested', [1]);
-      add('3rd nested', [1]);
+      add([], '1st');
+      add([], '2nd');
+      add([1], '1st nested');
+      add([1], '2nd nested');
+      add([1], '3rd nested');
       remove([1,0]);
 
       var todo = nestedTodos.todoList.todos[1].todos[1];
@@ -729,10 +729,10 @@
     // c. Nested todo in nested todo:
     // Passed without additional code being written. Test kept for documentation.
     "55) If todos[0].todos.[0].todos.length === 2 and remove([0,0,0]), then todos[0].todos[0].todos[0].id should be '0-0-0'.": function(){
-      add('1st', []);
-      add('1st nested', [0]);
-      add('1st nested in nested', [0,0]);
-      add('2nd nested in nested', [0,0]);
+      add([], '1st');
+      add([0], '1st nested');
+      add([0,0], '1st nested in nested');
+      add([0,0], '2nd nested in nested');
       remove([0,0,0]);
 
       var todo = nestedTodos.todoList.todos[0].todos[0].todos[0];
@@ -742,18 +742,18 @@
     // d. Stress test:
     // Passed without additional code being written. Test kept for documentation.
     "56) If todos[3].todos[0].todos[2].todos.[1].todos.length === 2 and remove ([3,0,2,1,0]), then todos[3].todos[0].todos[2].todos.[1].todos[0].id should be '3-0-2-1-0'.": function(){
-      add('1st', []);
-      add('2nd', []);
-      add('3rd', []);
-      add('4th', []);
-      add('1st Nested', [3]);
-      add('1st nested in nested', [3, 0]);
-      add('2nd nested in nested', [3, 0]);
-      add('3rd nested in nested', [3, 0]);
-      add('1st nested in nested in nested', [3, 0, 2]);
-      add('2nd nested in nested in nested', [3, 0, 2]);
-      add('1st stress', [3, 0, 2, 1]);
-      add('2nd stress', [3, 0, 2, 1]);
+      add([], '1st');
+      add([], '2nd');
+      add([], '3rd');
+      add([], '4th');
+      add([3], '1st Nested');
+      add([3, 0], '1st nested in nested');
+      add([3, 0], '2nd nested in nested');
+      add([3, 0], '3rd nested in nested');
+      add([3, 0, 2], '1st nested in nested in nested');
+      add([3, 0, 2], '2nd nested in nested in nested');
+      add([3, 0, 2, 1], '1st stress');
+      add([3, 0, 2, 1], '2nd stress');
       remove([3,0,2,1,0]);
 
       var todo = nestedTodos.todoList.todos[3].todos[0].todos[2].todos[1].todos[0];
