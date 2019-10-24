@@ -51,7 +51,7 @@
         todoList.add.call(currentTodo, remainingIndices, text, true);
       }
     },
-    edit: function(text, indices, isRecursive){
+    edit: function(indices, text, isRecursive){
       var toModify = util.getToModify(isRecursive, this);
       var currentIndex = indices[0];
       var currentTodo = toModify[currentIndex];
@@ -64,7 +64,7 @@
       }else{
         var remainingIndices = indices.slice(1);
 
-        todoList.edit.call(currentTodo, text, remainingIndices, true);
+        todoList.edit.call(currentTodo, remainingIndices, text, true);
       }
     },
     remove: function(indices, isRecursive){
