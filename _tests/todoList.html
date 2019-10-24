@@ -262,9 +262,9 @@
     // Because of util.getText(), text.length will never be === 0.
     // Regular todos:
     // Basic test:
-    "17) If todos[0].text === '1st', edit('First', [0]) should set todos[0].text to 'First'.": function(){
+    "17) If todos[0].text === '1st', edit([0], 'First') should set todos[0].text to 'First'.": function(){
       add([], '1st');
-      edit('First', [0]);
+      edit([0], 'First');
 
       var todo = nestedTodos.todoList.todos[0];
       eq(todo.text, "First");
@@ -272,9 +272,9 @@
       resetAfterTest();
     },
     // Change text being passed to edit():
-    "18) If todos[0].text === '1st' and todos.length === 1, edit('Different first', [0]) should set todos[0].text to 'Different first'." : function(){
+    "18) If todos[0].text === '1st' and todos.length === 1, edit([0], 'Different first') should set todos[0].text to 'Different first'." : function(){
       add([], '1st');
-      edit('Different first', [0]);
+      edit([0], 'Different first');
 
       var todo = nestedTodos.todoList.todos[0];
       eq(todo.text, "Different first");
@@ -282,10 +282,10 @@
       resetAfterTest();
     },
     // Change length of todos:
-    "19) If todos[0].text === '1st' and todos.length === 2, edit('Different first', [0]) should set todos[0].text to 'Different first'.":function(){
+    "19) If todos[0].text === '1st' and todos.length === 2, edit([0], 'Different first') should set todos[0].text to 'Different first'.":function(){
       add([], '1st');
       add([], '2nd');
-      edit('Different first', [0]);
+      edit([0], 'Different first');
 
       var todo = nestedTodos.todoList.todos[0];
       eq(todo.text, "Different first");
@@ -293,10 +293,10 @@
       resetAfterTest();
     },
     // Change index of todo being modified:
-    "20) If todos[1].text === '2nd', edit('Different second', [1]) should set todos[1].text to 'Different second'.": function(){
+    "20) If todos[1].text === '2nd', edit([1], 'Different second') should set todos[1].text to 'Different second'.": function(){
       add([], '1st');
       add([], '2nd');
-      edit('Different second', [1]);
+      edit([1], 'Different second');
 
       var todo = nestedTodos.todoList.todos[1];
       eq(todo.text, "Different second");
@@ -305,10 +305,10 @@
     },
     // Nested todos:
     // Basic nested todo test:
-    "21) If todos[0].todos[0].text === 'Nested', edit('Different nested', [0,0]) should set todos[0].todos[0].text to 'Different nested'.": function(){
+    "21) If todos[0].todos[0].text === 'Nested', edit([0,0], 'Different nested') should set todos[0].todos[0].text to 'Different nested'.": function(){
       add([], '1st');
       add([0], 'Nested');
-      edit('Different nested', [0,0]);
+      edit([0,0], 'Different nested');
 
       var todo = nestedTodos.todoList.todos[0].todos[0];
       eq(todo.text, "Different nested");
@@ -316,11 +316,11 @@
       resetAfterTest();
     },
     // Change todos[i]:
-    "22) If todos[1].todos[0].text === 'Nested' && todos[1].todos.length === 1, edit('Different nested', [1,0]) should set todos[1].todos[0].text to 'Different nested'.": function(){
+    "22) If todos[1].todos[0].text === 'Nested' && todos[1].todos.length === 1, edit([1,0], 'Different nested') should set todos[1].todos[0].text to 'Different nested'.": function(){
       add([], '1st');
       add([], '2nd');
       add([1], 'Nested');
-      edit('Different nested', [1,0]);
+      edit([1,0], 'Different nested');
 
       var todo = nestedTodos.todoList.todos[1].todos[0];
       eq(todo.text, "Different nested");
@@ -328,12 +328,12 @@
       resetAfterTest();
     },
     // Change todos[i].todos.length:
-    "23) If todos[1].todos[0].text === '1st nested' && todos[1].todos.length === 2, edit('Different 1st nested', [1,0]) should set todos[1].todos[0].text to 'Different 1st nested'.": function(){
+    "23) If todos[1].todos[0].text === '1st nested' && todos[1].todos.length === 2, edit([1,0], 'Different 1st nested') should set todos[1].todos[0].text to 'Different 1st nested'.": function(){
       add([], '1st');
       add([], '2nd');
       add([1], '1st nested');
       add([1], '2nd nested');
-      edit('Different 1st nested', [1,0]);
+      edit([1,0], 'Different 1st nested');
 
       var todo = nestedTodos.todoList.todos[1].todos[0];
       eq(todo.text, "Different 1st nested");
@@ -341,12 +341,12 @@
       resetAfterTest();
     },
     // Change todos[1].todos[i]:
-    "24) If todos[1].todos[1].text === '2nd Nested', edit('Different 2nd nested', [1,1]) should set todos[1].todos[1].text to 'Different 2nd nested'.": function(){
+    "24) If todos[1].todos[1].text === '2nd Nested', edit([1,1], 'Different 2nd nested') should set todos[1].todos[1].text to 'Different 2nd nested'.": function(){
       add([], '1st');
       add([], '2nd');
       add([1], '1st nested');
       add([1], '2nd nested');
-      edit('Different 2nd nested', [1,1]);
+      edit([1,1], 'Different 2nd nested');
 
       var todo = nestedTodos.todoList.todos[1].todos[1];
       eq(todo.text, "Different 2nd nested");
@@ -354,11 +354,11 @@
       resetAfterTest();
     },
     // Additional layer:
-    "25) If todos[0].todos[0].todos[0].text === 'Nested in nested', edit('Different nested in nested', [0,0,0]) should set todos[0].todos[0].todos[0].text to 'Different nested in nested'.": function(){
+    "25) If todos[0].todos[0].todos[0].text === 'Nested in nested', edit([0,0,0], 'Different nested in nested') should set todos[0].todos[0].todos[0].text to 'Different nested in nested'.": function(){
       add([], '1st');
       add([0], 'Nested');
       add([0,0], 'Nested in nested');
-      edit('Different nested in nested', [0,0,0]);
+      edit([0,0,0], 'Different nested in nested');
 
       var todo = nestedTodos.todoList.todos[0].todos[0].todos[0];
       eq(todo.text, "Different nested in nested");
@@ -366,7 +366,7 @@
       resetAfterTest();
     },
     // Stress test:
-    "26) If todos[3].todos[0].todos[2].todos[1].text === 'Before', edit('After', [3,0,2,1]), should set todos[3].todos[0].todos[2].todos[1].text to 'After'.": function(){
+    "26) If todos[3].todos[0].todos[2].todos[1].text === 'Before', edit([3,0,2,1], 'After'), should set todos[3].todos[0].todos[2].todos[1].text to 'After'.": function(){
       add([], '1st');
       add([], '2nd');
       add([], '3rd');
@@ -377,7 +377,7 @@
       add([3, 0], '3rd nested in nested');
       add([3, 0, 2], '1st nested stress');
       add([3, 0, 2], 'Before');
-      edit('After', [3, 0, 2, 1]);
+      edit([3, 0, 2, 1], 'After');
 
       var todo = nestedTodos.todoList.todos[3].todos[0].todos[2].todos[1];
       eq(todo.text, "After");
