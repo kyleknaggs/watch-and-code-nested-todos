@@ -218,17 +218,6 @@
 
       eq(ul.children[0].children[0].textContent, 'first');
       resetAfterTest();
-    },
-    // Basic edit that deletes existing todo:
-    // Test passed without writing additional code. Kept for documentation.
-    "20) If todos[0].text === '1st' and edit('', [0]), then div.children.length should be 0.": function(){
-      add('1st', []);
-      edit('',[0]);
-      var main = document.querySelector('#main');
-      var div = main.children[0];
-
-      eq(div.children.length, 0);
-      resetAfterTest();
     }
   });
 </script>
