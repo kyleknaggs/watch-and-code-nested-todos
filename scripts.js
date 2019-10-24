@@ -20,7 +20,7 @@
         }
       }
     },
-    add: function(text, indices, isRecursive){
+    add: function(indices, text, isRecursive){
       var toModify = util.getToModify(isRecursive, this);
 
       // Base case:
@@ -48,7 +48,7 @@
         var currentTodo = toModify[currentIndex];
         var remainingIndices = indices.slice(1);
 
-        todoList.add.call(currentTodo, text, remainingIndices, true);
+        todoList.add.call(currentTodo, remainingIndices, text, true);
       }
     },
     edit: function(text, indices, isRecursive){
@@ -151,7 +151,13 @@
         var indices = util.getIndices(indicesValue);
         var text = util.getText(textValue);
 
-        modifier(text, indices);
+        // To be replaced by single modifier:
+        if(textContent === 'Add'){
+          modifier(indices, text);
+        }else{
+          modifier(text, indices);
+        }
+
         indicesInput.value = "";
         textInput.value = "";
       }
