@@ -151,7 +151,13 @@
         var indices = util.getIndices(indicesValue);
         var text = util.getText(textValue);
 
-        modifier(text, indices);
+        // To be replaced by single modifier:
+        if(textContent === 'Add'){
+          modifier(indices, text);
+        }else{
+          modifier(text, indices);
+        }
+
         indicesInput.value = "";
         textInput.value = "";
       }
