@@ -129,11 +129,12 @@
       var tagName = target.tagName;
 
       if(tagName === "BUTTON"){
+        var textContent = target.textContent;
         var indicesInput;
         var textInput;
         var modifier;
-        var textContent = target.textContent;
 
+        // Target inputs and configure modifier:
         if(textContent === 'Add'){
           indicesInput = document.querySelector('#addIndices');
           textInput = document.querySelector('#addText');
@@ -146,14 +147,27 @@
           modifier = todoList.edit;
         }
 
+        if(textContent === 'Toggle'){
+          indicesInput = document.querySelector('#toggleIndices');
+          modifier = todoList.toggle;
+        }
+
+        // Extract values from inputs:
         var indicesValue = indicesInput.value;
-        var textValue = textInput.value;
         var indices = util.getIndices(indicesValue);
-        var text = util.getText(textValue);
+        var text;
+
+        if(textInput){
+          var textValue = textInput.value;
+          text = util.getText(textValue);
+        }
 
         modifier(indices, text);
         indicesInput.value = "";
-        textInput.value = "";
+
+        if(textInput){
+          textInput.value = "";
+        }
       }
     },
     renderTodos: function(todos, parentElement){
