@@ -152,6 +152,11 @@
           modifier = todoList.toggle;
         }
 
+        if(textContent === 'Remove'){
+          indicesInput = document.querySelector('#removeIndices');
+          modifier = todoList.remove;
+        }
+
         // Extract values from inputs:
         var indicesValue = indicesInput.value;
         var indices = util.getIndices(indicesValue);
