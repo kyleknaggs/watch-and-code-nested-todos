@@ -164,7 +164,10 @@
 
         modifier(indices, text);
         indicesInput.value = "";
-        textInput.value = "";
+
+        if(textInput){
+          textInput.value = "";
+        }
       }
     },
     renderTodos: function(todos, parentElement){
