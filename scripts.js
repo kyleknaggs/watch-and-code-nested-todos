@@ -134,6 +134,7 @@
         var modifier;
         var textContent = target.textContent;
 
+        // Target inputs and configure modifier:
         if(textContent === 'Add'){
           indicesInput = document.querySelector('#addIndices');
           textInput = document.querySelector('#addText');
@@ -144,6 +145,11 @@
           indicesInput = document.querySelector('#editIndices');
           textInput = document.querySelector('#editText');
           modifier = todoList.edit;
+        }
+
+        if(textContent === 'Toggle'){
+          indicesInput = document.querySelector('#toggleIndices');
+          modifier = todoList.toggle;
         }
 
         var indicesValue = indicesInput.value;
