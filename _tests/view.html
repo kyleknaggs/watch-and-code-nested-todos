@@ -165,12 +165,12 @@
       resetAfterTest();
     },
     // Add textContent to <p>:
-    "15) If todos[0].text === '1st', then ul.children[0].children[0].textContent should be '1st'.": function(){
+    "15) If todos[0].text === '1st', then ul.children[0].children[0].textContent should be '0: 1st'.": function(){
       add([], '1st');
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[0].children[0].textContent, "1st");
+      eq(ul.children[0].children[0].textContent, "0: 1st");
       resetAfterTest();
     },
 
@@ -210,13 +210,13 @@
       resetAfterTest();
     },
     // Basic edit that modifies text of existing todo:
-    "19) If todos[0].text === '1st' and edit([0], 'first'), then ul.children[0].children[0].textContent should be 'first'.": function(){
+    "19) If todos[0].text === '1st' and edit([0], 'first'), then ul.children[0].children[0].textContent should be '0: first'.": function(){
       add([], '1st');
       edit([0], 'first');
       var main = document.querySelector('#main');
       var ul = main.children[0].children[0];
 
-      eq(ul.children[0].children[0].textContent, 'first');
+      eq(ul.children[0].children[0].textContent, '0: first');
       resetAfterTest();
     }
   });
