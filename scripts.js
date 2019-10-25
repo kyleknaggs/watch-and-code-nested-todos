@@ -190,8 +190,9 @@
           var numberOfNestedTodos = nestedTodos.length;
           var li = document.createElement('li');
           var p = document.createElement('p');
+          var text = currentTodoId + ': ' + currentTodoText;
 
-          p.textContent = currentTodoText;
+          p.textContent = text;
           li.setAttribute('id', currentTodoId);
 
           if(currentTodoCompleted){
