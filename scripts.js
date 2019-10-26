@@ -104,19 +104,17 @@
 
   var view = {
     render: function(){
-      // Add single event listener to modifyTodos:
+      // Add a single event listener to modifyTodos:
       var modifyTodos = document.querySelector('#modifyTodos');
+
       modifyTodos.addEventListener('click', view.handleClick);
 
-      // Render todos:
+      // Generate markup and replace old todos with new todos:
       var todos = todoList.todos;
       var renderedTodos = document.createElement('div');
-
-      view.renderTodos(todos, renderedTodos);
-
-      // Replace old UI with new UI:
       var displayTodos = document.querySelector('#displayTodos');
 
+      view.renderTodos(todos, renderedTodos);
       displayTodos.innerHTML = "";
       displayTodos.append(renderedTodos);
     },
