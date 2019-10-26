@@ -104,9 +104,9 @@
 
   var view = {
     render: function(){
-      // Add single event listener to modifyTodosUI:
-      var modifyTodosUI = document.querySelector('#modifyTodosUI');
-      modifyTodosUI.addEventListener('click', view.handleClick);
+      // Add single event listener to modifyTodos:
+      var modifyTodos = document.querySelector('#modifyTodos');
+      modifyTodos.addEventListener('click', view.handleClick);
 
       // Render todos:
       var todos = todoList.todos;
@@ -123,7 +123,7 @@
     handleClick: function(e){
       // There are no tests for handleClick().
       // Because of this, handleClick() needs to be checked manually.
-      // Making handleClick() testable would have involved re-building modifyTodosUI using JS.
+      // Making handleClick() testable would have involved re-building modifyTodos using JS.
       // Because of the limited educational value in this process the decision was made to move on.
       var target = e.target;
       var tagName = target.tagName;
