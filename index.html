@@ -6,8 +6,28 @@
   </head>
   <body>
     <h1>Todos</h1>
-    <!-- Insert markup for todo application inside of #main -->
-    <div id="main"></div>
+    <div id="modifyTodos">
+      <form>
+        <input id="addIndices" placeholder="e.g. [0]"/><label for="addIndices">Indices</label>
+        <input id="addText" placeholder="e.g. Nested todo"/><label for="addText">Text</label>
+        <button type="button">Add</button>
+      </form>
+      <form>
+        <input id="editIndices" placeholder="e.g. [0]"/><label for="editIndices">Indices</label>
+        <input id="editText" placeholder="e.g. Nested todo"/><label for="editText">Text</label>
+        <button type="button">Edit</button>
+      </form>
+      <form>
+        <input id="toggleIndices" placeholder="e.g. [0]"/><label for="toggleIndices">Indices</label>
+        <button type="button">Toggle</button>
+      </form>
+      <form>
+        <input id="removeIndices" placeholder="e.g. [0]"/><label for="removeIndices">Indices</label>
+        <button type="button">Remove</button>
+      </form>
+    </div>
+    <!-- Insert markup for todo application inside of #displayTodos -->
+    <div id="displayTodos"></div>
     <script src="scripts.js"></script>
   </body>
 </html>

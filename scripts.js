@@ -20,7 +20,7 @@
         }
       }
     },
-    add: function(text, indices, isRecursive){
+    add: function(indices, text, isRecursive){
       var toModify = util.getToModify(isRecursive, this);
 
       // Base case:
@@ -48,27 +48,23 @@
         var currentTodo = toModify[currentIndex];
         var remainingIndices = indices.slice(1);
 
-        todoList.add.call(currentTodo, text, remainingIndices, true);
+        todoList.add.call(currentTodo, remainingIndices, text, true);
       }
     },
-    edit: function(text, indices, isRecursive){
-      if(text.length === 0){
-        todoList.remove(indices);
+    edit: function(indices, text, isRecursive){
+      var toModify = util.getToModify(isRecursive, this);
+      var currentIndex = indices[0];
+      var currentTodo = toModify[currentIndex];
+
+      // Base case:
+      if(indices.length === 1){
+        currentTodo.text = text;
+        view.render();
+      // Recursive case:
       }else{
-        var toModify = util.getToModify(isRecursive, this);
-        var currentIndex = indices[0];
-        var currentTodo = toModify[currentIndex];
+        var remainingIndices = indices.slice(1);
 
-        // Base case:
-        if(indices.length === 1){
-          currentTodo.text = text;
-          view.render();
-        // Recursive case:
-        }else{
-          var remainingIndices = indices.slice(1);
-
-          todoList.edit.call(currentTodo, text, remainingIndices, true);
-        }
+        todoList.edit.call(currentTodo, remainingIndices, text, true);
       }
     },
     remove: function(indices, isRecursive){
@@ -108,17 +104,74 @@
 
   var view = {
     render: function(){
-      // Render todos:
+      // Add a single event listener to modifyTodos:
+      var modifyTodos = document.querySelector('#modifyTodos');
+
+      modifyTodos.addEventListener('click', view.handleClick);
+
+      // Generate markup and replace old todos with new todos:
       var todos = todoList.todos;
       var renderedTodos = document.createElement('div');
+      var displayTodos = document.querySelector('#displayTodos');
 
       view.renderTodos(todos, renderedTodos);
+      displayTodos.innerHTML = "";
+      displayTodos.append(renderedTodos);
+    },
+    handleClick: function(e){
+      // There are no tests for handleClick().
+      // Because of this, handleClick() needs to be checked manually.
+      // Making handleClick() testable would have involved re-building modifyTodos using JS.
+      // Because of the limited educational value in this process the decision was made to move on.
+      var target = e.target;
+      var tagName = target.tagName;
 
-      // Replace old UI with new UI:
-      var main = document.querySelector('#main');
+      if(tagName === "BUTTON"){
+        var textContent = target.textContent;
+        var indicesInput;
+        var textInput;
+        var modifier;
 
-      main.innerHTML = "";
-      main.append(renderedTodos);
+        // Target inputs and configure modifier:
+        if(textContent === 'Add'){
+          indicesInput = document.querySelector('#addIndices');
+          textInput = document.querySelector('#addText');
+          modifier = todoList.add;
+        }
+
+        if(textContent === 'Edit'){
+          indicesInput = document.querySelector('#editIndices');
+          textInput = document.querySelector('#editText');
+          modifier = todoList.edit;
+        }
+
+        if(textContent === 'Toggle'){
+          indicesInput = document.querySelector('#toggleIndices');
+          modifier = todoList.toggle;
+        }
+
+        if(textContent === 'Remove'){
+          indicesInput = document.querySelector('#removeIndices');
+          modifier = todoList.remove;
+        }
+
+        // Extract values from inputs:
+        var indicesValue = indicesInput.value;
+        var indices = util.getIndices(indicesValue);
+        var text;
+
+        if(textInput){
+          var textValue = textInput.value;
+          text = util.getText(textValue);
+        }
+
+        modifier(indices, text);
+        indicesInput.value = "";
+
+        if(textInput){
+          textInput.value = "";
+        }
+      }
     },
     renderTodos: function(todos, parentElement){
       var numberOfTodos = todos.length;
@@ -135,8 +188,9 @@
           var numberOfNestedTodos = nestedTodos.length;
           var li = document.createElement('li');
           var p = document.createElement('p');
+          var text = currentTodoId + ': ' + currentTodoText;
 
-          p.textContent = currentTodoText;
+          p.textContent = text;
           li.setAttribute('id', currentTodoId);
 
           if(currentTodoCompleted){
@@ -161,6 +215,50 @@
   };
 
   var util = {
+    getIndices: function(value){
+      var trimmed = value.trim();
+      var firstCharacter = trimmed[0];
+      var lastCharacter = trimmed[trimmed.length - 1];
+
+      // If user has not properly formatted indices array:
+      if(firstCharacter !== "[" || lastCharacter !== "]"){
+        throw new Error('Indices array has not been properly formatted');
+      }
+
+      var withoutBrackets = trimmed.slice(1, trimmed.length - 1);
+      var listOfNumbers = [];
+
+      // If the array is not empty:
+      // "".split(",") ==> [""] is not desired.
+      if(withoutBrackets.length > 0){
+        var listOfStrings = withoutBrackets.split(',');
+
+        listOfNumbers = listOfStrings.map(function(string){
+          return Number(string);
+        });
+      }
+
+      // If listOfNumbers contains a single non-integer or isNaN value:
+      listOfNumbers.forEach(function(value){
+        var isInteger = Number.isInteger(value);
+        var isNumber = !isNaN(value);
+
+        if(!isInteger || !isNumber){
+          throw new Error('Values in indices array have not been properly formatted');
+        }
+      });
+
+      return listOfNumbers;
+    },
+    getText(value){
+      var trimmed = value.trim();
+
+      if(trimmed.length === 0){
+        throw new Error('Value in text input is empty');
+      }
+
+      return trimmed;
+    },
     getToModify: function(isRecursive, thisArg){
       if (!isRecursive) {
         return todoList.todos;

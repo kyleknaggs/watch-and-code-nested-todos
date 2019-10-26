@@ -5,8 +5,8 @@
     nestedTodos.todoList.todos=[];
 
     // Reset UI to original state:
-    var main = document.querySelector('#main');
-    main.innerHTML = "";
+    var displayTodos = document.querySelector('#displayTodos');
+    displayTodos.innerHTML = "";
   }
 
   // Attach the application to the browser window:
