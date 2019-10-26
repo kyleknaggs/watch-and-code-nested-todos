@@ -115,10 +115,10 @@
       view.renderTodos(todos, renderedTodos);
 
       // Replace old UI with new UI:
-      var main = document.querySelector('#main');
+      var displayTodos = document.querySelector('#displayTodos');
 
-      main.innerHTML = "";
-      main.append(renderedTodos);
+      displayTodos.innerHTML = "";
+      displayTodos.append(renderedTodos);
     },
     handleClick: function(e){
       // There are no tests for handleClick().

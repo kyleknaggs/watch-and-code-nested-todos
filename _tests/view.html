@@ -1,7 +1,7 @@
-<!-- Placeholder #main -->
+<!-- Placeholder #displayTodos -->
 <!-- Prevents Uncaught TypeErrors: Cannot read property 'append' of null error -->
 <div id="modifyTodos"></div>
-<div id="main"></div>
+<div id="displayTodos"></div>
 <script src="simpletest.js"></script>
 <script src="helper.js"></script>
 <script src="../scripts.js"></script>
@@ -18,16 +18,16 @@
     // Phase 1: Construct markup that will hold nested todos.
     // Basic todos:
     // When application has loaded:
-    "1) If todos.length === 0, main.children[0].tagName should be 'DIV'.": function () {
-      var main = document.querySelector('#main');
+    "1) If todos.length === 0, displayTodos.children[0].tagName should be 'DIV'.": function () {
+      var displayTodos = document.querySelector('#displayTodos');
 
-      eq(main.children[0].tagName, "DIV");
+      eq(displayTodos.children[0].tagName, "DIV");
     },
     // First todo <ul>:
     "2) If todos.length === 1, div.children[0].tagName should be 'UL'.": function(){
       add([], '1st');
-      var main = document.querySelector('#main');
-      var div = main.children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var div = displayTodos.children[0];
 
       eq(div.children[0].tagName, "UL");
       resetAfterTest();
@@ -35,8 +35,8 @@
     // First todo <li>:
     "3) If todos.length === 1, ul.children[0].tagName should be 'LI'.": function(){
       add([], '1st');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].tagName, "LI");
       resetAfterTest();
@@ -44,8 +44,8 @@
     // First todo <p>:
     "4) If todos.length === 1, ul.children[0].children[0].tagName should be 'P'.": function(){
       add([], '1st');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].children[0].tagName, "P");
       resetAfterTest();
@@ -54,8 +54,8 @@
     "5) If todos.length === 2, ul.children[1].children[0].tagName should be 'P'.": function(){
       add([], '1st');
       add([], '2nd');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[1].children[0].tagName, "P");
       resetAfterTest();
@@ -65,8 +65,8 @@
     "6) If todos[0].todos.length === 1, ul.children[0].children[1].tagName should be 'UL'.": function(){
       add([], '1st');
       add([0], '1st nested');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].children[1].tagName, "UL");
       resetAfterTest();
@@ -75,8 +75,8 @@
     "7) If todos[0].todos.length === 1, ul.children[0].children[1].children[0].tagName should be 'LI'.": function(){
       add([], '1st');
       add([0], '1st nested');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].children[1].children[0].tagName, "LI");
       resetAfterTest();
@@ -85,8 +85,8 @@
     "8) If todos[0].todos.length === 1, ul.children[0].children[1].children[0].children[0].tagName should be 'P'.": function(){
       add([], '1st');
       add([0], '1st nested');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].children[1].children[0].children[0].tagName, "P");
       resetAfterTest();
@@ -97,8 +97,8 @@
       add([], '1st');
       add([], '2nd');
       add([1], '1st nested');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[1].children[1].children[0].children[0].tagName, "P");
       resetAfterTest();
@@ -109,8 +109,8 @@
       add([], '2nd');
       add([1], '1st nested');
       add([1], '2nd nested');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[1].children[1].children[1].children[0].tagName, "P");
       resetAfterTest();
@@ -121,8 +121,8 @@
       add([], '1st');
       add([0], '1st nested');
       add([0,0], '1st nested in nested');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].children[1].children[0].children[1].tagName, 'UL');
       resetAfterTest();
@@ -133,8 +133,8 @@
       add([], '1st');
       add([0], '1st nested');
       add([0,0], '1st nested in nested');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].children[1].children[0].children[1].children[0].tagName, 'LI');
       resetAfterTest();
@@ -145,8 +145,8 @@
       add([], '1st');
       add([0], '1st nested');
       add([0,0], '1st nested in nested');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].children[1].children[0].children[1].children[0].children[0].tagName, "P");
       resetAfterTest();
@@ -158,8 +158,8 @@
     // Add id value to <li>:
     "14) If todos[0] exists, then ul.children[0].id should be '0'.": function(){
       add([], '1st');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].id, "0");
       resetAfterTest();
@@ -167,8 +167,8 @@
     // Add textContent to <p>:
     "15) If todos[0].text === '1st', then ul.children[0].children[0].textContent should be '0: 1st'.": function(){
       add([], '1st');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].children[0].textContent, "0: 1st");
       resetAfterTest();
@@ -181,8 +181,8 @@
     "16) If todos.length === 1 and remove([0]) is called, div.children.length should be 0.": function(){
       add([], '1st');
       remove([0]);
-      var main = document.querySelector('#main');
-      var div = main.children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var div = displayTodos.children[0];
 
       eq(div.children.length, 0);
       resetAfterTest();
@@ -191,8 +191,8 @@
     "17) If todos[0].completed === false and toggle([0]) is called, ul.children[0].className should be 'completed'.": function(){
       add([], '1st');
       toggle([0]);
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].className, 'completed');
       resetAfterTest();
@@ -203,8 +203,8 @@
       add([], '1st');
       toggle([0]);
       toggle([0]);
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].className, '');
       resetAfterTest();
@@ -213,8 +213,8 @@
     "19) If todos[0].text === '1st' and edit([0], 'first'), then ul.children[0].children[0].textContent should be '0: first'.": function(){
       add([], '1st');
       edit([0], 'first');
-      var main = document.querySelector('#main');
-      var ul = main.children[0].children[0];
+      var displayTodos = document.querySelector('#displayTodos');
+      var ul = displayTodos.children[0].children[0];
 
       eq(ul.children[0].children[0].textContent, '0: first');
       resetAfterTest();
