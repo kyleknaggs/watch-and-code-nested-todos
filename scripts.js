@@ -268,10 +268,11 @@
     }
   };
 
-  // Render the application when the page is loaded:der t
+  // Render the application when the page is loaded:
   view.render();
 
   // Attach application code to a single key of the window object:
+  // This makes it easy to test application code in console.
   var nestedTodos = {
     todoList,
     util,
