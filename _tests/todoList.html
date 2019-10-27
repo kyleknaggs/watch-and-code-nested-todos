@@ -646,7 +646,6 @@
       resetAfterTest();
     },
 
-
     // ---------------------------------------
 
     // Phase 7: Regenerate the value in the id key every time todoList.remove() is called.
@@ -758,6 +757,54 @@
 
       var todo = nestedTodos.todoList.todos[3].todos[0].todos[2].todos[1].todos[0];
       eq(todo.id, "3-0-2-1-0");
+      resetAfterTest();
+    },
+
+    // ---------------------------------------
+
+    // Phase 8: Throw a custom error message if the user attempts to modify an index in a todo that does not exist.
+
+    /*
+
+    Requirements:
+
+    a. todoList.add():
+    1. Regular todo: If todoList.todos.length === 0 and add([0], '1st nested'), it should throw an error with the message 'Index in array does not exist'.
+    2. Nested todo: If todoList[0].todos.length === 0 and add([0,0], '1st nested in nested'), it should throw an error with the message 'Index in array does not exist'.
+
+    Following the order set up in the rest of the todoList tests, proceed with the remaining todos in this order:
+    b. todoList.remove()
+    c. todoList.edit()
+    d. todoList.toggle()
+
+    */
+
+    // a. todoList.add()
+    // If index in basic todo does not exist:
+    "57) If todoList.todos.length === 0 and add([0], '1st nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        add([0], '1st nested');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // If index in nested todo does not exist:
+    // Passed without additional code being written. Test kept for documentation.
+    "58) If todoList[0].todos.length === 0 and add([0,0], '1st nested in nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      add([], '1st');
+      var message;
+
+      try{
+        add([0,0], '1st nested in nested');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
       resetAfterTest();
     }
 
