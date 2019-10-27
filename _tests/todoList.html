@@ -779,5 +779,34 @@
 
     */
 
+    // a. todoList.add()
+    // If index in basic todo does not exist:
+    "57) If todoList.todos.length === 0 and add([0], '1st nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        add([0], '1st nested');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // If index in nested todo does not exist:
+    // Passed without additional code being written. Test kept for documentation.
+    "58) If todoList[0].todos.length === 0 and add([0,0], '1st nested in nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      add([], '1st');
+      var message;
+
+      try{
+        add([0,0], '1st nested in nested');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+      resetAfterTest();
+    }
+
   });
 </script>
