@@ -815,6 +815,35 @@
 
       eq(message, 'Index in array does not exist');
       resetAfterTest();
+    },
+    // b. remove()
+    // User attempts to delete an index that does not exist in an array of todos that does exist:
+    // Basic todo:
+    "59) If todos.length === 0, and remove([0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        remove([0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // Nested todo:
+    // Passed without additional code being written. Test kept for documentation.
+    "60) If todos[0].todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      add([], '1st');
+      var message;
+
+      try{
+        remove([0,0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+      resetAfterTest();
     }
 
   });
