@@ -76,15 +76,14 @@
     remove: function(indices, isRecursive){
       var toModify = util.getToModify(isRecursive, this);
       var currentIndex = indices[0];
+      var hasCurrentIndex = currentIndex in toModify;
+
+      if(!hasCurrentIndex){
+        throw new Error('Index in array does not exist');
+      }
 
       // Base case:
       if(indices.length === 1){
-        var hasCurrentIndex = currentIndex in toModify;
-
-        if(!hasCurrentIndex){
-          throw new Error('Index in array does not exist');
-        }
-
         toModify.splice(currentIndex, 1);
         todoList.resetIds(currentIndex, toModify);
         view.render();

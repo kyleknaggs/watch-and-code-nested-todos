@@ -844,7 +844,20 @@
 
       eq(message, 'Index in array does not exist');
       resetAfterTest();
+    },
+    // User attempts to delete a todo that is nested inside of a todo that does not exist:
+    "61) If todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        remove([0,0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
     }
+
 
   });
 </script>
