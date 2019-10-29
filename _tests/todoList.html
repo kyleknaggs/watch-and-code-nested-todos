@@ -789,7 +789,10 @@
     */
 
     // a. add()
-    // If index in basic todo does not exist:
+    // Only recursive case errors need to be created for add().
+    // This is because once an index in an array exists, it will have a todos array.
+    // Recursive case error, basic todo:
+    // If index in basic todo does not exist.
     "57) If todos.length === 0 and add([0], '1st nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
       var message;
 
@@ -801,7 +804,8 @@
 
       eq(message, 'Index in array does not exist');
     },
-    // If index in nested todo does not exist:
+    // Recursive case error, nested todo:
+    // If index in nested todo does not exist.
     // Passed without additional code being written. Test kept for documentation.
     "58) If todos[0].todos.length === 0 and add([0,0], '1st nested in nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
       add([], '1st');
@@ -817,8 +821,8 @@
       resetAfterTest();
     },
     // b. remove()
-    // User attempts to delete an index that does not exist in an array of todos that does exist:
-    // Basic todo:
+    // Base case error, basic todo:
+    // User attempts to delete an index that does not exist in an array of todos that does exist.
     "59) If todos.length === 0, and remove([0]), it should throw an error with the message 'Index in array does not exist'.": function(){
       var message;
 
@@ -830,7 +834,7 @@
 
       eq(message, 'Index in array does not exist');
     },
-    // Nested todo:
+    // Base case error, nested todo:
     // Passed without additional code being written. Test kept for documentation.
     "60) If todos[0].todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
       add([], '1st');
@@ -845,7 +849,8 @@
       eq(message, 'Index in array does not exist');
       resetAfterTest();
     },
-    // User attempts to delete a todo that is nested inside of a todo that does not exist:
+    // Recursive case error:
+    // User attempts to delete a todo that is nested inside of a todo that does not exist.
     "61) If todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
       var message;
 
