@@ -45,15 +45,16 @@
       // Recursive case:
       }else{
         var currentIndex = indices[0];
+        var hasCurrentIndex = currentIndex in toModify;
 
-        if(currentIndex in toModify){
-          var currentTodo = toModify[currentIndex];
-          var remainingIndices = indices.slice(1);
-
-          todoList.add.call(currentTodo, remainingIndices, text, true);
-        }else{
+        if(!hasCurrentIndex){
           throw new Error('Index in array does not exist');
         }
+
+        var currentTodo = toModify[currentIndex];
+        var remainingIndices = indices.slice(1);
+
+        todoList.add.call(currentTodo, remainingIndices, text, true);
 
       }
     },
