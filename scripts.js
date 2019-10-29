@@ -228,7 +228,9 @@
 
   var util = {
     confirmIndex: function(index, array){
-      if(array.length === 0){
+      var hasIndex = index in array;
+
+      if(!hasIndex){
         throw new Error("Index in array does not exist");
       }
     },

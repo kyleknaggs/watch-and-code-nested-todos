@@ -243,8 +243,19 @@
       }
 
       eq(hasError, false);
-    }
+    },
+    // If array.length > 0 and index is not in array:
+    "22) If confirmIndex(1,[0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
 
+      try{
+        confirmIndex(1,[0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    }
   });
 
 </script>
