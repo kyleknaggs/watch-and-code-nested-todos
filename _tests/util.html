@@ -194,7 +194,31 @@
       }
 
       eq(message, 'Value in text input is empty');
-    }
+    },
+
+    // ---------------------------------------
+
+    /*
+
+    confirmIndex()
+
+    Function Signature:
+    confirmIndex(index, array);
+
+    Arguments:
+    index - The index in the array that the user is attempting to modify.
+    array - The array that the user is attempting to modify.
+
+    1. If array.length === 0:
+    If confirmIndex(0, []), it should throw an error with the message 'Index in array does not exist'.
+    2. If index is in array:
+    If confirmIndex(0,[0]), do not throw an error message.
+    3. If array.length > 0 and index is not in array:
+    If confirmIndex(1,[0]), it should throw an error with the message 'Index in array does not exist'.
+
+    */
+
+    // Phase 4: confirmIndex()
 
   });
 
