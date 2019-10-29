@@ -648,7 +648,7 @@
 
     // ---------------------------------------
 
-    // Phase 7: Regenerate the value in the id key every time todoList.remove() is called.
+    // Phase 7: Regenerate the value in the id key every time remove() is called.
 
     // a. Normal todos
     // Basic test:
@@ -768,29 +768,29 @@
 
     Requirements:
 
-    a. todoList.add():
+    a. add():
     1. Regular todo:
-    If todoList.todos.length === 0 and add([0], '1st nested'), it should throw an error with the message 'Index in array does not exist'.
+    If todos.length === 0 and add([0], '1st nested'), it should throw an error with the message 'Index in array does not exist'.
     2. Nested todo:
-    If todoList[0].todos.length === 0 and add([0,0], '1st nested in nested'), it should throw an error with the message 'Index in array does not exist'.
+    If todos[0].todos.length === 0 and add([0,0], '1st nested in nested'), it should throw an error with the message 'Index in array does not exist'.
 
-    b. todoList.remove()
+    b. remove()
     1. Basic todo: User attempts to delete an index that does not exist in an array of todos that does exist.
-    If todoList.todos.length === 0, and remove([0]), it should throw an error with the message 'Index in array does not exist'.
+    If todos.length === 0, and remove([0]), it should throw an error with the message 'Index in array does not exist'.
     2. Nested todo: User attempts to delete an index that does not exist in an array of todos that does exist. (Should pass without adding additional code)
-    If todoList.[0].todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.
+    If todos[0].length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.
     3. User attempts to delete a todo that is nested inside of a todo that does not exist:
-    If todoList.todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.
+    If todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.
 
     Following the order set up in the rest of the todoList tests, proceed with the remaining todos in this order:
-    c. todoList.edit()
-    d. todoList.toggle()
+    c. edit()
+    d. toggle()
 
     */
 
-    // a. todoList.add()
+    // a. add()
     // If index in basic todo does not exist:
-    "57) If todoList.todos.length === 0 and add([0], '1st nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+    "57) If todos.length === 0 and add([0], '1st nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
       var message;
 
       try{
@@ -803,7 +803,7 @@
     },
     // If index in nested todo does not exist:
     // Passed without additional code being written. Test kept for documentation.
-    "58) If todoList[0].todos.length === 0 and add([0,0], '1st nested in nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+    "58) If todos[0].todos.length === 0 and add([0,0], '1st nested in nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
       add([], '1st');
       var message;
 
