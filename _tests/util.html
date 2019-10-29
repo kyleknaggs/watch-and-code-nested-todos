@@ -10,6 +10,7 @@
   var todoList = nestedTodos.todoList
   var add = todoList.add;
   var util = nestedTodos.util;
+  var confirmIndex = util.confirmIndex;
   var getToModify = util.getToModify;
   var getIndices = util.getIndices;
   var getText = util.getText;
@@ -219,6 +220,18 @@
     */
 
     // Phase 4: confirmIndex()
+    // If array.length === 0:
+    "20) If confirmIndex(0, []), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        confirmIndex(0, []);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    }
 
   });
 

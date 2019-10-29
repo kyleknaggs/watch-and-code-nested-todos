@@ -227,6 +227,9 @@
   };
 
   var util = {
+    confirmIndex: function(){
+      throw new Error("Index in array does not exist");
+    },
     getIndices: function(value){
       var trimmed = value.trim();
       var firstCharacter = trimmed[0];
