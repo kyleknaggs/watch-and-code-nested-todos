@@ -45,11 +45,8 @@
       // Recursive case:
       }else{
         var currentIndex = indices[0];
-        var hasCurrentIndex = currentIndex in toModify;
 
-        if(!hasCurrentIndex){
-          throw new Error('Index in array does not exist');
-        }
+        util.confirmIndex(currentIndex, toModify);
 
         var currentTodo = toModify[currentIndex];
         var remainingIndices = indices.slice(1);
@@ -77,11 +74,8 @@
     remove: function(indices, isRecursive){
       var toModify = util.getToModify(isRecursive, this);
       var currentIndex = indices[0];
-      var hasCurrentIndex = currentIndex in toModify;
 
-      if(!hasCurrentIndex){
-        throw new Error('Index in array does not exist');
-      }
+      util.confirmIndex(currentIndex, toModify);
 
       // Base case:
       if(indices.length === 1){
