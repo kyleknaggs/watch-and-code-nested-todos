@@ -227,8 +227,10 @@
   };
 
   var util = {
-    confirmIndex: function(){
-      throw new Error("Index in array does not exist");
+    confirmIndex: function(index, array){
+      if(array.length === 0){
+        throw new Error("Index in array does not exist");
+      }
     },
     getIndices: function(value){
       var trimmed = value.trim();

@@ -231,6 +231,18 @@
       }
 
       eq(message, 'Index in array does not exist');
+    },
+    // If index is in array:
+    "21) If confirmIndex(0,[0]), do not throw an error message.": function(){
+      var hasError = false;
+
+      try{
+        confirmIndex(0,[0]);
+      }catch(e){
+        hasError = true;
+      }
+
+      eq(hasError, false);
     }
 
   });
