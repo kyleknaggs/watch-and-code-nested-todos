@@ -946,6 +946,19 @@
 
       eq(message, 'Index in array does not exist');
       resetAfterTest();
+    },
+    // Nested todo, recursive case:
+    // User attempts to edit the text of an index that does not exist in an array that does not exist.
+    "67) If todos.length === 0 and edit([0,0], 'first nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        edit([0,0], 'first nested');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
     }
 
   });
