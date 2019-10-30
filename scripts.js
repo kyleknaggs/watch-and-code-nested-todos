@@ -62,6 +62,7 @@
 
       // Base case:
       if(indices.length === 1){
+        util.confirmIndex(currentIndex, toModify);
         currentTodo.text = text;
         view.render();
       // Recursive case:

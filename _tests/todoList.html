@@ -916,6 +916,36 @@
       }
 
       eq(message, 'Index in array does not exist');
+    },
+    // d. edit()
+    // Basic todo, base case:
+    // User attempts to edit the text of an index that does not exist in an array that does exist.
+    "65) If todos.length === 0 and edit([0], 'first'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        edit([0], 'first');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // Nested todo, base case:
+    // User attempts to edit the text of an index that does not exist in an array that does exist.
+    // Passed without additional code being written. Test kept for documentation.
+    "66) If todos[0].length === 0 and edit([0,0], 'first nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      add([], '1st');
+      var message;
+
+      try{
+        edit([0,0], 'first nested');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+      resetAfterTest();
     }
 
   });
