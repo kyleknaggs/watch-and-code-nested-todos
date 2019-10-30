@@ -60,6 +60,8 @@
       var currentIndex = indices[0];
       var currentTodo = toModify[currentIndex];
 
+      util.confirmIndex(currentIndex, toModify);
+
       // Base case:
       if(indices.length === 1){
         currentTodo.text = text;
