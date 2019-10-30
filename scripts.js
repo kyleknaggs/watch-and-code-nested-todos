@@ -95,9 +95,10 @@
       var currentIndex = indices[0];
       var currentTodo = toModify[currentIndex];
 
+      util.confirmIndex(currentIndex, toModify);
+
       // Base case:
       if(indices.length === 1){
-        util.confirmIndex(currentIndex, toModify);
         currentTodo.completed = !currentTodo.completed;
         view.render();
       // Recursive case:
