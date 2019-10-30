@@ -783,8 +783,8 @@
     If todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.
 
     Following the order set up in the rest of the todoList tests, proceed with the remaining todos in this order:
-    c. edit()
-    d. toggle()
+    c. toggle()
+    d. edit()
 
     */
 
@@ -823,7 +823,7 @@
     // b. remove()
     // Base case error, basic todo:
     // User attempts to delete an index that does not exist in an array of todos that does exist.
-    "59) If todos.length === 0, and remove([0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+    "59) If todos.length === 0 and remove([0]), it should throw an error with the message 'Index in array does not exist'.": function(){
       var message;
 
       try{
@@ -836,7 +836,7 @@
     },
     // Base case error, nested todo:
     // Passed without additional code being written. Test kept for documentation.
-    "60) If todos[0].todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+    "60) If todos[0].todos.length === 0 and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
       add([], '1st');
       var message;
 
@@ -851,7 +851,7 @@
     },
     // Recursive case error:
     // User attempts to delete a todo that is nested inside of a todo that does not exist.
-    "61) If todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+    "61) If todos.length === 0 and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
       var message;
 
       try{
@@ -861,8 +861,50 @@
       }
 
       eq(message, 'Index in array does not exist');
-    }
+    },
+    // c. toggle():
+    // Basic todo, base case:
+    // User attempts to delete an index that does not exist in an array that does exist.
+    "62) If todos.length === 0 and toggle([0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
 
+      try{
+        toggle([0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // Nested todo, base case:
+    // User attempts to delete an index that does not exist in an array that does exist.
+    // Passed without additional code being written. Test kept for documentation.
+    "63) If todos[0].todos.length === 0 and toggle([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      add([], '1st');
+      var message;
+
+      try{
+        toggle([0,0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+      resetAfterTest();
+    },
+    // Nested todo, recursive case:
+    // User attempts to delete an index that does not exist in an array that does not exist.
+    "64) If todos.length === 0 and toggle([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        toggle([0,0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    }
 
   });
 </script>
