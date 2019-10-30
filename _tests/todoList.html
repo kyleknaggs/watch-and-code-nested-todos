@@ -782,9 +782,21 @@
     3. User attempts to delete a todo that is nested inside of a todo that does not exist:
     If todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.
 
-    Following the order set up in the rest of the todoList tests, proceed with the remaining todos in this order:
     c. toggle()
+    1. Basic todo, base case: User attempts to delete an index that does not exist in an array that does exist.
+    If todos.length === 0 and toggle([0]), it should throw an error with the message 'Index in array does not exist'.
+    2. Nested todo, base case: User attempts to delete an index that does not exist in an array that does exist.
+    If todos[0].todos.length === 0 and toggle([0,0]), it should throw an error with the message 'Index in array does not exist'.
+    3. Nested todo, recursive case: User attempts to delete an index that does not exist in an array that does not exist.
+    If todos.length === 0, and toggle([0,0]), it should throw an error with the message 'Index in array does not exist'.
+
     d. edit()
+    1. Basic todo, base case: User attempts to edit the text of an index that does not exist in an array that does exist.
+    If todos.length === 0 and edit([0], 'first'), it should throw an error with the message 'Index in array does not exist'.
+    2. Nested todo, base case: User attempts to edit the text of an index that does not exist in an array that does exist.
+    If todos[0].length === 0 and edit([0,0], 'first nested'), it should throw an error with the message 'Index in array does not exist'.
+    3. Nested todo, recursive case: User attempts to edit the text of an index that does not exist in an array that does not exist.
+    If todos.length === 0 and edit([0,0], 'first nested'), it should throw an error with the message 'Index in array does not exist'.
 
     */
 
