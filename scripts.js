@@ -97,6 +97,7 @@
 
       // Base case:
       if(indices.length === 1){
+        util.confirmIndex(currentIndex, toModify);
         currentTodo.completed = !currentTodo.completed;
         view.render();
       // Recursive case:
