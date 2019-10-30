@@ -764,42 +764,6 @@
 
     // Phase 8: Throw a custom error message if the user attempts to modify an index in a todo that does not exist.
 
-    /*
-
-    Requirements:
-
-    a. add():
-    1. Regular todo:
-    If todos.length === 0 and add([0], '1st nested'), it should throw an error with the message 'Index in array does not exist'.
-    2. Nested todo:
-    If todos[0].todos.length === 0 and add([0,0], '1st nested in nested'), it should throw an error with the message 'Index in array does not exist'.
-
-    b. remove()
-    1. Basic todo: User attempts to delete an index that does not exist in an array of todos that does exist.
-    If todos.length === 0, and remove([0]), it should throw an error with the message 'Index in array does not exist'.
-    2. Nested todo: User attempts to delete an index that does not exist in an array of todos that does exist. (Should pass without adding additional code)
-    If todos[0].length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.
-    3. User attempts to delete a todo that is nested inside of a todo that does not exist:
-    If todos.length === 0, and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.
-
-    c. toggle()
-    1. Basic todo, base case: User attempts to delete an index that does not exist in an array that does exist.
-    If todos.length === 0 and toggle([0]), it should throw an error with the message 'Index in array does not exist'.
-    2. Nested todo, base case: User attempts to delete an index that does not exist in an array that does exist.
-    If todos[0].todos.length === 0 and toggle([0,0]), it should throw an error with the message 'Index in array does not exist'.
-    3. Nested todo, recursive case: User attempts to delete an index that does not exist in an array that does not exist.
-    If todos.length === 0, and toggle([0,0]), it should throw an error with the message 'Index in array does not exist'.
-
-    d. edit()
-    1. Basic todo, base case: User attempts to edit the text of an index that does not exist in an array that does exist.
-    If todos.length === 0 and edit([0], 'first'), it should throw an error with the message 'Index in array does not exist'.
-    2. Nested todo, base case: User attempts to edit the text of an index that does not exist in an array that does exist.
-    If todos[0].length === 0 and edit([0,0], 'first nested'), it should throw an error with the message 'Index in array does not exist'.
-    3. Nested todo, recursive case: User attempts to edit the text of an index that does not exist in an array that does not exist.
-    If todos.length === 0 and edit([0,0], 'first nested'), it should throw an error with the message 'Index in array does not exist'.
-
-    */
-
     // a. add()
     // Only recursive case errors need to be created for add().
     // This is because once an index in an array exists, it will have a todos array.
