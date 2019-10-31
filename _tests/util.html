@@ -10,6 +10,7 @@
   var todoList = nestedTodos.todoList
   var add = todoList.add;
   var util = nestedTodos.util;
+  var confirmIndex = util.confirmIndex;
   var getToModify = util.getToModify;
   var getIndices = util.getIndices;
   var getText = util.getText;
@@ -194,8 +195,67 @@
       }
 
       eq(message, 'Value in text input is empty');
-    }
+    },
 
+    // ---------------------------------------
+
+    /*
+
+    confirmIndex()
+
+    Function Signature:
+    confirmIndex(index, array);
+
+    Arguments:
+    index - The index in the array that the user is attempting to modify.
+    array - The array that the user is attempting to modify.
+
+    1. If array.length === 0:
+    If confirmIndex(0, []), it should throw an error with the message 'Index in array does not exist'.
+    2. If index is in array:
+    If confirmIndex(0,[0]), do not throw an error message.
+    3. If array.length > 0 and index is not in array:
+    If confirmIndex(1,[0]), it should throw an error with the message 'Index in array does not exist'.
+
+    */
+
+    // Phase 4: confirmIndex()
+    // If array.length === 0:
+    "20) If confirmIndex(0, []), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        confirmIndex(0, []);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // If index is in array:
+    "21) If confirmIndex(0,[0]), do not throw an error message.": function(){
+      var hasError = false;
+
+      try{
+        confirmIndex(0,[0]);
+      }catch(e){
+        hasError = true;
+      }
+
+      eq(hasError, false);
+    },
+    // If array.length > 0 and index is not in array:
+    "22) If confirmIndex(1,[0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        confirmIndex(1,[0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    }
   });
 
 </script>

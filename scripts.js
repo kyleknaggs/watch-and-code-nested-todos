@@ -45,16 +45,22 @@
       // Recursive case:
       }else{
         var currentIndex = indices[0];
+
+        util.confirmIndex(currentIndex, toModify);
+
         var currentTodo = toModify[currentIndex];
         var remainingIndices = indices.slice(1);
 
         todoList.add.call(currentTodo, remainingIndices, text, true);
+
       }
     },
     edit: function(indices, text, isRecursive){
       var toModify = util.getToModify(isRecursive, this);
       var currentIndex = indices[0];
       var currentTodo = toModify[currentIndex];
+
+      util.confirmIndex(currentIndex, toModify);
 
       // Base case:
       if(indices.length === 1){
@@ -70,6 +76,8 @@
     remove: function(indices, isRecursive){
       var toModify = util.getToModify(isRecursive, this);
       var currentIndex = indices[0];
+
+      util.confirmIndex(currentIndex, toModify);
 
       // Base case:
       if(indices.length === 1){
@@ -88,6 +96,8 @@
       var toModify = util.getToModify(isRecursive, this);
       var currentIndex = indices[0];
       var currentTodo = toModify[currentIndex];
+
+      util.confirmIndex(currentIndex, toModify);
 
       // Base case:
       if(indices.length === 1){
@@ -215,6 +225,13 @@
   };
 
   var util = {
+    confirmIndex: function(index, array){
+      var hasIndex = index in array;
+
+      if(!hasIndex){
+        throw new Error("Index in array does not exist");
+      }
+    },
     getIndices: function(value){
       var trimmed = value.trim();
       var firstCharacter = trimmed[0];

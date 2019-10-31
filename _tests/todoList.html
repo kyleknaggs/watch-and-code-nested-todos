@@ -646,10 +646,9 @@
       resetAfterTest();
     },
 
-
     // ---------------------------------------
 
-    // Phase 7: Regenerate the value in the id key every time todoList.remove() is called.
+    // Phase 7: Regenerate the value in the id key every time remove() is called.
 
     // a. Normal todos
     // Basic test:
@@ -759,6 +758,171 @@
       var todo = nestedTodos.todoList.todos[3].todos[0].todos[2].todos[1].todos[0];
       eq(todo.id, "3-0-2-1-0");
       resetAfterTest();
+    },
+
+    // ---------------------------------------
+
+    // Phase 8: Throw a custom error message if the user attempts to modify an index in a todo that does not exist.
+
+    // a. add()
+    // Only recursive case errors need to be created for add().
+    // This is because once an index in an array exists, it will have a todos array.
+    // Recursive case error, basic todo:
+    // If index in basic todo does not exist.
+    "57) If todos.length === 0 and add([0], '1st nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        add([0], '1st nested');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // Recursive case error, nested todo:
+    // If index in nested todo does not exist.
+    // Passed without additional code being written. Test kept for documentation.
+    "58) If todos[0].todos.length === 0 and add([0,0], '1st nested in nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      add([], '1st');
+      var message;
+
+      try{
+        add([0,0], '1st nested in nested');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+      resetAfterTest();
+    },
+    // b. remove()
+    // Base case error, basic todo:
+    // User attempts to delete an index that does not exist in an array of todos that does exist.
+    "59) If todos.length === 0 and remove([0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        remove([0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // Base case error, nested todo:
+    // Passed without additional code being written. Test kept for documentation.
+    "60) If todos[0].todos.length === 0 and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      add([], '1st');
+      var message;
+
+      try{
+        remove([0,0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+      resetAfterTest();
+    },
+    // Recursive case error:
+    // User attempts to delete a todo that is nested inside of a todo that does not exist.
+    "61) If todos.length === 0 and remove([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        remove([0,0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // c. toggle():
+    // Basic todo, base case:
+    // User attempts to delete an index that does not exist in an array that does exist.
+    "62) If todos.length === 0 and toggle([0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        toggle([0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // Nested todo, base case:
+    // User attempts to delete an index that does not exist in an array that does exist.
+    // Passed without additional code being written. Test kept for documentation.
+    "63) If todos[0].todos.length === 0 and toggle([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      add([], '1st');
+      var message;
+
+      try{
+        toggle([0,0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+      resetAfterTest();
+    },
+    // Nested todo, recursive case:
+    // User attempts to delete an index that does not exist in an array that does not exist.
+    "64) If todos.length === 0 and toggle([0,0]), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        toggle([0,0]);
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // d. edit()
+    // Basic todo, base case:
+    // User attempts to edit the text of an index that does not exist in an array that does exist.
+    "65) If todos.length === 0 and edit([0], 'first'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        edit([0], 'first');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+    },
+    // Nested todo, base case:
+    // User attempts to edit the text of an index that does not exist in an array that does exist.
+    // Passed without additional code being written. Test kept for documentation.
+    "66) If todos[0].length === 0 and edit([0,0], 'first nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      add([], '1st');
+      var message;
+
+      try{
+        edit([0,0], 'first nested');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
+      resetAfterTest();
+    },
+    // Nested todo, recursive case:
+    // User attempts to edit the text of an index that does not exist in an array that does not exist.
+    "67) If todos.length === 0 and edit([0,0], 'first nested'), it should throw an error with the message 'Index in array does not exist'.": function(){
+      var message;
+
+      try{
+        edit([0,0], 'first nested');
+      }catch(e){
+        message = e.message;
+      }
+
+      eq(message, 'Index in array does not exist');
     }
 
   });
