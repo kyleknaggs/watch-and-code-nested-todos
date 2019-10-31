@@ -19,6 +19,11 @@ li{
   list-style-type: disc;
 }
 
+/* Match how Workflowy styles todos that are children of a completed parent todo */
+.completed {
+  color: #C7C7C7;
+}
+
 /* Only style <p> elements that are the immediate children of .completed elements */
 .completed > p{
   text-decoration: line-through;
